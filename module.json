@@ -1,13 +1,16 @@
 {
   "name": "illandril-hotbar-uses",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "title": "Illandril's Hotbar Uses (5e)",
-  "description": "Shows the number of uses left for hotbar items with uses (5e compatible only).",
+  "description": "Shows the number of uses left for hotbar items with uses (currently only compatible with the DnD5e system).",
   "author": "Joe Spandrusyszyn",
   "minimumCoreVersion": "0.6.5",
   "compatibleCoreVersion": "0.6.5",
   "styles": ["./styles.css"],
   "esmodules": ["./init.js"],
+  "license": "./LICENSE",
   "url": "https://github.com/illandril/FoundryVTT-hotbar-uses",
-  "bugs": "https://github.com/illandril/FoundryVTT-hotbar-uses/issues"
+  "bugs": "https://github.com/illandril/FoundryVTT-hotbar-uses/issues",
+  "manifest": "https://github.com/illandril/FoundryVTT-hotbar-uses/releases/download/latest/module.json",
+  "download": "https://github.com/illandril/FoundryVTT-hotbar-uses/releases/download/v1.0.0/illandril-hotbar-uses.zip"
 }
