@@ -1,0 +1,13 @@
+{
+  "name": "illandril-hotbar-uses",
+  "version": "0.0.1",
+  "title": "Illandril's Hotbar Uses (5e)",
+  "description": "Shows the number of uses left for hotbar items with uses (5e compatible only).",
+  "author": "Joe Spandrusyszyn",
+  "minimumCoreVersion": "0.6.5",
+  "compatibleCoreVersion": "0.6.5",
+  "styles": ["./styles.css"],
+  "esmodules": ["./init.js"],
+  "url": "https://github.com/illandril/FoundryVTT-hotbar-uses",
+  "bugs": "https://github.com/illandril/FoundryVTT-hotbar-uses/issues"
+}
