@@ -44,7 +44,7 @@ function calculateUses(actor, macro) {
   } else {
     const consume = item.data.data.consume;
     if (consume && consume.target) {
-      return calculateConsumeUses(consume);
+      return calculateConsumeUses(actor, consume);
     }
   }
   // Don't know how to calculate uses, assume infinite
@@ -96,7 +96,7 @@ function calculateSpellUses(actor, item) {
   return slots;
 }
 
-function calculateConsumeUses(consume) {
+function calculateConsumeUses(actor, consume) {
   if (consume.type === 'attribute') {
     const attrs = consume.target.split('.');
     let value = actor.data.data;
