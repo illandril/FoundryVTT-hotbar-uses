@@ -124,15 +124,7 @@ function calculateSpellUses(item) {
 
 function calculateConsumeUses(actor, consume) {
   if (consume.type === 'attribute') {
-    const attrs = consume.target.split('.');
-    let value = actor.data.data;
-    attrs.forEach((attr) => {
-      try {
-        value = value[attr];
-      } catch (err) {
-        value = null;
-      }
-    });
+    const value = getProperty(actor.data.data, consume.target);
     if (typeof value === 'number') {
       return value;
     }
