@@ -62,16 +62,22 @@ function calculateUsesForItems(items) {
 
 function calculateUsesForItem(item) {
   let uses = null;
-  if (item.data.type === 'feat') {
+  const itemType = item.data.type;
+  if (itemType === 'feat') {
     uses = calculateFeatUses(item);
-  } else if (item.data.type === 'consumable') {
+  } else if (itemType === 'consumable') {
     uses = calculateConsumableUses(item);
-  } else if (item.data.type === 'spell') {
+  } else if (itemType === 'spell') {
     uses = calculateSpellUses(item);
   } else {
     const consume = item.data.data.consume;
     if (consume && consume.target) {
       uses = calculateConsumeUses(item.actor, consume);
+    } else if (itemType === 'weapon') {
+      // If the weapon is a thrown weapon, but not a returning weapon, show quantity
+      if (item.data.data.properties.thr && !item.data.data.properties.ret) {
+        uses = item.data.data.quantity;
+      }
     }
   }
   return uses;
