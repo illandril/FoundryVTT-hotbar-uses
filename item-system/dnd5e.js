@@ -1,6 +1,8 @@
 const MACRO_ITEM_NAME_REGEX = [
-  /game\.dnd5e\.rollItemMacro\("([^"]+)"\);/,
-  /MinorQOL\.doRoll\(event, "([^"]+)", {type: "([^"]+)".*}\);/,
+  // Standard dnd5e system Roll Item macro
+  /^\s*game\s*\.\s*dnd5e\s*\.\s*rollItemMacro\s*\(\s*(?<q>["'`])(?<itemName>.+)\k<q>\s*\)\s*;?\s*$/,
+  // MinorQOL's special doRoll syntax
+  /MinorQOL\.doRoll\(event, "(?<itemName>[^"]+)", {type: "(?<itemType>[^"]+)".*}\);?/,
 ];
 
 function getItemLookupDetailsForCommand(command) {
@@ -8,11 +10,7 @@ function getItemLookupDetailsForCommand(command) {
     for (let i = 0; i < MACRO_ITEM_NAME_REGEX.length; i++) {
       const match = command.match(MACRO_ITEM_NAME_REGEX[i]);
       if (match) {
-        if (match.length > 2) {
-          return { name: match[1], type: match[2] };
-        } else if (match.length === 2) {
-          return { name: match[1], type: null };
-        }
+        return { name: match.groups.itemName, type: match.groups.itemType || null };
       }
     }
   }
