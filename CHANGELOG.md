@@ -1,3 +1,11 @@
+## [v1.2.0](https://github.com/illandril/FoundryVTT-hotbar-uses/releases/tag/v1.2.0) (2020-08-31)
+**New Features:**
+* [\#3](https://github.com/illandril/FoundryVTT-hotbar-uses/issues/3) Adds quantity count for thrown weapons, as long as they don't have the returning property.
+
+**Fixed Bugs:**
+* [\#4](https://github.com/illandril/FoundryVTT-hotbar-uses/issues/4) Improved macro matching so counts appear for more macros (excess whitespace, alternative quote characters, and missing semicolon are now all supported)
+* [\#2](https://github.com/illandril/FoundryVTT-hotbar-uses/issues/2) Increased compatible core version to 0.6.6
+
 ## [v1.1.0](https://github.com/illandril/FoundryVTT-hotbar-uses/releases/tag/v1.1.0) (2020-08-24)
 **Fixed Bugs:**
 * [\#1](https://github.com/illandril/FoundryVTT-hotbar-uses/issues/1) Fixed an issue with items that have a resource consumption.
