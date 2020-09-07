@@ -1,3 +1,8 @@
+## [v1.3.0](https://github.com/illandril/FoundryVTT-hotbar-uses/releases/tag/v1.3.0) (2020-09-07)
+**Module Support:**
+* [\#5](https://github.com/illandril/FoundryVTT-hotbar-uses/issues/5) Adds support for BetterRolls5e
+* Adds CONFIG option to allow other module authors to add support directly
+
 ## [v1.2.0](https://github.com/illandril/FoundryVTT-hotbar-uses/releases/tag/v1.2.0) (2020-08-31)
 **New Features:**
 * [\#3](https://github.com/illandril/FoundryVTT-hotbar-uses/issues/3) Adds quantity count for thrown weapons, as long as they don't have the returning property.
