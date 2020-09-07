@@ -15,6 +15,49 @@ If an item has 0 uses left, or if the currently controlled actor doesn't have th
 
 If an item has no uses (ex. weapons without a resource consumption), or if a macro is not an item macro, its appearance is left unchanged.
 
+# Custom Macro Support
+For those who create more complicated macros, you can add a Uses counter by adding a comment to your macro's command. There are a few varieties of comments that this module will recognize...
+
+1. Equivalent Commands
+1. Actor and Item ID matching
+1. Item Name matching (optionally further filtered by Actor Name and/or Item Type)
+
+## Equivalent Command
+```
+// HotbarUses: {some other command}
+```
+This will cause the uses to be calculated as if the command were the `{some other command}` value. For example, if you are using the Better Rolls and Furnace modules, and have a special "useMultipleCharges" Furnace macro that will prompt the number of points to use, and then effectively call `BetterRolls.quickRollById`, you could have a macro that looks like this:
+```
+// HotbarUses: BetterRolls.quickRollById("pzGA6GqAoSsQWY0L", "Em91Iu07HkLAWAfK");
+let macro = game.macros.getName("useMultipleCharges")
+macro.execute("pzGA6GqAoSsQWY0L", "Em91Iu07HkLAWAfK")
+```
+
+## Actor and Item ID Matching
+```
+// HotbarUses5e: ActorID="X" ItemID="Y"
+```
+This will cause the uses to be calculated for the actor with ID "X" and the item with ID "Y". For example, if you have a Paladin with an ID of "pzGA6GqAoSsQWY0L", and their "Lay on Hands" item has an ID of "Em91Iu07HkLAWAfK", it will show the uses left for "Lay on Hands".
+```
+// HotbarUses5e: ActorID="pzGA6GqAoSsQWY0L" ItemID="Em91Iu07HkLAWAfK"
+CoolLayOnHandsMod.layOnHands("pzGA6GqAoSsQWY0L");
+```
+
+## Item Name Matching
+```
+// HotbarUses5e: ItemName="Y"
+// HotbarUses5e: ActorName="X" ItemName="Y"
+// HotbarUses5e: ItemName="Y" ItemType="Z"
+// HotbarUses5e: ActorName="X" ItemName="Y" ItemType="Z"
+```
+This will cause the uses to be calculated for an item with the name of "Y". If ActorName is specified, it will be for that actor. If ActorName is not specified, it will be for the currently selected actor.
+If ItemType is specified, it will only match items with the specified type.the actor with ID "X" and the item with ID "Y".
+For example, if you had a macro that caused Sally to cast Goodberry, and Sally also had both a Spell named Goodberry and an Inventory item named Goodberry, you would want...
+```
+// HotbarUses5e: ActorName="Sally" ItemName="Goodberry" ItemType="spell"
+CoolGoodberyMod.castGoodberry("Sally");
+```
+
 # Module Support
 Some modules modify item macros, which will cause this module to appear to not work. If you notice this, please open an issue with the full Command string for the macro that doesn't show counts and, if you know it, the name of the module that caused the macro to be created.
 

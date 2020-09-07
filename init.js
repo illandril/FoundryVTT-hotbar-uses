@@ -1,8 +1,18 @@
 import * as ItemSystem from './item-system/index.js';
 import * as UI from './ui.js';
 
+const COMMAND_EQUIVALENT = /^(.*\n)?\s*\/\/\s*HotbarUses:(?<command>[^\n]+)(\n.*)?$/si;
+
 function getCommand(macro) {
-  return macro && macro.data.command;
+  if(!macro) {
+    return null;
+  }
+  const rawCommand = macro.data.command;
+  const equivalentMatch = rawCommand.match(COMMAND_EQUIVALENT);
+  if(equivalentMatch) {
+    return equivalentMatch.groups.command;
+  }
+  return rawCommand;
 }
 
 function rerenderHotbarIfNecessary() {

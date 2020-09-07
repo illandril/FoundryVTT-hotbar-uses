@@ -1,3 +1,14 @@
+## [v1.4.0](https://github.com/illandril/FoundryVTT-hotbar-uses/releases/tag/v1.4.0) (2020-09-07)
+**New Features:**
+* [\#8](https://github.com/illandril/FoundryVTT-hotbar-uses/issues/8) Comment support for more complex macros
+
+**Module Support:**
+* [\#7](https://github.com/illandril/FoundryVTT-hotbar-uses/issues/7) Adds support for Custom Hotbar
+
+**Fixed Bugs:**
+* [\#9](https://github.com/illandril/FoundryVTT-hotbar-uses/issues/9) Show uses remaining, not the absolute charges/quantity value
+* [\#6](https://github.com/illandril/FoundryVTT-hotbar-uses/issues/6) Show uses for features with resource consumption
+
 ## [v1.3.0](https://github.com/illandril/FoundryVTT-hotbar-uses/releases/tag/v1.3.0) (2020-09-07)
 **Module Support:**
 * [\#5](https://github.com/illandril/FoundryVTT-hotbar-uses/issues/5) Adds support for BetterRolls5e

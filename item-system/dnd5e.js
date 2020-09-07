@@ -18,6 +18,12 @@ mergeObject(CONFIG, {
 
           // BetterRolls.quickRollByName(actorName, itemName)
           /^\s*BetterRolls\s*\.\s*quickRollByName\s*\(\s*(?<q>["'`])(?<actorName>.+)\k<q>\s*,\s*(?<qb>["'`])(?<itemName>.+)\k<qb>\s*\)\s*;?\s*$/,
+
+          // Comment: // HotbarUses5e: ActorID="X" ItemID="Y"
+          /^(.*\n)?\s*\/\/\s*HotbarUses5e:\s*ActorID\s*=\s*(?<q>["'`])(?<actorID>.+)\k<q>\s*ItemID\s*=\s*(?<qb>["'`])(?<itemID>.+)\k<qb>\s*(\n.*)?$/si,
+
+          // Comments: // HotbarUses5e: ActorName="X" ItemName="Y" ItemType="Z" (ActorName and ItemType optional)
+          /^(.*\n)?\s*\/\/\s*HotbarUses5e:\s*(ActorName\s*=\s*(?<q>["'`])(?<actorName>.+)\k<q>\s*)?ItemName\s*=\s*(?<qb>["'`])(?<itemName>.+)\k<qb>\s*(ItemType\s*=\s*(?<qc>["'`])(?<itemType>.+)\k<qc>\s*)?(\n.*)?$/si,
         ],
       },
     },
