@@ -15,6 +15,19 @@ If an item has 0 uses left, or if the currently controlled actor doesn't have th
 
 If an item has no uses (ex. weapons without a resource consumption), or if a macro is not an item macro, its appearance is left unchanged.
 
+# Module Support
+Some modules modify item macros, which will cause this module to appear to not work. If you notice this, please open an issue with the full Command string for the macro that doesn't show counts and, if you know it, the name of the module that caused the macro to be created.
+
+If you are a module author, you can add support right in your own module by adding a regular expression to this module's config (`CONFIG.illandril.hotbarUses.macros.dnd5e`). Example:
+```
+Hooks.once('init', () => {
+  const hotbarUsesMacros = getProperty(CONFIG, 'illandril.hotbarUses.macros.dnd5e');
+  hotbarUsesMacros && hotbarUsesMacros.push(/^\s*BetterRolls\s*\.\s*quickRollByName\s*\(\s*(?<q>["'`])(?<actorName>.+)\k<q>\s*,\s*(?<qb>["'`])(?<itemName>.+)\k<qb>\s*\)\s*;?\s*$/);
+});
+```
+
+The regular expression should match against your module's macros, with one or more of the following named capture groups: `itemName`, `itemType`, `itemID`, `actorID`, `actorName`. I can provide assistance in creating an appropriate regular expression if necessary.
+
 # Installation
 1. Open the Configuration and Setup for your FoundryVTT server
 1. Open the Add-on Modules Tab

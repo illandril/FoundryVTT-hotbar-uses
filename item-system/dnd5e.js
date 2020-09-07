@@ -1,20 +1,47 @@
-const MACRO_ITEM_NAME_REGEX = [
-  // Standard dnd5e system Roll Item macro
-  /^\s*game\s*\.\s*dnd5e\s*\.\s*rollItemMacro\s*\(\s*(?<q>["'`])(?<itemName>.+)\k<q>\s*\)\s*;?\s*$/,
-  // MinorQOL's special doRoll syntax
-  /MinorQOL\.doRoll\(event, "(?<itemName>[^"]+)", {type: "(?<itemType>[^"]+)".*}\);?/,
-];
+mergeObject(CONFIG, {
+  illandril: {
+    hotbarUses: {
+      macros: {
+        dnd5e: [
+          // Standard dnd5e system Roll Item macro
+          /^\s*game\s*\.\s*dnd5e\s*\.\s*rollItemMacro\s*\(\s*(?<q>["'`])(?<itemName>.+)\k<q>\s*\)\s*;?\s*$/,
+
+          // MinorQOL.doRoll
+          /MinorQOL\.doRoll\(event, "(?<itemName>[^"]+)", {type: "(?<itemType>[^"]+)".*}\);?/,
+
+          // BetterRolls.quickRoll(itemName)
+          /^\s*BetterRolls\s*\.\s*quickRoll\s*\(\s*(?<q>["'`])(?<itemName>.+)\k<q>\s*\)\s*;?\s*$/,
+
+          // BetterRolls.vanillaRoll(actorId, itemId)
+          // BetterRolls.quickRollById(actorId, itemId)
+          /^\s*BetterRolls\s*\.\s*(vanillaRoll|quickRollById)\s*\(\s*(?<q>["'`])(?<actorID>.+)\k<q>\s*,\s*(?<qb>["'`])(?<itemID>.+)\k<qb>\s*\)\s*;?\s*$/,
+
+          // BetterRolls.quickRollByName(actorName, itemName)
+          /^\s*BetterRolls\s*\.\s*quickRollByName\s*\(\s*(?<q>["'`])(?<actorName>.+)\k<q>\s*,\s*(?<qb>["'`])(?<itemName>.+)\k<qb>\s*\)\s*;?\s*$/,
+        ],
+      },
+    },
+  },
+});
 
 function getItemLookupDetailsForCommand(command) {
+  let results = null;
   if (command) {
-    for (let i = 0; i < MACRO_ITEM_NAME_REGEX.length; i++) {
-      const match = command.match(MACRO_ITEM_NAME_REGEX[i]);
+    CONFIG.illandril.hotbarUses.macros.dnd5e.some((regex) => {
+      const match = command.match(regex);
       if (match) {
-        return { name: match.groups.itemName, type: match.groups.itemType || null };
+        results = {
+          name: match.groups.itemName || null,
+          type: match.groups.itemType || null,
+          id: match.groups.itemID || null,
+          actorID: match.groups.actorID || null,
+          actorName: match.groups.actorName || null,
+        };
+        return true;
       }
-    }
+    });
   }
-  return null;
+  return results;
 }
 
 function getActor() {
@@ -29,7 +56,29 @@ function getActor() {
   return actor;
 }
 
+function getActorByID(actorID) {
+  let token = canvas.tokens.placeables.find((token) => token.actor && token.actor._id === actorID);
+  if (token) {
+    return token.actor;
+  }
+  return game.actors.get(actorID);
+}
+
+function getActorByName(actorName) {
+  let token = canvas.tokens.placeables.find(
+    (token) => token.actor && token.actor.data.name === actorName
+  );
+  if (token) {
+    return token.actor;
+  }
+  return game.actors.find((actor) => actor.name === actorName);
+}
+
 function getItems(actor, itemLookupDetails) {
+  if (itemLookupDetails.id) {
+    const item = actor.items.get(itemLookupDetails.id);
+    return item ? [item] : [];
+  }
   let firstType = itemLookupDetails.type;
   return actor.items.filter((item) => {
     if (item.name !== itemLookupDetails.name) {
@@ -166,7 +215,14 @@ export const calculateUses = (command) => {
     // Not an item command, assume infinite uses.
     return null;
   }
-  const actor = getActor();
+  let actor;
+  if (itemLookupDetails.actorID) {
+    actor = getActorByID(itemLookupDetails.actorID);
+  } else if (itemLookupDetails.actorName) {
+    actor = getActorByName(itemLookupDetails.actorName);
+  } else {
+    actor = getActor();
+  }
   if (!actor) {
     // It's an item, but there's no actor, so it can't be used.
     return 0;
