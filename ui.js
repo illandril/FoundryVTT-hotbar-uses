@@ -3,8 +3,7 @@ const CSS_COUNTER = CSS_PREFIX + 'counter';
 const CSS_HAS_USES = CSS_PREFIX + 'hasUses';
 const CSS_ZERO_USES = CSS_PREFIX + 'zeroUses';
 
-export const showUses = (slot, uses) => {
-  const hotbarElem = ui.hotbar.element[0];
+export const showUses = (hotbarElem, slot, uses) => {
   const slotElem = hotbarElem.querySelector('[data-slot="' + slot + '"]');
   let usesDisplay = slotElem.querySelector('.' + CSS_COUNTER);
   if (!usesDisplay) {

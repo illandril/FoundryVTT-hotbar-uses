@@ -11,6 +11,9 @@ function rerenderHotbarIfNecessary() {
   });
   if (canCalculateUses) {
     ui.hotbar.render();
+
+    // Module support: https://github.com/Norc/foundry-custom-hotbar
+    ui.customHotbar && ui.customHotbar.render()
   }
 }
 
@@ -20,10 +23,15 @@ Hooks.on('controlToken', rerenderHotbarIfNecessary);
 Hooks.on('deleteOwnedItem', rerenderHotbarIfNecessary);
 Hooks.on('createOwnedItem', rerenderHotbarIfNecessary);
 
-Hooks.on('renderHotbar', (hotbar, html, options) => {
+function onRenderHotbar(hotbar, html, options) {
+  const hotbarElem = hotbar.element[0];
   options.macros.forEach((macroSlot) => {
     const slot = macroSlot.slot;
     const command = getCommand(macroSlot.macro);
-    UI.showUses(slot, ItemSystem.calculateUses(command));
+    UI.showUses(hotbarElem, slot, ItemSystem.calculateUses(command));
   });
-});
+}
+Hooks.on('renderHotbar', onRenderHotbar);
+
+// Module support: https://github.com/Norc/foundry-custom-hotbar
+Hooks.on('renderCustomHotbar', onRenderHotbar);
