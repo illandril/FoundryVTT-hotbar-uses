@@ -1,6 +1,7 @@
 import * as dnd5e from './dnd5e.js';
 import * as pf1 from './pf1.js';
 import * as pf2 from './pf2.js';
+import * as demonlord from './demonlord.js';
 
 export const getItemSystem = () => {
   switch (game.system.id) {
@@ -10,6 +11,8 @@ export const getItemSystem = () => {
       return pf1;
     case 'pf2e':
       return pf2;
+    case 'demonlord':
+      return demonlord;
     default:
       return null;
   }
