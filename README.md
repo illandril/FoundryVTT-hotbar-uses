@@ -82,3 +82,6 @@ The regular expression should match against your module's macros, with one or mo
 1. Open the Settings tab
 1. Click Manage Modules
 1. Check the checkbox for Illandril's Hotbar Uses
+
+# Credits
+Support for the Shadow of the Demon Lord system was added by [Xacus](https://github.com/Xacus) 
