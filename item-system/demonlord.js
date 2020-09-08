@@ -92,7 +92,7 @@ function calculateUsesForItems(items) {
       uses = null;
       return true;
     }
-    uses = uses + thisItemUses;
+    uses = thisItemUses;
     return false;
   });
   return uses;
@@ -112,7 +112,7 @@ function calculateUsesForItem(item) {
 function calculateTalentUses(item) {
   const uses = item.uses;
   if (uses && (uses.max > 0 || uses.value > 0)) {
-    return uses.value;
+    return uses.value + "/" + uses.max;
   }
 
   return null;
@@ -121,7 +121,7 @@ function calculateTalentUses(item) {
 function calculateSpellUses(item) {
   const castings = item.castings;
   if (castings && (castings.max > 0 || castings.value > 0)) {
-    return castings.value;
+    return castings.value + "/" + castings.max;
   }
 
   return null;
