@@ -3,7 +3,7 @@ This is a module for Foundry Virtual Tabletop that adds a "uses" counter to item
 
 ![Screenshot showing hotbar counters for spells, items, and feats](/screenshots/example-a.png?raw=true)
 
-This module currently only works with the DnD5e system. It shows uses for any macro created by dragging an inventory item, spell, or feat from a character sheet into the hotbar.
+It shows uses for any macro created by dragging an inventory item, spell, or feat from a character sheet into the hotbar.
 
 Uses that are shown include...
 * Weapons with a Resource Consumption
@@ -14,6 +14,11 @@ Uses that are shown include...
 If an item has 0 uses left, or if the currently controlled actor doesn't have the item for a macro, the macro will have no number, a red outline, and appear slightly dimmed.
 
 If an item has no uses (ex. weapons without a resource consumption), or if a macro is not an item macro, its appearance is left unchanged.
+
+# Systems Supported
+This module currently supports the following systems:
+* DnD5e
+* Shadow of the Demon Lord
 
 # Custom Macro Support
 For those who create more complicated macros, you can add a Uses counter by adding a comment to your macro's command. There are a few varieties of comments that this module will recognize...
@@ -61,7 +66,7 @@ CoolGoodberyMod.castGoodberry("Sally");
 # Module Support
 Some modules modify item macros, which will cause this module to appear to not work. If you notice this, please open an issue with the full Command string for the macro that doesn't show counts and, if you know it, the name of the module that caused the macro to be created.
 
-If you are a module author, you can add support right in your own module by adding a regular expression to this module's config (`CONFIG.illandril.hotbarUses.macros.dnd5e`). Example:
+If you are a module author, you can add support right in your own module by adding a regular expression to this module's config for the appropriate system (`CONFIG.illandril.hotbarUses.macros.{system}}`). Example:
 ```
 Hooks.once('init', () => {
   const hotbarUsesMacros = getProperty(CONFIG, 'illandril.hotbarUses.macros.dnd5e');
@@ -84,4 +89,4 @@ The regular expression should match against your module's macros, with one or mo
 1. Check the checkbox for Illandril's Hotbar Uses
 
 # Credits
-Support for the Shadow of the Demon Lord system was added by [Xacus](https://github.com/Xacus) 
+Support for the Shadow of the Demon Lord system was added by [Xacus](https://github.com/Xacus)

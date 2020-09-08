@@ -1,3 +1,10 @@
+## [v1.5.0](https://github.com/illandril/FoundryVTT-hotbar-uses/releases/tag/v1.5.0) (2020-09-08)
+**New Features:**
+* [\#10](https://github.com/illandril/FoundryVTT-hotbar-uses/issues/10) Adds support for the Shadow of the Demon Lord system (special thanks to Xacus for adding this support)
+
+**Fixed Bugs:**
+* [\#12](https://github.com/illandril/FoundryVTT-hotbar-uses/issues/12) Fixed uses display on the main hotbar when using the Custom Hotbar module
+
 ## [v1.4.0](https://github.com/illandril/FoundryVTT-hotbar-uses/releases/tag/v1.4.0) (2020-09-07)
 **New Features:**
 * [\#8](https://github.com/illandril/FoundryVTT-hotbar-uses/issues/8) Comment support for more complex macros
