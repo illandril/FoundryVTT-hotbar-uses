@@ -1,5 +1,9 @@
 mergeObject(CONFIG, {
-  xacus: {
+  /*
+  Support for the Shadow of the Demon Lord system was initially added by Xacus
+  */
+
+  illandril: {
     hotbarUses: {
       macros: {
         demonlord: [
@@ -17,7 +21,7 @@ mergeObject(CONFIG, {
 function getItemLookupDetailsForCommand(command) {
   let results = null;
   if (command) {
-    CONFIG.xacus.hotbarUses.macros.demonlord.some((regex) => {
+    CONFIG.illandril.hotbarUses.macros.demonlord.some((regex) => {
       const match = command.match(regex);
       if (match) {
         results = {
