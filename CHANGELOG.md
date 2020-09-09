@@ -1,3 +1,13 @@
+## [v2.0.0](https://github.com/illandril/FoundryVTT-hotbar-uses/releases/tag/v2.0.0) (2020-09-??)
+**New Features:**
+* Show the maximum value for items with a maximum number of uses (can be turned off by each user if undesired)
+
+**Fixed Bugs:**
+* Improved readability of uses display for macros with high-contrast icons
+
+**Internal Changes:**
+* Code refactoring to reduce code duplication and make it easier to add support for new systems
+
 ## [v1.5.0](https://github.com/illandril/FoundryVTT-hotbar-uses/releases/tag/v1.5.0) (2020-09-08)
 **New Features:**
 * [\#10](https://github.com/illandril/FoundryVTT-hotbar-uses/issues/10) Adds support for the Shadow of the Demon Lord system (special thanks to Xacus for adding this support)
