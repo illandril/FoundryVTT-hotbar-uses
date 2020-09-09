@@ -1,5 +1,6 @@
-import * as ItemSystem from './item-system/index.js';
+import * as ItemSystem from './item-system.js';
 import * as UI from './ui.js';
+import { SETTINGS_UPDATED } from './settings.js';
 
 const COMMAND_EQUIVALENT = /^(.*\n)?\s*\/\/\s*HotbarUses:(?<command>[^\n]+)(\n.*)?$/is;
 
@@ -27,6 +28,7 @@ const rerenderHotbarIfNecessary = debounce(() => {
   }
 }, 10);
 
+Hooks.on(SETTINGS_UPDATED, rerenderHotbarIfNecessary);
 Hooks.on('updateOwnedItem', rerenderHotbarIfNecessary);
 Hooks.on('updateActor', rerenderHotbarIfNecessary);
 Hooks.on('updateToken', rerenderHotbarIfNecessary);

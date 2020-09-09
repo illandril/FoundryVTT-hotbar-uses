@@ -1,7 +1,7 @@
-import * as dnd5e from './dnd5e.js';
-import * as pf1 from './pf1.js';
-import * as pf2 from './pf2.js';
-import * as demonlord from './demonlord.js';
+import dnd5e from './item-systems/dnd5e.js';
+import pf1 from './item-systems/pf1.js';
+import pf2 from './item-systems/pf2.js';
+import demonlord from './item-systems/demonlord.js';
 
 export const getItemSystem = () => {
   switch (game.system.id) {
