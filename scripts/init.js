@@ -45,16 +45,20 @@ function onRenderHotbar(hotbar, html, options) {
   });
 }
 
-Hooks.on('render', (hotbar, html, options) => {
-  // The CustomHotbar overrides the Hotbar class with an anonymous class, which causes the
-  // renderHotbar hook to instead be "render" in Firefox.
-  // See https://github.com/Norc/foundry-custom-hotbar/issues/74
-  if (hotbar === ui.hotbar) {
-    onRenderHotbar(hotbar, html, options);
-  }
+Hooks.once('ready', () => {
+  Hooks.on('render', (hotbar, html, options) => {
+    // The CustomHotbar overrides the Hotbar class with an anonymous class, which causes the
+    // renderHotbar hook to instead be "render" in Firefox.
+    // See https://github.com/Norc/foundry-custom-hotbar/issues/74
+    if (hotbar === ui.hotbar) {
+      onRenderHotbar(hotbar, html, options);
+    }
+  });
+
+  Hooks.on('renderHotbar', onRenderHotbar);
+
+  // Module support: https://github.com/Norc/foundry-custom-hotbar
+  Hooks.on('renderCustomHotbar', onRenderHotbar);
+
+  onRenderHotbar(ui.hotbar, ui.hotbar.element, { macros: ui.hotbar.macros });
 });
-
-Hooks.on('renderHotbar', onRenderHotbar);
-
-// Module support: https://github.com/Norc/foundry-custom-hotbar
-Hooks.on('renderCustomHotbar', onRenderHotbar);

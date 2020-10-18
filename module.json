@@ -6,7 +6,7 @@
   "description": "Shows the number of uses left for hotbar items with uses (compatible with the DnD5e and Shadow of the Demon Lord systems).",
   "author": "Joe Spandrusyszyn",
   "minimumCoreVersion": "0.6.5",
-  "compatibleCoreVersion": "0.6.6",
+  "compatibleCoreVersion": "0.7.4",
   "styles": ["./styles.css"],
   "esmodules": ["./scripts/init.js"],
   "languages": [{ "lang": "en", "name": "English", "path": "lang/en.json" }],
