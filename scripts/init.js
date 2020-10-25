@@ -36,9 +36,9 @@ Hooks.on('controlToken', rerenderHotbarIfNecessary);
 Hooks.on('deleteOwnedItem', rerenderHotbarIfNecessary);
 Hooks.on('createOwnedItem', rerenderHotbarIfNecessary);
 
-function onRenderHotbar(hotbar, html, options) {
+function onRenderHotbar(hotbar) {
   const hotbarElem = hotbar.element[0];
-  options.macros.forEach((macroSlot) => {
+  hotbar.macros.forEach((macroSlot) => {
     const slot = macroSlot.slot;
     const command = getCommand(macroSlot.macro);
     UI.showUses(hotbarElem, slot, ItemSystem.calculateUses(command));
@@ -46,19 +46,15 @@ function onRenderHotbar(hotbar, html, options) {
 }
 
 Hooks.once('ready', () => {
-  Hooks.on('render', (hotbar, html, options) => {
+  Hooks.on('render', (hotbar) => {
     // The CustomHotbar overrides the Hotbar class with an anonymous class, which causes the
     // renderHotbar hook to instead be "render" in Firefox.
     // See https://github.com/Norc/foundry-custom-hotbar/issues/74
     if (hotbar === ui.hotbar) {
-      onRenderHotbar(hotbar, html, options);
+      onRenderHotbar(hotbar);
     }
   });
-
   Hooks.on('renderHotbar', onRenderHotbar);
-
-  // Module support: https://github.com/Norc/foundry-custom-hotbar
-  Hooks.on('renderCustomHotbar', onRenderHotbar);
 
   onRenderHotbar(ui.hotbar, ui.hotbar.element, { macros: ui.hotbar.macros });
 });

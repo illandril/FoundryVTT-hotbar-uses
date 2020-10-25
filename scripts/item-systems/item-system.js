@@ -28,7 +28,7 @@ const getActorByName = (actorName) => {
   return game.actors.find((actor) => actor.name === actorName);
 };
 
-const getActor = ({ actorID = null, actorName = null } = {}) => {
+export const getActor = ({ actorID = null, actorName = null } = {}) => {
   let actor;
   if (actorID) {
     actor = getActorByID(actorID);
@@ -68,6 +68,7 @@ const getItemLookupDetailsForCommand = (systemID, command) => {
           id: match.groups.itemID || null,
           actorID: match.groups.actorID || null,
           actorName: match.groups.actorName || null,
+          magicitemsModuleName: match.groups.magicitemsModuleName || null,
         };
         return true;
       }

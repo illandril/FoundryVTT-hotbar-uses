@@ -3,6 +3,8 @@ import pf1 from './item-systems/pf1.js';
 import pf2 from './item-systems/pf2.js';
 import demonlord from './item-systems/demonlord.js';
 
+import * as specialtyModules from './specialty-modules.js';
+
 export const getItemSystem = () => {
   switch (game.system.id) {
     case 'dnd5e':
@@ -18,12 +20,20 @@ export const getItemSystem = () => {
   }
 };
 
-export const canCalculateUses = (command) => {
+const canCalculateSystemUses = (command) => {
   const itemSystem = getItemSystem();
   return itemSystem != null && itemSystem.canCalculateUses(command);
 };
 
-export const calculateUses = (command) => {
+const calculateSystemUses = (command) => {
   const itemSystem = getItemSystem();
   return itemSystem === null ? null : itemSystem.calculateUses(command);
+};
+
+export const canCalculateUses = (command) => {
+  return canCalculateSystemUses(command) || specialtyModules.canCalculateUses(command);
+};
+
+export const calculateUses = (command) => {
+  return calculateSystemUses(command) || specialtyModules.calculateUses(command);
 };
