@@ -1,3 +1,7 @@
+## [v2.0.1](https://github.com/illandril/FoundryVTT-hotbar-uses/releases/tag/v2.0.1) (2020-11-08)
+**Fixed Bugs:**
+* Increases compatible version to 0.7.6
+
 ## [v2.0.0](https://github.com/illandril/FoundryVTT-hotbar-uses/releases/tag/v2.0.0) (2020-10-17)
 **New Features:**
 * Show the maximum value for items with a maximum number of uses (can be turned off by each user if undesired)
