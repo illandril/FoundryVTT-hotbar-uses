@@ -1,9 +1,7 @@
 import magicitems from './specialty-modules/magicitems.js';
 
 const specialtyModules = [
-  // magicitems integration is disabled until the magicitems module fixes
-  // issue #45: https://gitlab.com/riccisi/foundryvtt-magic-items/-/issues/45
-  //magicitems,
+  magicitems,
 ];
 
 export const canCalculateUses = (command) => {
