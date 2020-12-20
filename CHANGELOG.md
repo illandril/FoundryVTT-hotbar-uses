@@ -1,3 +1,7 @@
+## [v2.0.3](https://github.com/illandril/FoundryVTT-hotbar-uses/releases/tag/v2.0.3) (2020-12-20)
+**Fixed Bugs:**
+* Increases support version to 0.7.9
+
 ## [v2.0.2](https://github.com/illandril/FoundryVTT-hotbar-uses/releases/tag/v2.0.2) (2020-11-13)
 **New Features:**
 * [\#14](https://github.com/illandril/FoundryVTT-hotbar-uses/issues/14) Adds support for the MagicItems module
