@@ -1,3 +1,7 @@
+## [v2.0.4](https://github.com/illandril/FoundryVTT-hotbar-uses/releases/tag/v2.0.4) (2021-01-01)
+**New Features:**
+* [\#15](https://github.com/illandril/FoundryVTT-hotbar-uses/issues/15) Adds support for the Item Macro module
+
 ## [v2.0.3](https://github.com/illandril/FoundryVTT-hotbar-uses/releases/tag/v2.0.3) (2020-12-20)
 **Fixed Bugs:**
 * Increases support version to 0.7.9

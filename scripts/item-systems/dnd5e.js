@@ -18,8 +18,12 @@ const DEFAULT_MACRO_REGEX_ARRAY = [
   // BetterRolls.quickRollByName(actorName, itemName)
   /^\s*BetterRolls\s*\.\s*quickRollByName\s*\(\s*(?<q>["'`])(?<actorName>.+)\k<q>\s*,\s*(?<qb>["'`])(?<itemName>.+)\k<qb>\s*\)\s*;?\s*$/,
 
+  // ItemMacro.runMacro(actorId, itemId)
+  /^\s*ItemMacro\s*\.\s*runMacro\s*\(\s*(?<q>["'`])(?<actorID>.+)\k<q>\s*,\s*(?<qb>["'`])(?<itemID>.+)\k<qb>\s*\)\s*;?\s*$/,
+
   // Comment: // HotbarUses5e: ActorID="X" ItemID="Y"
   /^(.*\n)?\s*\/\/\s*HotbarUses5e:\s*ActorID\s*=\s*(?<q>["'`])(?<actorID>.+)\k<q>\s*ItemID\s*=\s*(?<qb>["'`])(?<itemID>.+)\k<qb>\s*(\n.*)?$/is,
+
 
   // Comments: // HotbarUses5e: ActorName="X" ItemName="Y" ItemType="Z" (ActorName and ItemType optional)
   /^(.*\n)?\s*\/\/\s*HotbarUses5e:\s*(ActorName\s*=\s*(?<q>["'`])(?<actorName>.+)\k<q>\s*)?ItemName\s*=\s*(?<qb>["'`])(?<itemName>.+)\k<qb>\s*(ItemType\s*=\s*(?<qc>["'`])(?<itemType>.+)\k<qc>\s*)?(\n.*)?$/is,
@@ -50,8 +54,10 @@ function calculateUsesForItem(item) {
   const itemType = item.data.type;
   if (itemType === 'feat') {
     return calculateFeatUses(itemData);
-  } else if (itemType === 'consumable') {
-    return itemData.quantity;
+  } else if (itemType === 'consumable' || itemType === 'loot') {
+    return {
+      available: itemData.quantity
+    };
   } else if (itemType === 'spell') {
     return calculateSpellUses(item);
   } else if (itemType === 'weapon') {
