@@ -21,12 +21,16 @@ const rerenderHotbarIfNecessary = debounce(() => {
     return ItemSystem.canCalculateUses(getCommand(macroSlot.macro));
   });
   if (canCalculateUses) {
-    ui.hotbar.render();
-
-    // Module support: https://github.com/Norc/foundry-custom-hotbar
-    ui.customHotbar && ui.customHotbar.render();
+    renderHotbar();
   }
-}, 10);
+}, 1);
+
+const renderHotbar = debounce(() => {
+  ui.hotbar.render();
+
+  // Module support: https://github.com/Norc/foundry-custom-hotbar
+  ui.customHotbar && ui.customHotbar.render();
+}, 1)
 
 Hooks.on(SETTINGS_UPDATED, rerenderHotbarIfNecessary);
 Hooks.on('updateOwnedItem', rerenderHotbarIfNecessary);
@@ -37,8 +41,11 @@ Hooks.on('deleteOwnedItem', rerenderHotbarIfNecessary);
 Hooks.on('createOwnedItem', rerenderHotbarIfNecessary);
 
 function onRenderHotbar(hotbar) {
-  const hotbarElem = hotbar.element[0];
-  hotbar.macros.forEach((macroSlot) => {
+  onRenderHotbarElem(hotbar.element[0], hotbar.macros);
+}
+
+function onRenderHotbarElem(hotbarElem, macros) {
+  macros.forEach((macroSlot) => {
     const slot = macroSlot.slot;
     const command = getCommand(macroSlot.macro);
     UI.showUses(hotbarElem, slot, ItemSystem.calculateUses(command));
@@ -56,5 +63,11 @@ Hooks.once('ready', () => {
   });
   Hooks.on('renderHotbar', onRenderHotbar);
 
-  onRenderHotbar(ui.hotbar, ui.hotbar.element, { macros: ui.hotbar.macros });
+  // Supports Monk's Hotbar Expansion, assuming this pull request is accepted:
+  // https://github.com/ironmonk88/hotbar-expansion/pull/2
+  Hooks.on('renderMonksHotbarExpansionActionBar', (hotbar, actionBar, options) => {
+    onRenderHotbarElem(actionBar[0], options.macros);
+  });
+
+  renderHotbar();
 });
