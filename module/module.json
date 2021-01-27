@@ -1,19 +1,29 @@
 {
-  "type": "module",
-  "name": "illandril-hotbar-uses",
-  "version": "2.0.4",
-  "title": "Illandril's Hotbar Uses",
-  "description": "Shows the number of uses left for hotbar items with uses (compatible with the DnD5e and Shadow of the Demon Lord systems).",
-  "author": "Joe Spandrusyszyn",
-  "minimumCoreVersion": "0.6.5",
-  "compatibleCoreVersion": "0.7.9",
-  "styles": ["./styles.css"],
-  "esmodules": ["./scripts/init.js"],
-  "languages": [{ "lang": "en", "name": "English", "path": "lang/en.json" }],
-  "license": "./LICENSE",
-  "url": "https://github.com/illandril/FoundryVTT-hotbar-uses",
-  "bugs": "https://github.com/illandril/FoundryVTT-hotbar-uses/issues",
-  "changelog": "https://github.com/illandril/FoundryVTT-hotbar-uses/blob/master/CHANGELOG.md",
-  "manifest": "https://github.com/illandril/FoundryVTT-hotbar-uses/releases/latest/download/module.json",
-  "download": "https://github.com/illandril/FoundryVTT-hotbar-uses/releases/download/v2.0.4/illandril-hotbar-uses.zip"
+    "type": "module",
+    "name": "illandril-hotbar-uses",
+    "version": "2.0.5",
+    "title": "Illandril's Hotbar Uses",
+    "description": "Shows the number of uses left for hotbar items with uses (compatible with the DnD5e and Shadow of the Demon Lord systems).",
+    "author": "Joe Spandrusyszyn",
+    "minimumCoreVersion": "0.6.5",
+    "compatibleCoreVersion": "0.7.9",
+    "styles": [
+        "./styles.css"
+    ],
+    "esmodules": [
+        "./scripts/init.js"
+    ],
+    "languages": [
+        {
+            "lang": "en",
+            "name": "English",
+            "path": "lang/en.json"
+        }
+    ],
+    "license": "./LICENSE",
+    "url": "https://github.com/illandril/FoundryVTT-hotbar-uses",
+    "bugs": "https://github.com/illandril/FoundryVTT-hotbar-uses/issues",
+    "changelog": "https://github.com/illandril/FoundryVTT-hotbar-uses/blob/master/CHANGELOG.md",
+    "manifest": "https://github.com/illandril/FoundryVTT-hotbar-uses/releases/latest/download/module.json",
+    "download": "https://github.com/illandril/FoundryVTT-hotbar-uses/releases/download/v2.0.5/module.zip"
 }
