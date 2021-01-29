@@ -106,7 +106,7 @@ export default class ItemSystem {
     return getItemLookupDetailsForCommand(this._systemID, command) !== null;
   }
 
-  calculateUses(command) {
+  async calculateUses(command) {
     const itemLookupDetails = getItemLookupDetailsForCommand(this._systemID, command);
     if (!itemLookupDetails) {
       // Not an item command, assume infinite uses.
@@ -117,19 +117,19 @@ export default class ItemSystem {
       // It's an item, but there's no actor, so it can't be used.
       return 0;
     }
-    return this.calculateUsesForItems(getItems(actor, itemLookupDetails));
+    return await this.calculateUsesForItems(getItems(actor, itemLookupDetails));
   }
 
-  calculateUsesForItems(items) {
+  async calculateUsesForItems(items) {
     if (items.length === 0) {
       return { available: 0 };
     }
     let uses = {};
-    items.some((item) => {
-      let thisItemUses = this.calculateUsesForItem(item);
+    for (let item of items) {
+      let thisItemUses = await this.calculateUsesForItem(item);
       if (thisItemUses === null) {
         uses = null;
-        return true;
+        break;
       }
       if (typeof thisItemUses.available === 'number') {
         if (typeof uses.available === 'number') {
@@ -152,12 +152,11 @@ export default class ItemSystem {
           uses.maximum = thisItemUses.maximum;
         }
       }
-      return false;
-    });
+    }
     return uses;
   }
 
-  calculateUsesForItem(item) {
+  async calculateUsesForItem(item) {
     throw new Error('ItemSystem for ' + this._systemID + ' did not implement calculateUsesForItem');
   }
 }

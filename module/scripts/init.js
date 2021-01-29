@@ -30,7 +30,7 @@ const renderHotbar = debounce(() => {
 
   // Module support: https://github.com/Norc/foundry-custom-hotbar
   ui.customHotbar && ui.customHotbar.render();
-}, 1)
+}, 1);
 
 Hooks.on(SETTINGS_UPDATED, rerenderHotbarIfNecessary);
 Hooks.on('updateOwnedItem', rerenderHotbarIfNecessary);
@@ -45,10 +45,10 @@ function onRenderHotbar(hotbar) {
 }
 
 function onRenderHotbarElem(hotbarElem, macros) {
-  macros.forEach((macroSlot) => {
+  macros.forEach(async (macroSlot) => {
     const slot = macroSlot.slot;
     const command = getCommand(macroSlot.macro);
-    UI.showUses(hotbarElem, slot, ItemSystem.calculateUses(command));
+    UI.showUses(hotbarElem, slot, await ItemSystem.calculateUses(command));
   });
 }
 

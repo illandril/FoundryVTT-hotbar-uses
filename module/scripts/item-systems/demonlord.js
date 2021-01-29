@@ -21,7 +21,7 @@ class DemonLordItemSystem extends ItemSystem {
     super(SYSTEM_ID, DEFAULT_MACRO_REGEX_ARRAY);
   }
 
-  calculateUsesForItem(item) {
+  async calculateUsesForItem(item) {
     return calculateUsesForItem(item);
   }
 }

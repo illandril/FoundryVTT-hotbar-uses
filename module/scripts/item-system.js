@@ -25,7 +25,7 @@ const canCalculateSystemUses = (command) => {
   return itemSystem != null && itemSystem.canCalculateUses(command);
 };
 
-const calculateSystemUses = (command) => {
+const calculateSystemUses = async (command) => {
   const itemSystem = getItemSystem();
   return itemSystem === null ? null : itemSystem.calculateUses(command);
 };
@@ -34,6 +34,6 @@ export const canCalculateUses = (command) => {
   return canCalculateSystemUses(command) || specialtyModules.canCalculateUses(command);
 };
 
-export const calculateUses = (command) => {
-  return calculateSystemUses(command) || specialtyModules.calculateUses(command);
+export const calculateUses = async (command) => {
+  return await calculateSystemUses(command) || await specialtyModules.calculateUses(command);
 };

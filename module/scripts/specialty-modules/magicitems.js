@@ -33,7 +33,7 @@ class MagicItemsModule extends SpecialtyModule {
     return [magicItemItem];
   }
 
-  calculateUsesForItem(item) {
+  async calculateUsesForItem(item) {
     if ( item.item.consumption < 1 ) {
       return null;
     }

@@ -1,22 +1,20 @@
 import magicitems from './specialty-modules/magicitems.js';
 
-const specialtyModules = [
-  magicitems,
-];
+const specialtyModules = [magicitems];
 
 export const canCalculateUses = (command) => {
-  return specialtyModules.some(module => {
+  return specialtyModules.some((module) => {
     return module.isModuleActive() && module.canCalculateUses(command);
   });
 };
 
-export const calculateUses = (command) => {
+export const calculateUses = async (command) => {
   let uses = null;
-  specialtyModules.some(module => {
-    if(module.isModuleActive() && module.canCalculateUses(command)) {
-      uses = module.calculateUses(command);
-      return true;
+  for (let module of specialtyModules) {
+    if (module.isModuleActive() && module.canCalculateUses(command)) {
+      uses = await module.calculateUses(command);
+      break;
     }
-  });
+  }
   return uses;
 };

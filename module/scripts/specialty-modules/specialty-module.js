@@ -45,7 +45,7 @@ export default class SpecialtyModule {
     return getItemLookupDetailsForCommand(this._moduleID, command) !== null;
   }
 
-  calculateUses(command) {
+  async calculateUses(command) {
     const itemLookupDetails = getItemLookupDetailsForCommand(this._moduleID, command);
     if (!itemLookupDetails) {
       // Not an item command, assume infinite uses.
@@ -56,7 +56,7 @@ export default class SpecialtyModule {
       // It's an item, but there's no actor, so it can't be used.
       return 0;
     }
-    return this.calculateUsesForItems(this.getItems(actor, itemLookupDetails));
+    return await this.calculateUsesForItems(this.getItems(actor, itemLookupDetails));
   }
 
   getActor(itemLookupDetails) {
@@ -67,16 +67,17 @@ export default class SpecialtyModule {
     throw new Error(`SpecialtyModule for ${this._moduleID} did not implement calculateUsesForItem`);
   }
 
-  calculateUsesForItems(items) {
+  async calculateUsesForItems(items) {
     if (items.length === 0) {
       return { available: 0 };
     }
     let uses = {};
-    items.some((item) => {
-      let thisItemUses = this.calculateUsesForItem(item);
+    for (let item of items) {
+      let item = items[i];
+      let thisItemUses = await this.calculateUsesForItem(item);
       if (thisItemUses === null) {
         uses = null;
-        return true;
+        break;
       }
       if (typeof thisItemUses.available === 'number') {
         if (typeof uses.available === 'number') {
@@ -99,12 +100,11 @@ export default class SpecialtyModule {
           uses.maximum = thisItemUses.maximum;
         }
       }
-      return false;
-    });
+    }
     return uses;
   }
 
-  calculateUsesForItem(item) {
+  async calculateUsesForItem(item) {
     throw new Error(`SpecialtyModule for ${this._moduleID} did not implement calculateUsesForItem`);
   }
 }
