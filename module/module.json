@@ -1,7 +1,7 @@
 {
   "name": "illandril-hotbar-uses",
   "title": "Illandril's Hotbar Uses",
-  "description": "Shows the number of uses left for hotbar items with uses (compatible with the DnD5e and Shadow of the Demon Lord systems).",
+  "description": "Shows the number of uses left for hotbar items with uses (compatible with the DnD5e, Pathfinder 1, and Shadow of the Demon Lord systems).",
   "version": "2.0.5",
   "library": "false",
   "manifestPlusVersion": "1.0.0",

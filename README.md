@@ -18,6 +18,7 @@ If an item has no uses (ex. weapons without a resource consumption), or if a mac
 # Systems Supported
 This module currently supports the following systems:
 * DnD5e
+* Pathfinder 1
 * Shadow of the Demon Lord
 
 # Custom Macro Support
