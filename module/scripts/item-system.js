@@ -2,6 +2,7 @@ import dnd5e from './item-systems/dnd5e.js';
 import pf1 from './item-systems/pf1.js';
 import pf2 from './item-systems/pf2.js';
 import demonlord from './item-systems/demonlord.js';
+import generic from './item-systems/generic.js';
 
 import * as specialtyModules from './specialty-modules.js';
 
@@ -16,7 +17,7 @@ export const getItemSystem = () => {
     case 'demonlord':
       return demonlord;
     default:
-      return null;
+      return generic;
   }
 };
 

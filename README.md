@@ -22,11 +22,12 @@ This module currently supports the following systems:
 * Shadow of the Demon Lord
 
 # Custom Macro Support
-For those who create more complicated macros, you can add a Uses counter by adding a comment to your macro's command. There are a few varieties of comments that this module will recognize...
+For those who use systems this module does not natively support, or who create more complicated macros, you can add a Uses counter by adding a comment to your macro's command. There are a few varieties of comments that this module will recognize...
 
 1. Equivalent Commands
 1. Actor and Item ID matching
 1. Item Name matching (optionally further filtered by Actor Name and/or Item Type)
+1. Custom "Uses Remaining" calculations
 
 ## Equivalent Command
 ```
@@ -62,6 +63,56 @@ For example, if you had a macro that caused Sally to cast Goodberry, and Sally a
 ```
 // HotbarUses5e: ActorName="Sally" ItemName="Goodberry" ItemType="spell"
 CoolGoodberyMod.castGoodberry("Sally");
+```
+
+## Custom Calculation
+```
+// HotbarUsesGeneric
+// ActorID=AID
+// ActorName=AN
+// ItemID=IID
+// ItemName=IN
+// ItemType=IT
+// Available=A
+// Consumed=C
+// Max=M
+```
+Starting a macro with a HotbarUsesGeneric comment will allow for custom uses calculation matching. All parameters are optional, but any parameters specified must be in the correct order. If both ActorID and ActorName are specified, ActorName will be ignored. If actor is not specified, it will select the currently selected actor. If both ItemID and ItemName and/or ItemType are specified, ItemName and ItemType will be ignored. If both Available and Consumed are specified, Consumed will be ignored.
+
+If no Item lookup details are specified, Available, Consumed, and Max are lookup attributes of the actor.
+
+If Item lookup details are specified, Available, Consumed, and Max are lookup attributes of the item.
+
+Available, Consumed, and Max can either be property keys (ex. `data.resources.legact.value`) or fixed numbers.
+
+*Notice:* Whitespace and spelling are important. Make sure these comments are the very first thing in the macro, everything is spelled correctly, and that you don't have any extra spaces anywhere.
+
+### Custom Example: Bob's Arrow Quantity
+```
+// HotbarUsesGeneric
+// ActorName=Bob
+// ItemName=Arrow
+// Available=data.quantity
+```
+
+### Custom Example: Insanity Level, with a fixed maximum
+```
+// HotbarUsesGeneric
+// Consumed=data.attributes.insanity.value
+// Max=10
+```
+
+### Custom Example: Power Remaining (plus a simple macro to actually decrement the power value)
+```
+// HotbarUsesGeneric
+// Available=data.power.value
+// Max=data.power.max
+let speaker = ChatMessage.getSpeaker();
+let actor = speaker.token && game.actors.tokens[speaker.token];
+if(actor && actor.data.data.power.value > 0) {
+  actor.update({"data.power.value": actor.data.data.power.value-1});
+  ChatMessage.create({user: game.user._id, speaker: ChatMessage.getSpeaker(), content: 'I cast magic missile!'});
+}
 ```
 
 # Module Support
