@@ -15,8 +15,6 @@ If an item has 0 uses left, or if the currently controlled actor doesn't have th
 
 If an item has no uses (ex. weapons without a resource consumption), or if a macro is not an item macro, its appearance is left unchanged.
 
-[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/O5O73HF15)
-
 # Systems Supported
 This module currently supports the following systems:
 * DnD5e
