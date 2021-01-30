@@ -1,5 +1,13 @@
 # Changelog
 
+## [v2.2.0](https://github.com/illandril/FoundryVTT-hotbar-uses/tree/v2.2.0) (2021-01-30)
+
+[Full Changelog](https://github.com/illandril/FoundryVTT-hotbar-uses/compare/v2.1.0...v2.2.0)
+
+**Enhancements**
+
+- Compatibility with Magic Items [\#14](https://github.com/illandril/FoundryVTT-hotbar-uses/issues/14)
+
 ## [v2.1.0](https://github.com/illandril/FoundryVTT-hotbar-uses/tree/v2.1.0) (2021-01-29)
 
 [Full Changelog](https://github.com/illandril/FoundryVTT-hotbar-uses/compare/v2.0.5...v2.1.0)
@@ -28,10 +36,6 @@
 ## [v2.0.2](https://github.com/illandril/FoundryVTT-hotbar-uses/tree/v2.0.2) (2020-11-13)
 
 [Full Changelog](https://github.com/illandril/FoundryVTT-hotbar-uses/compare/v2.0.1...v2.0.2)
-
-**Enhancements**
-
-- Compatibility with Magic Items [\#14](https://github.com/illandril/FoundryVTT-hotbar-uses/issues/14)
 
 ## [v2.0.1](https://github.com/illandril/FoundryVTT-hotbar-uses/tree/v2.0.1) (2020-11-08)
 
