@@ -128,17 +128,6 @@ Hooks.once('init', () => {
 
 The regular expression should match against your module's macros, with one or more of the following named capture groups: `itemName`, `itemType`, `itemID`, `actorID`, `actorName`. I can provide assistance in creating an appropriate regular expression if necessary.
 
-# Installation
-1. Open the Configuration and Setup for your FoundryVTT server
-1. Open the Add-on Modules Tab
-1. Click the Install Module button
-1. In the Manifest URL input, specify https://github.com/illandril/FoundryVTT-hotbar-uses/releases/latest/download/module.json
-1. Click Install
-1. Launch your world
-1. Log in as the GM
-1. Open the Settings tab
-1. Click Manage Modules
-1. Check the checkbox for Illandril's Hotbar Uses
 
 # Credits
 Support for the Shadow of the Demon Lord system was added by [Xacus](https://github.com/Xacus)
