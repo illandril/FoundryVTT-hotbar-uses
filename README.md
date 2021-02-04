@@ -21,6 +21,8 @@ This module currently supports the following systems:
 * Pathfinder 1
 * Shadow of the Demon Lord
 
+If you would like native support for other systems (or a specific module), please [open a New Issue](https://github.com/illandril/FoundryVTT-hotbar-uses/issues) to let me know (if I don't know there is desire for support for a system, I won't spend time adding that support).
+
 # Custom Macro Support
 For those who use systems this module does not natively support, or who create more complicated macros, you can add a Uses counter by adding a comment to your macro's command. There are a few varieties of comments that this module will recognize...
 
@@ -86,6 +88,8 @@ If Item lookup details are specified, Available, Consumed, and Max are lookup at
 Available, Consumed, and Max can either be property keys (ex. `data.resources.legact.value`) or fixed numbers.
 
 *Notice:* Whitespace and spelling are important. Make sure these comments are the very first thing in the macro, everything is spelled correctly, and that you don't have any extra spaces anywhere.
+
+If you find yourself adding these comments to macros that you think could be natively supported, please [open a New Issue](https://github.com/illandril/FoundryVTT-hotbar-uses/issues) to let me know and I will see what I can do to add support for it.
 
 ### Custom Example: Bob's Arrow Quantity
 ```
