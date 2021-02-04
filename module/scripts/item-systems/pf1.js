@@ -27,8 +27,6 @@ class PF1ItemSystem extends ItemSystem {
 export default new PF1ItemSystem();
 
 async function calculateUsesForItem(item) {
-  // TODO: Actually calculate uses
-  console.dir(item);
   if (item.type === 'spell') {
     return await calculateSpellUses(item);
   }
