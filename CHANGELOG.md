@@ -1,12 +1,21 @@
 # Changelog
 
+## [v2.2.1](https://github.com/illandril/FoundryVTT-hotbar-uses/tree/v2.2.1) (2021-02-13)
+
+[Full Changelog](https://github.com/illandril/FoundryVTT-hotbar-uses/compare/v2.2.0...v2.2.1)
+
+**Other&nbsp;Changes**
+
+- animated border appears broken [\#21](https://github.com/illandril/FoundryVTT-hotbar-uses/issues/21)
+- strange interaction with Custom Hotbar + Token Hotbar Modules [\#20](https://github.com/illandril/FoundryVTT-hotbar-uses/issues/20)
+
 ## [v2.2.0](https://github.com/illandril/FoundryVTT-hotbar-uses/tree/v2.2.0) (2021-01-30)
 
 [Full Changelog](https://github.com/illandril/FoundryVTT-hotbar-uses/compare/v2.1.0...v2.2.0)
 
 **Enhancements**
 
-- Compatibility with Magic Items [\#14](https://github.com/illandril/FoundryVTT-hotbar-uses/issues/14)
+- Add support for Simple Worldbuilding [\#19](https://github.com/illandril/FoundryVTT-hotbar-uses/issues/19)
 
 ## [v2.1.0](https://github.com/illandril/FoundryVTT-hotbar-uses/tree/v2.1.0) (2021-01-29)
 
@@ -37,6 +46,10 @@
 
 [Full Changelog](https://github.com/illandril/FoundryVTT-hotbar-uses/compare/v2.0.1...v2.0.2)
 
+**Enhancements**
+
+- Compatibility with Magic Items [\#14](https://github.com/illandril/FoundryVTT-hotbar-uses/issues/14)
+
 ## [v2.0.1](https://github.com/illandril/FoundryVTT-hotbar-uses/tree/v2.0.1) (2020-11-08)
 
 [Full Changelog](https://github.com/illandril/FoundryVTT-hotbar-uses/compare/v2.0.0...v2.0.1)
@@ -45,6 +58,10 @@
 
 [Full Changelog](https://github.com/illandril/FoundryVTT-hotbar-uses/compare/v1.5.0...v2.0.0)
 
+**Other&nbsp;Changes**
+
+- Doesn't work with Firefox OSX [\#12](https://github.com/illandril/FoundryVTT-hotbar-uses/issues/12)
+
 ## [v1.5.0](https://github.com/illandril/FoundryVTT-hotbar-uses/tree/v1.5.0) (2020-09-08)
 
 [Full Changelog](https://github.com/illandril/FoundryVTT-hotbar-uses/compare/v1.4.0...v1.5.0)
@@ -52,10 +69,6 @@
 **Enhancements**
 
 - Support: Shadow of the Demon Lord [\#10](https://github.com/illandril/FoundryVTT-hotbar-uses/issues/10)
-
-**Other&nbsp;Changes**
-
-- Doesn't work with Firefox OSX [\#12](https://github.com/illandril/FoundryVTT-hotbar-uses/issues/12)
 
 ## [v1.4.0](https://github.com/illandril/FoundryVTT-hotbar-uses/tree/v1.4.0) (2020-09-07)
 
