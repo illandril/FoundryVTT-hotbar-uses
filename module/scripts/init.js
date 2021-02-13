@@ -4,6 +4,8 @@ import { SETTINGS_UPDATED } from './settings.js';
 
 const COMMAND_EQUIVALENT = /^(.*\n)?\s*\/\/\s*HotbarUses:(?<command>[^\n]+)(\n.*)?$/is;
 
+let hasShownMacroUses = false;
+
 function getCommand(macro) {
   if (!macro) {
     return null;
@@ -17,10 +19,7 @@ function getCommand(macro) {
 }
 
 const rerenderHotbarIfNecessary = debounce(() => {
-  const canCalculateUses = ui.hotbar.macros.some((macroSlot) => {
-    return ItemSystem.canCalculateUses(getCommand(macroSlot.macro));
-  });
-  if (canCalculateUses) {
+  if (hasShownMacroUses) {
     renderHotbar();
   }
 }, 1);
@@ -48,7 +47,9 @@ function onRenderHotbarElem(hotbarElem, macros) {
   macros.forEach(async (macroSlot) => {
     const slot = macroSlot.slot;
     const command = getCommand(macroSlot.macro);
-    UI.showUses(hotbarElem, slot, await ItemSystem.calculateUses(command));
+    const uses = await ItemSystem.calculateUses(command);
+    UI.showUses(hotbarElem, slot, uses);
+    hasShownMacroUses |= uses !== null;
   });
 }
 
