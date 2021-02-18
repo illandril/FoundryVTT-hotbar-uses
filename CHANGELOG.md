@@ -1,5 +1,13 @@
 # Changelog
 
+## [v2.2.2](https://github.com/illandril/FoundryVTT-hotbar-uses/tree/v2.2.2) (2021-02-18)
+
+[Full Changelog](https://github.com/illandril/FoundryVTT-hotbar-uses/compare/v2.2.1...v2.2.2)
+
+**Enhancements**
+
+- Add support for Bug Reporter [\#22](https://github.com/illandril/FoundryVTT-hotbar-uses/issues/22)
+
 ## [v2.2.1](https://github.com/illandril/FoundryVTT-hotbar-uses/tree/v2.2.1) (2021-02-13)
 
 [Full Changelog](https://github.com/illandril/FoundryVTT-hotbar-uses/compare/v2.2.0...v2.2.1)
@@ -58,10 +66,6 @@
 
 [Full Changelog](https://github.com/illandril/FoundryVTT-hotbar-uses/compare/v1.5.0...v2.0.0)
 
-**Other&nbsp;Changes**
-
-- Doesn't work with Firefox OSX [\#12](https://github.com/illandril/FoundryVTT-hotbar-uses/issues/12)
-
 ## [v1.5.0](https://github.com/illandril/FoundryVTT-hotbar-uses/tree/v1.5.0) (2020-09-08)
 
 [Full Changelog](https://github.com/illandril/FoundryVTT-hotbar-uses/compare/v1.4.0...v1.5.0)
@@ -69,6 +73,10 @@
 **Enhancements**
 
 - Support: Shadow of the Demon Lord [\#10](https://github.com/illandril/FoundryVTT-hotbar-uses/issues/10)
+
+**Other&nbsp;Changes**
+
+- Doesn't work with Firefox OSX [\#12](https://github.com/illandril/FoundryVTT-hotbar-uses/issues/12)
 
 ## [v1.4.0](https://github.com/illandril/FoundryVTT-hotbar-uses/tree/v1.4.0) (2020-09-07)
 
