@@ -1,5 +1,9 @@
 # Changelog
 
+## [v2.3.0](https://github.com/illandril/FoundryVTT-hotbar-uses/tree/v2.3.0) (2021-02-27)
+
+[Full Changelog](https://github.com/illandril/FoundryVTT-hotbar-uses/compare/v2.2.2...v2.3.0)
+
 ## [v2.2.2](https://github.com/illandril/FoundryVTT-hotbar-uses/tree/v2.2.2) (2021-02-18)
 
 [Full Changelog](https://github.com/illandril/FoundryVTT-hotbar-uses/compare/v2.2.1...v2.2.2)
