@@ -49,7 +49,9 @@ function onRenderHotbarElem(hotbarElem, macros) {
     const command = getCommand(macroSlot.macro);
     const uses = await ItemSystem.calculateUses(command);
     UI.showUses(hotbarElem, slot, uses);
-    hasShownMacroUses |= uses !== null;
+    if(uses !== null) {
+      hasShownMacroUses = true;
+    }
   });
 }
 

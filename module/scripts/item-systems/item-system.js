@@ -92,6 +92,8 @@ const getItemLookupDetailsForCommand = (systemID, command) => {
           available: match.groups.available || null,
           consumed: match.groups.consumed || null,
           max: match.groups.max || null,
+          actionIndex: match.groups.actionIndex || null,
+          actionName: match.groups.actionName || null,
         };
         return true;
       }
@@ -118,6 +120,19 @@ const getItems = (actor, itemLookupDetails) => {
         return item.data.type === firstType;
       }
     });
+  }
+  if (itemLookupDetails.actionIndex !== null) {
+    const actionIndex = parseInt(itemLookupDetails.actionIndex, 10);
+    if (!isNaN(actionIndex) && actionIndex >= 0) {
+      const actions = getProperty(actor, 'data.data.actions');
+      if(actions) {
+        const action = actions[actionIndex];
+        if (action && action.name === itemLookupDetails.actionName) {
+          return [action];
+        }
+      }
+    }
+    return [];
   }
   return null;
 };
@@ -196,7 +211,7 @@ export default class ItemSystem {
     const actor = getActor(itemLookupDetails);
     if (!actor) {
       // It's an item, but there's no actor, so it can't be used.
-      return 0;
+      return { available: 0 };
     }
     const items = getItems(actor, itemLookupDetails);
     if (itemLookupDetails.generic) {
