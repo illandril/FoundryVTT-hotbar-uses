@@ -46,7 +46,13 @@ function calculateUsesForActualItem(item) {
 }
 
 function calculateUsesForAction(action) {
-  // TODO Figure out how (and if) this should be implemented
+  if(action.selectedAmmoId) {
+    const ammo = action.ammo.find((a) => a._id === action.selectedAmmoId);
+    if(ammo) {
+      return calculateQuantityAndChargesUses(ammo.data);
+    }
+  }
+  // TODO Figure out how (and if) other actions should have uses
   return null;
 }
 
