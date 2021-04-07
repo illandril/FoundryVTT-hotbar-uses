@@ -1,5 +1,15 @@
 # Changelog
 
+## [v2.3.1](https://github.com/illandril/FoundryVTT-hotbar-uses/tree/v2.3.1) (2021-04-07)
+
+[Full Changelog](https://github.com/illandril/FoundryVTT-hotbar-uses/compare/v2.3.0...v2.3.1)
+
+**Enhancements**
+
+- Pathfinder attacks support [\#23](https://github.com/illandril/FoundryVTT-hotbar-uses/issues/23)
+- Add support for Pathfinder 2 [\#18](https://github.com/illandril/FoundryVTT-hotbar-uses/issues/18)
+- Compatibility with module Item Macro [\#15](https://github.com/illandril/FoundryVTT-hotbar-uses/issues/15)
+
 ## [v2.3.0](https://github.com/illandril/FoundryVTT-hotbar-uses/tree/v2.3.0) (2021-02-27)
 
 [Full Changelog](https://github.com/illandril/FoundryVTT-hotbar-uses/compare/v2.2.2...v2.3.0)
@@ -45,10 +55,6 @@
 ## [v2.0.4](https://github.com/illandril/FoundryVTT-hotbar-uses/tree/v2.0.4) (2021-01-01)
 
 [Full Changelog](https://github.com/illandril/FoundryVTT-hotbar-uses/compare/v2.0.3...v2.0.4)
-
-**Enhancements**
-
-- Compatibility with module Item Macro [\#15](https://github.com/illandril/FoundryVTT-hotbar-uses/issues/15)
 
 ## [v2.0.3](https://github.com/illandril/FoundryVTT-hotbar-uses/tree/v2.0.3) (2020-12-20)
 
