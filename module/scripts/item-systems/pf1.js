@@ -65,6 +65,7 @@ async function calculateAttackUses(item) {
     }
     return {
       available: minAmmo,
+      isAmmunition: true,
     };
   }
   return null;

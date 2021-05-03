@@ -125,7 +125,7 @@ const getItems = (actor, itemLookupDetails) => {
     const actionIndex = parseInt(itemLookupDetails.actionIndex, 10);
     if (!isNaN(actionIndex) && actionIndex >= 0) {
       const actions = getProperty(actor, 'data.data.actions');
-      if(actions) {
+      if (actions) {
         const action = actions[actionIndex];
         if (action && action.name === itemLookupDetails.actionName) {
           return [action];
@@ -146,14 +146,14 @@ const genericLookup = (data, key) => {
     return numeric;
   }
   const parsed = parseInt(getProperty(data, key), 10);
-  if(!isNaN(parsed)) {
+  if (!isNaN(parsed)) {
     return parsed;
   }
   return null;
 };
 
 const add = (current, addition) => {
-  if (typeof(addition) === 'number') {
+  if (typeof addition === 'number') {
     if (current === null) {
       return addition;
     }
@@ -229,6 +229,12 @@ export default class ItemSystem {
       let thisItemUses = await this.calculateUsesForItem(item);
       if (thisItemUses === null) {
         uses = null;
+        break;
+      }
+      if (thisItemUses.isAmmunition) {
+        // If there are multiple items of the same name, chances are they use the same ammunition
+        // Adding the uses together from multiple items would count the ammunition multiple times
+        uses = thisItemUses;
         break;
       }
       if (typeof thisItemUses.available === 'number') {

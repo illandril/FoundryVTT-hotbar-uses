@@ -27,7 +27,7 @@ class PF2eItemSystem extends ItemSystem {
 export default new PF2eItemSystem();
 
 function calculateUsesForItem(itemOrAction) {
-  if(itemOrAction instanceof Item) {
+  if (itemOrAction instanceof Item) {
     return calculateUsesForActualItem(itemOrAction);
   } else {
     return calculateUsesForAction(itemOrAction);
@@ -37,7 +37,7 @@ function calculateUsesForItem(itemOrAction) {
 function calculateUsesForActualItem(item) {
   if (item.type === 'consumable' || item.type === 'equipment' || item.type === 'treasure') {
     const itemData = item.data.data;
-    if(itemData.quantity) {
+    if (itemData.quantity) {
       return calculateQuantityAndChargesUses(itemData);
     }
   }
@@ -46,10 +46,13 @@ function calculateUsesForActualItem(item) {
 }
 
 function calculateUsesForAction(action) {
-  if(action.selectedAmmoId) {
+  if (action.selectedAmmoId) {
     const ammo = action.ammo.find((a) => a._id === action.selectedAmmoId);
-    if(ammo) {
-      return calculateQuantityAndChargesUses(ammo.data);
+    if (ammo) {
+      return {
+        ...calculateQuantityAndChargesUses(ammo.data),
+        isAmmunition: true,
+      };
     }
   }
   // TODO Figure out how (and if) other actions should have uses
@@ -62,7 +65,7 @@ function calculateQuantityAndChargesUses(itemData) {
   if (chargesData) {
     const charges = parseInt(chargesData.value) || 0;
     const maxCharges = parseInt(chargesData.max) || 0;
-    if(maxCharges > 1) {
+    if (maxCharges > 1) {
       return {
         available: charges + maxCharges * (quantity - 1),
         maximum: maxCharges * quantity,

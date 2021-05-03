@@ -56,7 +56,7 @@ function calculateUsesForItem(item) {
     return calculateFeatUses(itemData);
   } else if (itemType === 'consumable' || itemType === 'loot') {
     return {
-      available: itemData.quantity
+      available: itemData.quantity,
     };
   } else if (itemType === 'spell') {
     return calculateSpellUses(item);
@@ -98,7 +98,7 @@ function calculateConsumeUses(actor, consume) {
         maximum = Math.floor(maximum / consume.amount);
       }
     }
-    return { available, maximum };
+    return { available, maximum, isAmmunition: true };
   }
   return null;
 }
