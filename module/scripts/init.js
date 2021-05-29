@@ -32,10 +32,15 @@ const renderHotbar = debounce(() => {
 }, 1);
 
 Hooks.on(SETTINGS_UPDATED, rerenderHotbarIfNecessary);
-Hooks.on('updateOwnedItem', rerenderHotbarIfNecessary);
+Hooks.on('updateItem', rerenderHotbarIfNecessary);
 Hooks.on('updateActor', rerenderHotbarIfNecessary);
 Hooks.on('updateToken', rerenderHotbarIfNecessary);
 Hooks.on('controlToken', rerenderHotbarIfNecessary);
+Hooks.on('deleteItem', rerenderHotbarIfNecessary);
+Hooks.on('createItem', rerenderHotbarIfNecessary);
+
+// The "OwnedItem" hooks are for v0.7.x
+Hooks.on('updateOwnedItem', rerenderHotbarIfNecessary);
 Hooks.on('deleteOwnedItem', rerenderHotbarIfNecessary);
 Hooks.on('createOwnedItem', rerenderHotbarIfNecessary);
 
