@@ -73,7 +73,6 @@ export default class SpecialtyModule {
     }
     let uses = {};
     for (let item of items) {
-      let item = items[i];
       let thisItemUses = await this.calculateUsesForItem(item);
       if (thisItemUses === null) {
         uses = null;
