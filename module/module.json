@@ -2,7 +2,7 @@
     "name": "illandril-hotbar-uses",
     "title": "Illandril's Hotbar Uses",
     "description": "Shows the number of uses left for hotbar items with uses (compatible with the DnD5e, Pathfinder 1, and Shadow of the Demon Lord systems).",
-    "version": "2.3.3",
+    "version": "2.3.4",
     "library": "false",
     "manifestPlusVersion": "1.2.0",
     "minimumCoreVersion": "0.6.5",
@@ -40,11 +40,11 @@
     "bugs": "https://github.com/illandril/FoundryVTT-hotbar-uses/issues",
     "allowBugReporter": true,
     "flags": {
-      "allowBugReporter": true
+        "allowBugReporter": true
     },
     "changelog": "https://github.com/illandril/FoundryVTT-hotbar-uses/blob/master/CHANGELOG.md",
     "manifest": "https://github.com/illandril/FoundryVTT-hotbar-uses/releases/latest/download/module.json",
-    "download": "https://github.com/illandril/FoundryVTT-hotbar-uses/releases/download/v2.3.3/module.zip",
+    "download": "https://github.com/illandril/FoundryVTT-hotbar-uses/releases/download/v2.3.4/module.zip",
     "media": [
         {
             "type": "screenshot",

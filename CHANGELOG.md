@@ -1,5 +1,17 @@
 # Changelog
 
+## [v2.3.4](https://github.com/illandril/FoundryVTT-hotbar-uses/tree/v2.3.4) (2021-06-18)
+
+[Full Changelog](https://github.com/illandril/FoundryVTT-hotbar-uses/compare/v2.3.3...v2.3.4)
+
+**Fixed&nbsp;Bugs**
+
+- Error calculating uses when Magic Items is active [\#27](https://github.com/illandril/FoundryVTT-hotbar-uses/issues/27)
+
+**Other&nbsp;Changes**
+
+- Support for Pathfinder 2e [\#26](https://github.com/illandril/FoundryVTT-hotbar-uses/issues/26)
+
 ## [v2.3.3](https://github.com/illandril/FoundryVTT-hotbar-uses/tree/v2.3.3) (2021-05-29)
 
 [Full Changelog](https://github.com/illandril/FoundryVTT-hotbar-uses/compare/v2.3.2...v2.3.3)
