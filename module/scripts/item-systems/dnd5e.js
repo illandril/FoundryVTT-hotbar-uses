@@ -18,6 +18,9 @@ const DEFAULT_MACRO_REGEX_ARRAY = [
   // BetterRolls.quickRollByName(actorName, itemName)
   /^\s*BetterRolls\s*\.\s*quickRollByName\s*\(\s*(?<q>["'`])(?<actorName>.+)\k<q>\s*,\s*(?<qb>["'`])(?<itemName>.+)\k<qb>\s*\)\s*;?\s*$/,
 
+  // BetterRolls 1.5.0 macros
+  /^const actorId = "(?<actorID>.+)";\nconst itemId = "(?<itemID>.+)";\nconst actorToRoll = [^\n]*;\nconst itemToRoll = actorToRoll\?\.items\.get\(itemId\);/is,
+
   // ItemMacro.runMacro(actorId, itemId)
   /^\s*ItemMacro\s*\.\s*runMacro\s*\(\s*(?<q>["'`])(?<actorID>.+)\k<q>\s*,\s*(?<qb>["'`])(?<itemID>.+)\k<qb>\s*\)\s*;?\s*$/,
 
