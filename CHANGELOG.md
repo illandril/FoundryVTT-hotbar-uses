@@ -1,5 +1,13 @@
 # Changelog
 
+## [v2.3.5](https://github.com/illandril/FoundryVTT-hotbar-uses/tree/v2.3.5) (2021-06-26)
+
+[Full Changelog](https://github.com/illandril/FoundryVTT-hotbar-uses/compare/v2.3.4...v2.3.5)
+
+**Other&nbsp;Changes**
+
+- Compatibility with BetterRolls [\#28](https://github.com/illandril/FoundryVTT-hotbar-uses/issues/28)
+
 ## [v2.3.4](https://github.com/illandril/FoundryVTT-hotbar-uses/tree/v2.3.4) (2021-06-18)
 
 [Full Changelog](https://github.com/illandril/FoundryVTT-hotbar-uses/compare/v2.3.3...v2.3.4)
@@ -74,6 +82,7 @@
 
 - Add support for Pathfinder 1 [\#17](https://github.com/illandril/FoundryVTT-hotbar-uses/issues/17)
 - Compatibility with module hotbar-expension [\#16](https://github.com/illandril/FoundryVTT-hotbar-uses/issues/16)
+- Compatibility with custom macros [\#8](https://github.com/illandril/FoundryVTT-hotbar-uses/issues/8)
 
 ## [v2.0.5](https://github.com/illandril/FoundryVTT-hotbar-uses/tree/v2.0.5) (2021-01-27)
 
@@ -125,7 +134,6 @@
 
 **Enhancements**
 
-- Compatibility with custom macros [\#8](https://github.com/illandril/FoundryVTT-hotbar-uses/issues/8)
 - Compatibility with Custom Hotbar [\#7](https://github.com/illandril/FoundryVTT-hotbar-uses/issues/7)
 
 **Fixed&nbsp;Bugs**
