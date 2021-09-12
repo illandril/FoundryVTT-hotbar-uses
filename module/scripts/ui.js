@@ -20,6 +20,7 @@ export const showUses = (hotbarElem, slot, uses) => {
     usesDisplay.classList.remove(CSS_ZERO_USES);
     usesDisplay.innerText = '';
   } else {
+    let showZeroUses = false;
     let hasUsesAvailable = false;
     let hasMaximum = false;
     let display = '';
@@ -31,7 +32,8 @@ export const showUses = (hotbarElem, slot, uses) => {
       display = uses;
     } else if (typeof uses === 'object') {
       if (typeof uses.available === 'number') {
-        hasUsesAvailable = uses.available > 0;
+        hasUsesAvailable = uses.available !== 0;
+        showZeroUses = uses.showZeroUses;
         display = uses.available;
       } else if (typeof uses.consumed === 'number') {
         if (typeof uses.maximum === 'number') {
@@ -49,7 +51,7 @@ export const showUses = (hotbarElem, slot, uses) => {
       }
     }
     usesDisplay.innerText = display;
-    if (hasMaximum) {
+    if (hasMaximum || showZeroUses) {
       usesDisplay.classList.add(CSS_SHOW_ZERO);
     } else {
       usesDisplay.classList.remove(CSS_SHOW_ZERO);

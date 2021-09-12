@@ -30,7 +30,7 @@ const getActorBySpeaker = () => {
 };
 
 const getActorByID = (actorID) => {
-  let token = canvas.tokens.placeables.find((token) => token.actor && token.actor._id === actorID);
+  let token = canvas.tokens.placeables.find((token) => token.actor && token.actor.id === actorID);
   if (token) {
     return token.actor;
   }
@@ -185,6 +185,7 @@ const genericCalculateUses = (actor, items, itemLookupDetails) => {
     const consumed = genericLookup(actor.data, itemLookupDetails.consumed);
     const maximum = genericLookup(actor.data, itemLookupDetails.max);
     return {
+      showZeroUses: available !== null,
       available,
       consumed,
       maximum,
@@ -224,7 +225,9 @@ export default class ItemSystem {
     if (!items || items.length === 0) {
       return { available: 0 };
     }
-    let uses = {};
+    let uses = {
+      showZeroUses: true,
+    };
     for (let item of items) {
       let thisItemUses = await this.calculateUsesForItem(item);
       if (thisItemUses === null) {
