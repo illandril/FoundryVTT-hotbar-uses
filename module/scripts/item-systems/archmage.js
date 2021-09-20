@@ -1,4 +1,4 @@
-// archmage is "Toolkit13 (13th Age Compatible)
+// archmage is "Toolkit13 (13th Age Compatible)"
 import ItemSystem from './item-system.js';
 
 const SYSTEM_ID = 'archmage';
