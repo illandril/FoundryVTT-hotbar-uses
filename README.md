@@ -23,7 +23,9 @@ If an item has no uses (ex. weapons without a resource consumption), or if a mac
 This module currently supports the following systems:
 * DnD5e
 * Pathfinder 1
+* Pathfinder 2
 * Shadow of the Demon Lord
+* Toolkit13 (13th Age Compatible)
 
 If you would like native support for other systems (or a specific module), please [open a New Issue](https://github.com/illandril/FoundryVTT-hotbar-uses/issues) to let me know (if I don't know there is desire for support for a system, I won't spend time adding that support).
 
