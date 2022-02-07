@@ -45,15 +45,33 @@ function calculateUsesForActualItem(item) {
   return null;
 }
 
-function calculateUsesForAction(action) {
-  if (action.selectedAmmoId) {
-    const ammo = action.ammo.find((a) => a._id === action.selectedAmmoId);
-    if (ammo) {
-      return {
-        ...calculateQuantityAndChargesUses(ammo.data),
-        isAmmunition: true,
-      };
+function getAmmoForAction(action) {
+  let ammo;
+  if (action.ammunition && action.ammunition.selectedAmmo || action.selectedAmmoId) {
+    const selectedAmmoId = action.ammunition?.selectedAmmo?.id || action.selectedAmmoId;
+    let ammoFilter = (a) => a._id === selectedAmmoId;
+    if(action.ammunition) {
+      if(action.ammunition.compatible) {
+        ammo = action.ammunition.compatible.find(ammoFilter);
+      }
+      if(!ammo && action.ammunition.incompatible) {
+        ammo = action.ammunition.incompatible.find(ammoFilter);
+      }
     }
+    if(!ammo && action.ammo) {
+      ammo = action.ammo.find(ammoFilter);
+    }
+  }
+  return ammo;
+}
+
+function calculateUsesForAction(action) {
+  const ammo = getAmmoForAction(action);
+  if (ammo) {
+    return {
+      ...calculateQuantityAndChargesUses(ammo.data),
+      isAmmunition: true,
+    };
   }
   // TODO Figure out how (and if) other actions should have uses
   return null;
