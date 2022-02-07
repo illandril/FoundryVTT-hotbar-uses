@@ -1,5 +1,14 @@
 # Changelog
 
+## [v2.3.8](https://github.com/illandril/FoundryVTT-hotbar-uses/tree/v2.3.8) (2022-02-07)
+
+[Full Changelog](https://github.com/illandril/FoundryVTT-hotbar-uses/compare/v2.3.7...v2.3.8)
+
+**Fixed&nbsp;Bugs**
+
+- Support with foundry v9.X [\#31](https://github.com/illandril/FoundryVTT-hotbar-uses/issues/31)
+- \[BUG\] Errors in calculating ammo uses for PF2e [\#30](https://github.com/illandril/FoundryVTT-hotbar-uses/issues/30)
+
 ## [v2.3.7](https://github.com/illandril/FoundryVTT-hotbar-uses/tree/v2.3.7) (2022-01-14)
 
 [Full Changelog](https://github.com/illandril/FoundryVTT-hotbar-uses/compare/v2.3.6...v2.3.7)
@@ -15,10 +24,6 @@
 ## [v2.3.5](https://github.com/illandril/FoundryVTT-hotbar-uses/tree/v2.3.5) (2021-06-26)
 
 [Full Changelog](https://github.com/illandril/FoundryVTT-hotbar-uses/compare/v2.3.4...v2.3.5)
-
-**Other&nbsp;Changes**
-
-- Compatibility with BetterRolls [\#28](https://github.com/illandril/FoundryVTT-hotbar-uses/issues/28)
 
 ## [v2.3.4](https://github.com/illandril/FoundryVTT-hotbar-uses/tree/v2.3.4) (2021-06-18)
 
@@ -47,6 +52,10 @@
 **Fixed&nbsp;Bugs**
 
 - Ammunition's doubled if you have two of the items [\#24](https://github.com/illandril/FoundryVTT-hotbar-uses/issues/24)
+
+**Other&nbsp;Changes**
+
+- Compatibility with BetterRolls [\#28](https://github.com/illandril/FoundryVTT-hotbar-uses/issues/28)
 
 ## [v2.3.1](https://github.com/illandril/FoundryVTT-hotbar-uses/tree/v2.3.1) (2021-04-07)
 
