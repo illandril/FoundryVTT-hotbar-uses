@@ -39,25 +39,21 @@ Hooks.on('controlToken', rerenderHotbarIfNecessary);
 Hooks.on('deleteItem', rerenderHotbarIfNecessary);
 Hooks.on('createItem', rerenderHotbarIfNecessary);
 
-// The "OwnedItem" hooks are for v0.7.x
-Hooks.on('updateOwnedItem', rerenderHotbarIfNecessary);
-Hooks.on('deleteOwnedItem', rerenderHotbarIfNecessary);
-Hooks.on('createOwnedItem', rerenderHotbarIfNecessary);
-
 function onRenderHotbar(hotbar) {
-  onRenderHotbarElem(hotbar.element[0], hotbar.macros);
+  onRenderHotbarElem(hotbar.element[0]);
 }
 
-function onRenderHotbarElem(hotbarElem, macros) {
-  macros.forEach(async (macroSlot) => {
-    const slot = macroSlot.slot;
-    const command = getCommand(macroSlot.macro);
+const onRenderHotbarElem = async (hotbarElem) => {
+  const macroElems = hotbarElem.querySelectorAll('[data-macro-id]');
+  for(let macroElem of macroElems) {
+    const macro = game.macros.get(macroElem.getAttribute('data-macro-id'));
+    const command = getCommand(macro);
     const uses = await ItemSystem.calculateUses(command);
-    UI.showUses(hotbarElem, slot, uses);
+    UI.showUses(macroElem, uses);
     if(uses !== null) {
       hasShownMacroUses = true;
     }
-  });
+  }
 }
 
 Hooks.once('ready', () => {
@@ -70,12 +66,6 @@ Hooks.once('ready', () => {
     }
   });
   Hooks.on('renderHotbar', onRenderHotbar);
-
-  // Supports Monk's Hotbar Expansion, assuming this pull request is accepted:
-  // https://github.com/ironmonk88/hotbar-expansion/pull/2
-  Hooks.on('renderMonksHotbarExpansionActionBar', (hotbar, actionBar, options) => {
-    onRenderHotbarElem(actionBar[0], options.macros);
-  });
 
   renderHotbar();
 });

@@ -6,8 +6,7 @@ const CSS_HAS_USES = CSS_PREFIX + 'hasUses';
 const CSS_ZERO_USES = CSS_PREFIX + 'zeroUses';
 const CSS_SHOW_ZERO = CSS_PREFIX + 'showZero';
 
-export const showUses = (hotbarElem, slot, uses) => {
-  const slotElem = hotbarElem.querySelector('[data-slot="' + slot + '"]');
+export const showUses = (slotElem, uses) => {
   let usesDisplay = slotElem.querySelector('.' + CSS_COUNTER);
   if (!usesDisplay) {
     usesDisplay = document.createElement('span');
