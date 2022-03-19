@@ -77,8 +77,17 @@ function calculateUsesForAction(action) {
   return null;
 }
 
+const extractQuantity = (itemData) => {
+  let quantity = itemData.quantity;
+  if ( typeof quantity === 'object' ) {
+    quantity = quantity.value;
+  }
+  quantity = parseInt(quantity, 10) || 0;
+  return quantity;
+};
+
 function calculateQuantityAndChargesUses(itemData) {
-  const quantity = parseInt(itemData.quantity.value, 10) || 0;
+  const quantity = extractQuantity(itemData);
   const chargesData = itemData.charges;
   if (chargesData) {
     const charges = parseInt(chargesData.value) || 0;
