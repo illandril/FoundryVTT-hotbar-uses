@@ -1,5 +1,13 @@
 # Changelog
 
+## [v2.4.1](https://github.com/illandril/FoundryVTT-hotbar-uses/tree/v2.4.1) (2022-03-19)
+
+[Full Changelog](https://github.com/illandril/FoundryVTT-hotbar-uses/compare/v2.4.0...v2.4.1)
+
+**Fixed&nbsp;Bugs**
+
+- \[BUG\] Not working on Pathfinder 2e on Foundry VTT V9. [\#33](https://github.com/illandril/FoundryVTT-hotbar-uses/issues/33)
+
 ## [v2.4.0](https://github.com/illandril/FoundryVTT-hotbar-uses/tree/v2.4.0) (2022-03-12)
 
 [Full Changelog](https://github.com/illandril/FoundryVTT-hotbar-uses/compare/v2.3.8...v2.4.0)
@@ -33,10 +41,6 @@
 
 [Full Changelog](https://github.com/illandril/FoundryVTT-hotbar-uses/compare/v2.3.4...v2.3.5)
 
-**Fixed&nbsp;Bugs**
-
-- Ammunition's doubled if you have two of the items [\#24](https://github.com/illandril/FoundryVTT-hotbar-uses/issues/24)
-
 **Other&nbsp;Changes**
 
 - Compatibility with BetterRolls [\#28](https://github.com/illandril/FoundryVTT-hotbar-uses/issues/28)
@@ -64,6 +68,10 @@
 ## [v2.3.2](https://github.com/illandril/FoundryVTT-hotbar-uses/tree/v2.3.2) (2021-05-03)
 
 [Full Changelog](https://github.com/illandril/FoundryVTT-hotbar-uses/compare/v2.3.1...v2.3.2)
+
+**Fixed&nbsp;Bugs**
+
+- Ammunition's doubled if you have two of the items [\#24](https://github.com/illandril/FoundryVTT-hotbar-uses/issues/24)
 
 ## [v2.3.1](https://github.com/illandril/FoundryVTT-hotbar-uses/tree/v2.3.1) (2021-04-07)
 
@@ -148,6 +156,10 @@
 
 [Full Changelog](https://github.com/illandril/FoundryVTT-hotbar-uses/compare/v1.4.0...v1.5.0)
 
+**Enhancements**
+
+- Support: Shadow of the Demon Lord [\#10](https://github.com/illandril/FoundryVTT-hotbar-uses/issues/10)
+
 **Other&nbsp;Changes**
 
 - Doesn't work with Firefox OSX [\#12](https://github.com/illandril/FoundryVTT-hotbar-uses/issues/12)
@@ -180,7 +192,6 @@
 
 **Enhancements**
 
-- Support: Shadow of the Demon Lord [\#10](https://github.com/illandril/FoundryVTT-hotbar-uses/issues/10)
 - Feature Request: Quantity count for Thrown Weapons [\#3](https://github.com/illandril/FoundryVTT-hotbar-uses/issues/3)
 
 **Fixed&nbsp;Bugs**
