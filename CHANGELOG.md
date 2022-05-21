@@ -1,5 +1,13 @@
 # Changelog
 
+## [v2.4.2](https://github.com/illandril/FoundryVTT-hotbar-uses/tree/v2.4.2) (2022-05-21)
+
+[Full Changelog](https://github.com/illandril/FoundryVTT-hotbar-uses/compare/v2.4.1...v2.4.2)
+
+**Fixed&nbsp;Bugs**
+
+- Module no longer works with latest updates to Foundry or DnD5e [\#34](https://github.com/illandril/FoundryVTT-hotbar-uses/issues/34)
+
 ## [v2.4.1](https://github.com/illandril/FoundryVTT-hotbar-uses/tree/v2.4.1) (2022-03-19)
 
 [Full Changelog](https://github.com/illandril/FoundryVTT-hotbar-uses/compare/v2.4.0...v2.4.1)
@@ -69,10 +77,6 @@
 
 [Full Changelog](https://github.com/illandril/FoundryVTT-hotbar-uses/compare/v2.3.1...v2.3.2)
 
-**Fixed&nbsp;Bugs**
-
-- Ammunition's doubled if you have two of the items [\#24](https://github.com/illandril/FoundryVTT-hotbar-uses/issues/24)
-
 ## [v2.3.1](https://github.com/illandril/FoundryVTT-hotbar-uses/tree/v2.3.1) (2021-04-07)
 
 [Full Changelog](https://github.com/illandril/FoundryVTT-hotbar-uses/compare/v2.3.0...v2.3.1)
@@ -93,6 +97,10 @@
 **Enhancements**
 
 - Add support for Bug Reporter [\#22](https://github.com/illandril/FoundryVTT-hotbar-uses/issues/22)
+
+**Fixed&nbsp;Bugs**
+
+- Ammunition's doubled if you have two of the items [\#24](https://github.com/illandril/FoundryVTT-hotbar-uses/issues/24)
 
 ## [v2.2.1](https://github.com/illandril/FoundryVTT-hotbar-uses/tree/v2.2.1) (2021-02-13)
 
