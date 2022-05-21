@@ -2,8 +2,11 @@ import ItemSystem from './item-system.js';
 
 const SYSTEM_ID = 'dnd5e';
 const DEFAULT_MACRO_REGEX_ARRAY = [
-  // Standard dnd5e system Roll Item macro
+  // Legacy dnd5e system Roll Item macro
   /^\s*game\s*\.\s*dnd5e\s*\.\s*rollItemMacro\s*\(\s*(?<q>["'`])(?<itemName>.+)\k<q>\s*\)\s*;?\s*$/,
+
+  // Standard dnd5e system Roll Item macro
+  /^\s*game\s*\.\s*dnd5e\s*\.macros\s*\.\s*rollItem\s*\(\s*(?<q>["'`])(?<itemName>.+)\k<q>\s*\)\s*;?\s*$/,
 
   // MinorQOL.doRoll
   /MinorQOL\.doRoll\(event, "(?<itemName>[^"]+)", {type: "(?<itemType>[^"]+)".*}\);?/,
