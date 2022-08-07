@@ -1,5 +1,9 @@
 # Changelog
 
+## [v3.0.0](https://github.com/illandril/FoundryVTT-hotbar-uses/tree/v3.0.0) (2022-08-07)
+
+[Full Changelog](https://github.com/illandril/FoundryVTT-hotbar-uses/compare/v2.4.2...v3.0.0)
+
 ## [v2.4.2](https://github.com/illandril/FoundryVTT-hotbar-uses/tree/v2.4.2) (2022-05-21)
 
 [Full Changelog](https://github.com/illandril/FoundryVTT-hotbar-uses/compare/v2.4.1...v2.4.2)
@@ -41,10 +45,6 @@
 
 [Full Changelog](https://github.com/illandril/FoundryVTT-hotbar-uses/compare/v2.3.5...v2.3.6)
 
-**Enhancements**
-
-- \[FEATURE\] Support for Toolkit13 \(13th Age\) [\#29](https://github.com/illandril/FoundryVTT-hotbar-uses/issues/29)
-
 ## [v2.3.5](https://github.com/illandril/FoundryVTT-hotbar-uses/tree/v2.3.5) (2021-06-26)
 
 [Full Changelog](https://github.com/illandril/FoundryVTT-hotbar-uses/compare/v2.3.4...v2.3.5)
@@ -69,6 +69,10 @@
 
 [Full Changelog](https://github.com/illandril/FoundryVTT-hotbar-uses/compare/v2.3.2...v2.3.3)
 
+**Enhancements**
+
+- \[FEATURE\] Support for Toolkit13 \(13th Age\) [\#29](https://github.com/illandril/FoundryVTT-hotbar-uses/issues/29)
+
 **Other&nbsp;Changes**
 
 - Support Foundry 0.8.x [\#25](https://github.com/illandril/FoundryVTT-hotbar-uses/issues/25)
@@ -76,6 +80,10 @@
 ## [v2.3.2](https://github.com/illandril/FoundryVTT-hotbar-uses/tree/v2.3.2) (2021-05-03)
 
 [Full Changelog](https://github.com/illandril/FoundryVTT-hotbar-uses/compare/v2.3.1...v2.3.2)
+
+**Fixed&nbsp;Bugs**
+
+- Ammunition's doubled if you have two of the items [\#24](https://github.com/illandril/FoundryVTT-hotbar-uses/issues/24)
 
 ## [v2.3.1](https://github.com/illandril/FoundryVTT-hotbar-uses/tree/v2.3.1) (2021-04-07)
 
@@ -97,10 +105,6 @@
 **Enhancements**
 
 - Add support for Bug Reporter [\#22](https://github.com/illandril/FoundryVTT-hotbar-uses/issues/22)
-
-**Fixed&nbsp;Bugs**
-
-- Ammunition's doubled if you have two of the items [\#24](https://github.com/illandril/FoundryVTT-hotbar-uses/issues/24)
 
 ## [v2.2.1](https://github.com/illandril/FoundryVTT-hotbar-uses/tree/v2.2.1) (2021-02-13)
 
