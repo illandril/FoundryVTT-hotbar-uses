@@ -91,7 +91,7 @@ If no Item lookup details are specified, Available, Consumed, and Max are lookup
 
 If Item lookup details are specified, Available, Consumed, and Max are lookup attributes of the item.
 
-Available, Consumed, and Max can either be property keys (ex. `data.resources.legact.value`) or fixed numbers.
+Available, Consumed, and Max can either be property keys (ex. `system.resources.legact.value`) or fixed numbers.
 
 *Notice:* Whitespace and spelling are important. Make sure these comments are the very first thing in the macro, everything is spelled correctly, and that you don't have any extra spaces anywhere.
 
@@ -119,8 +119,8 @@ If you find yourself adding these comments to macros that you think could be nat
 // Max=data.power.max
 let speaker = ChatMessage.getSpeaker();
 let actor = speaker.token && game.actors.tokens[speaker.token];
-if(actor && actor.data.data.power.value > 0) {
-  actor.update({"data.power.value": actor.data.data.power.value-1});
+if(actor && actor.system.power.value > 0) {
+  actor.update({"system.power.value": actor.system.power.value-1});
   ChatMessage.create({user: game.user._id, speaker: ChatMessage.getSpeaker(), content: 'I cast magic missile!'});
 }
 ```
