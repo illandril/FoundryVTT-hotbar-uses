@@ -28,8 +28,8 @@ class DemonLordItemSystem extends ItemSystem {
 export default new DemonLordItemSystem();
 
 function calculateUsesForItem(item) {
-  const itemData = item.data.data;
-  const itemType = item.data.type;
+  const itemData = item.system;
+  const itemType = item.type;
   if (itemType === 'spell') {
     return calculateSpellUses(itemData);
   } else if (itemType === 'talent') {

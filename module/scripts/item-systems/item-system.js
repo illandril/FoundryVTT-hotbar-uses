@@ -39,7 +39,7 @@ const getActorByID = (actorID) => {
 
 const getActorByName = (actorName) => {
   let token = canvas.tokens.placeables.find(
-    (token) => token.actor && token.actor.data.name === actorName
+    (token) => token.actor && token.actor.name === actorName
   );
   if (token) {
     return token.actor;
@@ -114,17 +114,17 @@ const getItems = (actor, itemLookupDetails) => {
         return false;
       }
       if (firstType === null) {
-        firstType = item.data.type;
+        firstType = item.type;
         return true;
       } else {
-        return item.data.type === firstType;
+        return item.type === firstType;
       }
     });
   }
   if (itemLookupDetails.actionIndex !== null) {
     const actionIndex = parseInt(itemLookupDetails.actionIndex, 10);
     if (!isNaN(actionIndex) && actionIndex >= 0) {
-      const actions = getProperty(actor, 'data.data.actions');
+      const actions = actor?.system?.actions;
       if (actions) {
         const action = actions[actionIndex];
         if (action && action.name === itemLookupDetails.actionName) {
@@ -168,9 +168,9 @@ const genericCalculateUses = (actor, items, itemLookupDetails) => {
     let available = null;
     let maximum = null;
     for (let item of items) {
-      const itemAvailable = genericLookup(item.data, itemLookupDetails.available);
-      const itemConsumed = genericLookup(item.data, itemLookupDetails.consumed);
-      const itemMaximum = genericLookup(item.data, itemLookupDetails.max);
+      const itemAvailable = genericLookup(item, itemLookupDetails.available);
+      const itemConsumed = genericLookup(item, itemLookupDetails.consumed);
+      const itemMaximum = genericLookup(item, itemLookupDetails.max);
       available = add(consumed, itemAvailable);
       consumed = add(consumed, itemConsumed);
       maximum = add(consumed, itemMaximum);
@@ -181,9 +181,9 @@ const genericCalculateUses = (actor, items, itemLookupDetails) => {
       maximum,
     };
   } else {
-    const available = genericLookup(actor.data, itemLookupDetails.available);
-    const consumed = genericLookup(actor.data, itemLookupDetails.consumed);
-    const maximum = genericLookup(actor.data, itemLookupDetails.max);
+    const available = genericLookup(actor, itemLookupDetails.available);
+    const consumed = genericLookup(actor, itemLookupDetails.consumed);
+    const maximum = genericLookup(actor, itemLookupDetails.max);
     return {
       showZeroUses: available !== null,
       available,

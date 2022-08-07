@@ -36,7 +36,7 @@ function calculateUsesForItem(itemOrAction) {
 
 function calculateUsesForActualItem(item) {
   if (item.type === 'consumable' || item.type === 'equipment' || item.type === 'treasure') {
-    const itemData = item.data.data;
+    const itemData = item.system;
     if (itemData.quantity) {
       return calculateQuantityAndChargesUses(itemData);
     }

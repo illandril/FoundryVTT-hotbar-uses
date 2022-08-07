@@ -19,7 +19,7 @@ class Toolkit13ItemSystem extends ItemSystem {
 export default new Toolkit13ItemSystem();
 
 function calculateUsesForItem(item) {
-  const itemData = item.data.data;
+  const itemData = item.system;
   const quantity = itemData.quantity;
   const maxQuantity = itemData.maxQuantity;
   if(quantity && maxQuantity) {

@@ -10,7 +10,7 @@ function getCommand(macro) {
   if (!macro) {
     return null;
   }
-  const rawCommand = macro.data.command;
+  const rawCommand = macro.command;
   const equivalentMatch = rawCommand.match(COMMAND_EQUIVALENT);
   if (equivalentMatch) {
     return equivalentMatch.groups.command;
