@@ -21,19 +21,19 @@ class PF1ItemSystem extends ItemSystem {
   }
 
   async calculateUsesForItem(item) {
-    return await calculateUsesForItem(item);
+    return calculateUsesForItem(item);
   }
 }
 export default new PF1ItemSystem();
 
 async function calculateUsesForItem(item) {
   if (item.type === 'spell') {
-    return await calculateSpellUses(item);
+    return calculateSpellUses(item);
   }
   if (item.hasAction && item.type === 'attack') {
-    return await calculateAttackUses(item);
+    return calculateAttackUses(item);
   }
-  return await calculateChargeUses(item);
+  return calculateChargeUses(item);
 }
 
 async function calculateSpellUses(item) {

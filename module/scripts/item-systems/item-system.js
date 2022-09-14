@@ -218,7 +218,7 @@ export default class ItemSystem {
     if (itemLookupDetails.generic) {
       return genericCalculateUses(actor, items, itemLookupDetails);
     }
-    return await this.calculateUsesForItems(items);
+    return this.calculateUsesForItems(items);
   }
 
   async calculateUsesForItems(items) {

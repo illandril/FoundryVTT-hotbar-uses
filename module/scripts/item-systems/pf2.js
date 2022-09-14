@@ -69,7 +69,7 @@ function calculateUsesForAction(action) {
   const ammo = getAmmoForAction(action);
   if (ammo) {
     return {
-      ...calculateQuantityAndChargesUses(ammo.data),
+      ...calculateQuantityAndChargesUses(ammo),
       isAmmunition: true,
     };
   }
