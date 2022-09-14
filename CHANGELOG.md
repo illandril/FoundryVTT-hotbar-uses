@@ -1,5 +1,13 @@
 # Changelog
 
+## [v3.0.1](https://github.com/illandril/FoundryVTT-hotbar-uses/tree/v3.0.1) (2022-09-14)
+
+[Full Changelog](https://github.com/illandril/FoundryVTT-hotbar-uses/compare/v3.0.0...v3.0.1)
+
+**Fixed&nbsp;Bugs**
+
+- k is not defined [\#35](https://github.com/illandril/FoundryVTT-hotbar-uses/issues/35)
+
 ## [v3.0.0](https://github.com/illandril/FoundryVTT-hotbar-uses/tree/v3.0.0) (2022-08-07)
 
 [Full Changelog](https://github.com/illandril/FoundryVTT-hotbar-uses/compare/v2.4.2...v3.0.0)
@@ -45,6 +53,10 @@
 
 [Full Changelog](https://github.com/illandril/FoundryVTT-hotbar-uses/compare/v2.3.5...v2.3.6)
 
+**Enhancements**
+
+- \[FEATURE\] Support for Toolkit13 \(13th Age\) [\#29](https://github.com/illandril/FoundryVTT-hotbar-uses/issues/29)
+
 ## [v2.3.5](https://github.com/illandril/FoundryVTT-hotbar-uses/tree/v2.3.5) (2021-06-26)
 
 [Full Changelog](https://github.com/illandril/FoundryVTT-hotbar-uses/compare/v2.3.4...v2.3.5)
@@ -68,10 +80,6 @@
 ## [v2.3.3](https://github.com/illandril/FoundryVTT-hotbar-uses/tree/v2.3.3) (2021-05-29)
 
 [Full Changelog](https://github.com/illandril/FoundryVTT-hotbar-uses/compare/v2.3.2...v2.3.3)
-
-**Enhancements**
-
-- \[FEATURE\] Support for Toolkit13 \(13th Age\) [\#29](https://github.com/illandril/FoundryVTT-hotbar-uses/issues/29)
 
 **Other&nbsp;Changes**
 
