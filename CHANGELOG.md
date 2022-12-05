@@ -1,12 +1,16 @@
 # Changelog
 
-## [v3.0.1](https://github.com/illandril/FoundryVTT-hotbar-uses/tree/v3.0.1) (2022-09-14)
+## [v3.0.2](https://github.com/illandril/FoundryVTT-hotbar-uses/tree/v3.0.2) (2022-12-05)
 
-[Full Changelog](https://github.com/illandril/FoundryVTT-hotbar-uses/compare/v3.0.0...v3.0.1)
+[Full Changelog](https://github.com/illandril/FoundryVTT-hotbar-uses/compare/v3.0.1...v3.0.2)
 
 **Fixed&nbsp;Bugs**
 
-- k is not defined [\#35](https://github.com/illandril/FoundryVTT-hotbar-uses/issues/35)
+- Module not working with DnD5e 2.0.x [\#36](https://github.com/illandril/FoundryVTT-hotbar-uses/issues/36)
+
+## [v3.0.1](https://github.com/illandril/FoundryVTT-hotbar-uses/tree/v3.0.1) (2022-09-14)
+
+[Full Changelog](https://github.com/illandril/FoundryVTT-hotbar-uses/compare/v3.0.0...v3.0.1)
 
 ## [v3.0.0](https://github.com/illandril/FoundryVTT-hotbar-uses/tree/v3.0.0) (2022-08-07)
 
@@ -71,6 +75,7 @@
 
 **Fixed&nbsp;Bugs**
 
+- k is not defined [\#35](https://github.com/illandril/FoundryVTT-hotbar-uses/issues/35)
 - Error calculating uses when Magic Items is active [\#27](https://github.com/illandril/FoundryVTT-hotbar-uses/issues/27)
 
 **Other&nbsp;Changes**
