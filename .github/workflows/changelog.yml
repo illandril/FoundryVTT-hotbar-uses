@@ -41,5 +41,5 @@ jobs:
           add: CHANGELOG.md
           author_name: Changelog Updater
           author_email: github@illandril.net
-          branch: master
+          branch: main
           message: Updated changelog

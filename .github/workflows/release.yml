@@ -61,5 +61,5 @@ jobs:
           add: module/module.json CHANGELOG.md
           author_name: Release Auto-Commit
           author_email: github@illandril.net
-          branch: master
+          branch: main
           message: Updates version info for ${{github.event.release.name}}
