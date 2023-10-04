@@ -72,6 +72,7 @@ async function calculateActionUses(item, action) {
       isAmmunition: true,
     };
   }
+  return null
 }
 
 async function calculateChargeUses(item) {

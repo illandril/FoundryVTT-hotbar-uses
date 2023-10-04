@@ -230,7 +230,7 @@ export default class ItemSystem {
     };
     for (let item of items) {
       let thisItemUses = await this.calculateUsesForItem(item);
-      if (thisItemUses === null) {
+      if (!thisItemUses) {
         uses = null;
         break;
       }
