@@ -25,7 +25,7 @@ export const showUses = (slotElem, uses) => {
     let display = '';
     if (typeof uses === 'number') {
       hasUsesAvailable = uses > 0;
-      display = uses;
+      display = `${uses}`;
     } else if (typeof uses === 'string') {
       hasUsesAvailable = true;
       display = uses;
@@ -33,20 +33,25 @@ export const showUses = (slotElem, uses) => {
       if (typeof uses.available === 'number') {
         hasUsesAvailable = uses.available !== 0;
         showZeroUses = uses.showZeroUses;
-        display = uses.available;
+        display = `${uses.available}`;
       } else if (typeof uses.consumed === 'number') {
         if (typeof uses.maximum === 'number') {
           hasUsesAvailable = uses.consumed < uses.maximum;
         } else {
           hasUsesAvailable = true;
         }
-        display = uses.consumed;
+        display = `${uses.consumed}`;
+      } else if (uses.showZeroUses) {
+        hasUsesAvailable = false;
+        showZeroUses = true;
+        display = '0';
       } else {
+        console.error('Unable to determine uses', uses);
         display = '?';
       }
       if (getShowMax() && typeof uses.maximum === 'number') {
         hasMaximum = true;
-        display += '/' + uses.maximum;
+        display = `${display}/${uses.maximum}`
       }
     }
     usesDisplay.innerText = display;
