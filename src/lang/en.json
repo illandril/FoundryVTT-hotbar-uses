@@ -1,0 +1,11 @@
+{
+  "illandril-hotbar-uses": {
+    "setting": {
+      "showMax.label": "Show Maximum Values",
+      "debug": {
+        "label": "Debug Mode",
+        "hint": "Leave this disabled unless specifically asked to enable it by Illandril (otherwise, it will slow things down)."
+      }
+    }
+  }
+}

@@ -1,0 +1,35 @@
+.illandril-hotbar-uses--counter {
+  display: none;
+}
+
+.illandril-hotbar-uses--hasUses .illandril-hotbar-uses--counter {
+  display: inline-block;
+  position: absolute;
+  border: 1px solid rgba(100, 255, 0, 0.75);
+  border-radius: 2px;
+  font-weight: bold;
+  font-size: 0.9em;
+  left: 1px;
+  right: 1px;
+  bottom: 1px;
+  background-color: rgba(0, 0, 0, 0.75);
+  color: rgba(255, 255, 255, 0.75);
+  text-shadow: 1px 1px 2px #000;
+  text-align: center;
+}
+
+.illandril-hotbar-uses--hasUses .illandril-hotbar-uses--counter.illandril-hotbar-uses--zeroUses:not(.illandril-hotbar-uses--showZero) {
+  border: 2px solid rgba(200, 0, 0, 0.75);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.25);
+  color: transparent;
+  text-shadow: none;
+}
+
+.illandril-hotbar-uses--hasUses .illandril-hotbar-uses--counter.illandril-hotbar-uses--zeroUses.illandril-hotbar-uses--showZero {
+  border-color: rgba(200, 0, 0, 0.75);
+  color: rgb(200, 0, 0);
+}
