@@ -82,8 +82,8 @@ export default new DnD5eItemSystem();
 
 
 function calculateConsumeUses(actor: dnd5e.documents.Actor5e | null, consume: NonNullable<ActivatedEffect['consume']>) {
-  let available = null;
-  let maximum = null;
+  let available: number | null = null;
+  let maximum: number | null = null;
   if (consume.target) {
     if (consume.type === 'attribute') {
       const value = foundry.utils.getProperty(actor?.system, consume.target);
