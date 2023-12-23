@@ -1,4 +1,4 @@
-import module from './module.js';
+import module from './module';
 
 export const SETTINGS_UPDATED = `${module.id}.SettingsUpdated` as const;
 

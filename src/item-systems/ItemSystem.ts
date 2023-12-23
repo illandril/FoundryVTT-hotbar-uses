@@ -1,8 +1,9 @@
+import getActor from '../lookups/getActor';
+import { ItemLookupDetails } from '../lookups/getItemLookupDetailsForCommandFromRegex';
+import getItems from '../lookups/getItems';
+import getNumber from '../lookups/getNumber';
 import addNullable from './addNullable';
-import getActor from './getActor';
-import getItemLookupDetailsForCommand, { ItemLookupDetails } from './getItemLookupDetailsForCommand';
-import getItems from './getItems';
-import getNumber from './getNumber';
+import getItemLookupDetailsForCommand from './getItemLookupDetailsForCommand';
 import { setDefaultMacroRegexArray } from './macroSettings';
 
 export type ItemUses = {
@@ -46,10 +47,6 @@ const genericCalculateUses = (actor: Actor, items: Item[] | null, itemLookupDeta
 export default class ItemSystem<T extends Item> {
   constructor(private systemID: string, macroRegexArray: RegExp[], private calculateUsesForItem: (item: T) => Promise<ItemUses | null>) {
     setDefaultMacroRegexArray(systemID, macroRegexArray);
-  }
-
-  canCalculateUses(command: string | null) {
-    return getItemLookupDetailsForCommand(this.systemID, command) !== null;
   }
 
   async calculateUses(command: string | null): Promise<ItemUses | null> {

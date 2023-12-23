@@ -32,14 +32,14 @@
   },
   "homepage": "https://github.com/illandril/FoundryVTT-hotbar-uses#readme",
   "dependencies": {
-    "@illandril/foundryvtt-utils": "^9.0.5"
+    "@illandril/foundryvtt-utils": "^9.1.2"
   },
   "devDependencies": {
     "@babel/plugin-transform-modules-commonjs": "^7.23.3",
     "@babel/preset-env": "^7.23.6",
     "@babel/preset-typescript": "^7.23.3",
-    "@illandril/eslint-config-foundryvtt": "^1.8.7",
-    "@illandril/foundryvtt-types": "^6.6.0",
+    "@illandril/eslint-config-foundryvtt": "^1.8.8",
+    "@illandril/foundryvtt-types": "^6.8.0",
     "@rollup/plugin-babel": "^6.0.4",
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@testing-library/dom": "^9.3.3",

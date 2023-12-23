@@ -1,4 +1,4 @@
-import { ItemLookupDetails } from './getItemLookupDetailsForCommand';
+import { ItemLookupDetails } from './getItemLookupDetailsForCommandFromRegex';
 
 const getActorBySpeaker = () => {
   const speaker = ChatMessage.getSpeaker();

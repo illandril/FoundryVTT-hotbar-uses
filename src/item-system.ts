@@ -1,13 +1,12 @@
 import ItemSystem from './item-systems/ItemSystem';
 import dnd5e from './item-systems/systems/dnd5e';
-// import pf1 from './item-systems/pf1.js';
-// import pf2 from './item-systems/pf2.js';
-// import demonlord from './item-systems/demonlord.js';
-// import archmage from './item-systems/archmage.js';
+// import pf1 from './item-systems/pf1';
+// import pf2 from './item-systems/pf2';
+// import demonlord from './item-systems/demonlord';
+// import archmage from './item-systems/archmage';
 import generic from './item-systems/systems/generic';
 import module from './module';
-
-// import * as specialtyModules from './specialty-modules.js';
+import * as specialtyModules from './specialty-modules';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 let cachedSystem: ItemSystem<any> | undefined;
@@ -34,20 +33,11 @@ export const getItemSystem = () => {
   return cachedSystem;
 };
 
-const canCalculateSystemUses = (command: string | null) => {
-  const itemSystem = getItemSystem();
-  return itemSystem.canCalculateUses(command);
-};
-
-const calculateSystemUses = async (command: string | null) => {
-  const itemSystem = getItemSystem();
-  return itemSystem.calculateUses(command);
-};
-
-export const canCalculateUses = (command: string | null) => {
-  return canCalculateSystemUses(command);// || specialtyModules.canCalculateUses(command);
-};
-
 export const calculateUses = async (command: string | null) => {
-  return /* await*/ calculateSystemUses(command);// || await specialtyModules.calculateUses(command);
+  const itemSystem = getItemSystem();
+  const systemUses = await itemSystem.calculateUses(command);
+  if (systemUses) {
+    return systemUses;
+  }
+  return specialtyModules.calculateUses(command);
 };

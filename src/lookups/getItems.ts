@@ -1,4 +1,4 @@
-import { ItemLookupDetails } from './getItemLookupDetailsForCommand';
+import { ItemLookupDetails } from './getItemLookupDetailsForCommandFromRegex';
 
 const getItems = <T extends Item>(actor: Actor, itemLookupDetails: ItemLookupDetails): T[] | null => {
   if (itemLookupDetails.id) {

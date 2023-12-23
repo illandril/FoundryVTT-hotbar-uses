@@ -20,7 +20,7 @@ function getCommand(macro?: { command: string }) {
 const renderHotbar = foundry.utils.debounce(() => {
   module.logger.debug('Forcing hotbar render');
 
-  (ui as { hotbar?: Application }).hotbar?.render();
+  ui.hotbar.render();
 
   // Module support: https://github.com/Norc/foundry-custom-hotbar
   (ui as { customHotbar?: Application }).customHotbar?.render?.();
@@ -66,19 +66,12 @@ const onRenderHotbarElem = async (hotbarElem: HTMLElement) => {
   }
 };
 
-declare global {
-  interface HookCallbacks {
-    render: (hotbar: Application) => void
-    renderHotbar: (hotbar: Application) => void
-  }
-}
-
 Hooks.once('ready', () => {
   Hooks.on('render', (hotbar) => {
     // The CustomHotbar overrides the Hotbar class with an anonymous class, which causes the
     // renderHotbar hook to instead be "render" in Firefox.
     // See https://github.com/Norc/foundry-custom-hotbar/issues/74
-    if (hotbar === (ui as { hotbar?: Application }).hotbar) {
+    if (hotbar === ui.hotbar) {
       onRenderHotbar(hotbar);
     }
   });

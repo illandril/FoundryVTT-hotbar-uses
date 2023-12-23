@@ -1,4 +1,4 @@
-import getNumber from '../getNumber';
+import getNumber from '../../lookups/getNumber';
 import ItemSystem from '../ItemSystem';
 
 const SYSTEM_ID = 'dnd5e';
@@ -44,36 +44,38 @@ type Loot = dnd5e.documents.ItemSystemData.Loot;
 type ActivatedEffect = dnd5e.documents.ItemSystemData.ActivatedEffect;
 type Feat = dnd5e.documents.ItemSystemData.Feat;
 
+// eslint-disable-next-line @typescript-eslint/require-await
+const calculateUsesForItem5e = async (item: dnd5e.documents.Item5e) => {
+  const itemData = item.system;
+  const consume = (itemData as ActivatedEffect).consume;
+  if (consume && consume.target) {
+    return calculateConsumeUses(item.actor, consume);
+  }
+  const uses = (itemData as ActivatedEffect).uses;
+  if (uses && typeof uses.max === 'number' && uses.value && (uses.max > 0 || uses.value > 0)) {
+    return calculateLimitedUses(itemData, uses.value, uses.max);
+  }
+
+  const itemType = item.type;
+  if (itemType === 'feat') {
+    return calculateFeatUses(itemData);
+  }
+  if (itemType === 'consumable' || itemType === 'loot') {
+    return {
+      available: (itemData as Consumable | Loot).quantity,
+    };
+  }
+  if (itemType === 'spell') {
+    return calculateSpellUses(item, itemData);
+  }
+  if (itemType === 'weapon') {
+    return calculateWeaponUses(itemData);
+  }
+  return null;
+};
 class DnD5eItemSystem extends ItemSystem<dnd5e.documents.Item5e> {
   constructor() {
-    super(SYSTEM_ID, DEFAULT_MACRO_REGEX_ARRAY, async (item) => {
-      const itemData = item.system;
-      const consume = (itemData as ActivatedEffect).consume;
-      if (consume && consume.target) {
-        return calculateConsumeUses(item.actor, consume);
-      }
-      const uses = (itemData as ActivatedEffect).uses;
-      if (uses && typeof uses.max === 'number' && uses.value && (uses.max > 0 || uses.value > 0)) {
-        return calculateLimitedUses(itemData, uses.value, uses.max);
-      }
-
-      const itemType = item.type;
-      if (itemType === 'feat') {
-        return calculateFeatUses(itemData);
-      }
-      if (itemType === 'consumable' || itemType === 'loot') {
-        return {
-          available: (itemData as Consumable | Loot).quantity,
-        };
-      }
-      if (itemType === 'spell') {
-        return calculateSpellUses(item, itemData);
-      }
-      if (itemType === 'weapon') {
-        return calculateWeaponUses(itemData);
-      }
-      return null;
-    });
+    super(SYSTEM_ID, DEFAULT_MACRO_REGEX_ARRAY, calculateUsesForItem5e);
   }
 }
 export default new DnD5eItemSystem();
