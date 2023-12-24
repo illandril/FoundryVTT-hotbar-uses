@@ -78,5 +78,3 @@ Hooks.once('ready', () => {
 
   renderHotbar();
 });
-
-module.logger.error('Initialized');

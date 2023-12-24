@@ -1,5 +1,3 @@
-import { ItemLookupDetails } from './getItemLookupDetailsForCommandFromRegex';
-
 const getActorBySpeaker = () => {
   const speaker = ChatMessage.getSpeaker();
   let actor;
@@ -30,7 +28,7 @@ const getActorByName = (actorName: string) => {
   return game.actors.find((actor) => actor.name === actorName);
 };
 
-const getActor = ({ actorID, actorName }: ItemLookupDetails) => {
+const getActor = ({ actorID, actorName }: { actorID: string | null, actorName: string | null }) => {
   let actor;
   if (actorID) {
     actor = getActorByID(actorID);

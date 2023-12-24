@@ -102,21 +102,21 @@ If you find yourself adding these comments to macros that you think could be nat
 // HotbarUsesGeneric
 // ActorName=Bob
 // ItemName=Arrow
-// Available=data.quantity
+// Available=system.quantity
 ```
 
 ### Custom Example: Insanity Level, with a fixed maximum
 ```
 // HotbarUsesGeneric
-// Consumed=data.attributes.insanity.value
+// Consumed=system.attributes.insanity.value
 // Max=10
 ```
 
 ### Custom Example: Power Remaining (plus a simple macro to actually decrement the power value)
 ```
 // HotbarUsesGeneric
-// Available=data.power.value
-// Max=data.power.max
+// Available=system.power.value
+// Max=system.power.max
 let speaker = ChatMessage.getSpeaker();
 let actor = speaker.token && game.actors.tokens[speaker.token];
 if(actor && actor.system.power.value > 0) {

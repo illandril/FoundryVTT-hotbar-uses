@@ -48,6 +48,7 @@ type ItemSystemData = {
 };
 class PF2eItemSystem extends ItemSystem<pf2e.internal.item.ItemPF2e> {
   constructor() {
+    // eslint-disable-next-line @typescript-eslint/require-await
     super(SYSTEM_ID, DEFAULT_MACRO_REGEX_ARRAY, async (item) => {
       return calculateUsesForItem(item);
     });
