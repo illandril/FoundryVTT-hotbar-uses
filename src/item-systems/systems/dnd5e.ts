@@ -30,10 +30,10 @@ const DEFAULT_MACRO_REGEX_ARRAY = [
   /^\s*ItemMacro\s*\.\s*runMacro\s*\(\s*(?<q>["'`])(?<actorID>.+?)\k<q>\s*,\s*(?<qb>["'`])(?<itemID>.+?)\k<qb>\s*\)\s*;?\s*$/,
 
   // Comment: // HotbarUses5e: ActorID="X" ItemID="Y"
-  /^(.*)?\s*\/\/\s*HotbarUses5e\s*:\s*ActorID\s*=\s*(?<q>["'`])(?<actorID>.+?)\k<q>\s*ItemID\s*=\s*(?<qb>["'`])(?<itemID>.+?)\k<qb>\s*(\n.*)?$/is,
+  /\s*\/\/\s*HotbarUses5e\s*:\s*ActorID\s*=\s*(?<q>["'`])(?<actorID>.+?)\k<q>\s*ItemID\s*=\s*(?<qb>["'`])(?<itemID>.+?)\k<qb>\s*(\n.*)?$/is,
 
   // Comment: // HotbarUses5e: ActorName="X" ItemName="Y" ItemType="Z" (ActorName and ItemType optional)
-  /^(.*)?\s*\/\/\s*HotbarUses5e\s*:\s*(ActorName\s*=\s*(?<q>["'`])(?<actorName>.+?)\k<q>\s*)?ItemName\s*=\s*(?<qb>["'`])(?<itemName>.+?)\k<qb>\s*(ItemType\s*=\s*(?<qc>["'`])(?<itemType>.+?)\k<qc>\s*)?(\n.*)?$/is,
+  /\s*\/\/\s*HotbarUses5e\s*:\s*(ActorName\s*=\s*(?<q>["'`])(?<actorName>.+?)\k<q>\s*)?ItemName\s*=\s*(?<qb>["'`])(?<itemName>.+?)\k<qb>\s*(ItemType\s*=\s*(?<qc>["'`])(?<itemType>.+?)\k<qc>\s*)?(\n.*)?$/is,
 ];
 
 type Spell = dnd5e.documents.ItemSystemData.Spell;

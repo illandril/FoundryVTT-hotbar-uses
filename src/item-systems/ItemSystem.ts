@@ -51,7 +51,7 @@ const genericCalculateUses = (actor: Actor, items: Item[] | null, itemLookupDeta
 };
 
 export default class ItemSystem<T extends Item> {
-  constructor(private systemID: string, macroRegexArray: RegExp[], private calculateUsesForItem: (item: T) => Promise<ItemUses | null>) {
+  constructor(readonly systemID: string, macroRegexArray: RegExp[], private calculateUsesForItem: (item: T) => Promise<ItemUses | null>) {
     setDefaultMacroRegexArray(systemID, macroRegexArray);
   }
 
@@ -64,23 +64,28 @@ export default class ItemSystem<T extends Item> {
     const actor = getActor(itemLookupDetails);
     if (!actor) {
       // It's an item, but there's no actor, so it can't be used.
+      module.logger.debug('Could not find actor', itemLookupDetails);
       return { available: 0 };
     }
     const items = getItems<T>(actor, itemLookupDetails);
     if (itemLookupDetails.generic) {
+      module.logger.debug('generic uses', itemLookupDetails);
       return genericCalculateUses(actor, items, itemLookupDetails);
     }
+    module.logger.debug('Items uses', itemLookupDetails, items);
     return this.calculateUsesForItems(items);
   }
 
   private async calculateUsesForItems(items: T[] | null): Promise<ItemUses | null> {
     if (!items?.length) {
+      module.logger.debug('No items');
       return { available: 0 };
     }
     let uses: ItemUses | null = {
       showZeroUses: true,
     };
     const allItemUses = await Promise.all(items.map((item) => this.calculateUsesForItem(item)));
+    module.logger.debug('Item uses', items, allItemUses);
     for (const thisItemUses of allItemUses) {
       if (!thisItemUses) {
         uses = null;

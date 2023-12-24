@@ -6,6 +6,12 @@ const SYSTEM_ID = 'archmage';
 const DEFAULT_MACRO_REGEX_ARRAY = [
   // Roll Item macro
   /^\s*game\s*\.\s*archmage\s*\.\s*rollItemMacro\s*\(\s*(?<q>["'`])(?<itemName>.+?)\k<q>\s*\)\s*;?\s*$/,
+
+  // Comment: // HotbarUses13thAge: ActorID="X" ItemID="Y"
+  /\s*\/\/\s*HotbarUses13thAge\s*:\s*ActorID\s*=\s*(?<q>["'`])(?<actorID>.+?)\k<q>\s*ItemID\s*=\s*(?<qb>["'`])(?<itemID>.+?)\k<qb>\s*(\n.*)?$/is,
+
+  // Comment: // HotbarUses13thAge: ActorName="X" ItemName="Y" ItemType="Z" (ActorName and ItemType optional)
+  /\s*\/\/\s*HotbarUses13thAge\s*:\s*(ActorName\s*=\s*(?<q>["'`])(?<actorName>.+?)\k<q>\s*)?ItemName\s*=\s*(?<qb>["'`])(?<itemName>.+?)\k<qb>\s*(ItemType\s*=\s*(?<qc>["'`])(?<itemType>.+?)\k<qc>\s*)?(\n.*)?$/is,
 ];
 
 class Toolkit13ItemSystem extends ItemSystem<Item> {

@@ -1,6 +1,7 @@
 import { ItemUses } from './item-systems/ItemSystem';
 import module from './module';
 import showMax from './showMax';
+import './ui.scss';
 
 const CSS_COUNTER = module.cssPrefix.child('counter');
 const CSS_HAS_USES = module.cssPrefix.child('hasUses');

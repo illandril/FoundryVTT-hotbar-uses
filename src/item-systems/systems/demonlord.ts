@@ -11,11 +11,10 @@ const DEFAULT_MACRO_REGEX_ARRAY = [
   /^\s*game\s*\.\s*demonlord\s*\.\s*rollSpellMacro\s*\(\s*(?<q>["'`])(?<itemName>.+?)\k<q>\s*\)\s*;?\s*$/,
 
   // Comment: // HotbarUsesDemonLord: ActorID="X" ItemID="Y"
-  /^(.*)?\s*\/\/\s*HotbarUsesDemonLord\s*:\s*ActorID\s*=\s*(?<q>["'`])(?<actorID>.+?)\k<q>\s*ItemID\s*=\s*(?<qb>["'`])(?<itemID>.+?)\k<qb>\s*(\n.*)?$/is,
+  /\s*\/\/\s*HotbarUsesDemonLord\s*:\s*ActorID\s*=\s*(?<q>["'`])(?<actorID>.+?)\k<q>\s*ItemID\s*=\s*(?<qb>["'`])(?<itemID>.+?)\k<qb>\s*(\n.*)?$/is,
 
   // Comment: // HotbarUsesDemonLord: ActorName="X" ItemName="Y" ItemType="Z" (ActorName and ItemType optional)
-  /^(.*)?\s*\/\/\s*HotbarUsesDemonLord\s*:\s*(ActorName\s*=\s*(?<q>["'`])(?<actorName>.+?)\k<q>\s*)?ItemName\s*=\s*(?<qb>["'`])(?<itemName>.+?)\k<qb>\s*(ItemType\s*=\s*(?<qc>["'`])(?<itemType>.+?)\k<qc>\s*)?(\n.*)?$/is,
-
+  /\s*\/\/\s*HotbarUsesDemonLord\s*:\s*(ActorName\s*=\s*(?<q>["'`])(?<actorName>.+?)\k<q>\s*)?ItemName\s*=\s*(?<qb>["'`])(?<itemName>.+?)\k<qb>\s*(ItemType\s*=\s*(?<qc>["'`])(?<itemType>.+?)\k<qc>\s*)?(\n.*)?$/is,
 ];
 
 type MaybeUses = { value?: string | number | null, max?: string | number | null } | null | undefined;

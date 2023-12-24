@@ -1,7 +1,6 @@
 import * as ItemSystem from './item-system';
 import module from './module';
 import { SETTINGS_UPDATED } from './showMax';
-import './test.scss';
 import { updateSlot } from './ui';
 
 const COMMAND_EQUIVALENT = /^(.*\n)?\s*\/\/\s*HotbarUses:(?<command>[^\n]+)(\n.*)?$/is;
@@ -48,22 +47,22 @@ function onRenderHotbar(hotbar: Application) {
 const onRenderHotbarElem = async (hotbarElem: HTMLElement) => {
   const macroElems = hotbarElem.querySelectorAll('[data-macro-id]');
 
-  for (const macroElem of macroElems) {
+  return Promise.all([...macroElems].map((macroElem) => async () => {
     const macroID = macroElem.getAttribute('data-macro-id');
     if (!macroID) {
       module.logger.debug('onRenderHotbarElem', macroID, null);
-      continue;
+      return;
     }
     const macro = (game as { macros?: foundry.utils.Collection<string, { command: string }> }).macros?.get(macroID);
     const command = getCommand(macro);
-    // eslint-disable-next-line no-await-in-loop
+
     const uses = await ItemSystem.calculateUses(command);
     module.logger.debug('onRenderHotbarElem', macroID, command, uses);
     updateSlot(macroElem, uses);
     if (uses !== null) {
       hasShownMacroUses = true;
     }
-  }
+  }));
 };
 
 Hooks.once('ready', () => {
