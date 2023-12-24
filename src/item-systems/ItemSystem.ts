@@ -2,6 +2,7 @@ import getActor from '../lookups/getActor';
 import { ItemLookupDetails } from '../lookups/getItemLookupDetailsForCommandFromRegex';
 import getItems from '../lookups/getItems';
 import getNumber from '../lookups/getNumber';
+import module from '../module';
 import addNullable from './addNullable';
 import getItemLookupDetailsForCommand from './getItemLookupDetailsForCommand';
 import { setDefaultMacroRegexArray } from './macroSettings';
@@ -15,32 +16,37 @@ export type ItemUses = {
 };
 
 const genericCalculateUses = (actor: Actor, items: Item[] | null, itemLookupDetails: ItemLookupDetails): ItemUses => {
+  if (!itemLookupDetails.available && !itemLookupDetails.consumed) {
+    module.logger.error('Available or Consumed must be specified when using HotbarUsesGeneric');
+    return { available: -1 };
+  }
   if (items) {
-    let consumed = null;
-    let available = null;
-    let maximum = null;
+    let consumed: number | null = null;
+    let available: number | null = null;
+    let maximum: number | null = null;
     for (const item of items) {
       const itemAvailable = getNumber(item, itemLookupDetails.available);
       const itemConsumed = getNumber(item, itemLookupDetails.consumed);
       const itemMaximum = getNumber(item, itemLookupDetails.max);
-      available = addNullable(consumed, itemAvailable);
+      available = addNullable(available, itemAvailable);
       consumed = addNullable(consumed, itemConsumed);
-      maximum = addNullable(consumed, itemMaximum);
+      maximum = addNullable(maximum, itemMaximum);
     }
     return {
-      available,
-      consumed,
-      maximum,
+      showZeroUses: available !== null || consumed !== null,
+      available: available === null ? undefined : available,
+      consumed: consumed === null ? undefined : consumed,
+      maximum: maximum === null ? undefined : maximum,
     };
   }
   const available = getNumber(actor, itemLookupDetails.available);
   const consumed = getNumber(actor, itemLookupDetails.consumed);
   const maximum = getNumber(actor, itemLookupDetails.max);
   return {
-    showZeroUses: available !== null,
-    available,
-    consumed,
-    maximum,
+    showZeroUses: available !== null || consumed !== null,
+    available: available === null ? undefined : available,
+    consumed: consumed === null ? undefined : consumed,
+    maximum: maximum === null ? undefined : maximum,
   };
 };
 

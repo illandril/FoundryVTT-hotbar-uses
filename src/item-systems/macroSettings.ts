@@ -8,7 +8,7 @@ const GENERIC_MACRO_REGEX_ARRAY = [
   // ItemID=IID
   // ItemName=IN
   // ItemType=IT
-  // Uses=U
+  // Available=A
   // Consumed=C
   // Max=M
 

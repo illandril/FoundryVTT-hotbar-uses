@@ -4,37 +4,36 @@ import ItemSystem from '../ItemSystem';
 const SYSTEM_ID = 'dnd5e';
 const DEFAULT_MACRO_REGEX_ARRAY = [
   // Legacy dnd5e system Roll Item macros
-  /^\s*game\s*\.\s*dnd5e\s*\.\s*rollItemMacro\s*\(\s*(?<q>["'`])(?<itemName>.+)\k<q>\s*\)\s*;?\s*$/,
-  /^\s*game\s*\.\s*dnd5e\s*\.macros\s*\.\s*rollItem\s*\(\s*(?<q>["'`])(?<itemName>.+)\k<q>\s*\)\s*;?\s*$/,
+  /^\s*game\s*\.\s*dnd5e\s*\.\s*rollItemMacro\s*\(\s*(?<q>["'`])(?<itemName>.+?)\k<q>\s*\)\s*;?\s*$/,
+  /^\s*game\s*\.\s*dnd5e\s*\.\s*macros\s*\.\s*rollItem\s*\(\s*(?<q>["'`])(?<itemName>.+?)\k<q>\s*\)\s*;?\s*$/,
 
   // Standard dnd5e system Roll Item macro
-  /^\s*dnd5e\s*\.\s*documents\s*\.macro\s*\.\s*rollItem\s*\(\s*(?<q>["'`])(?<itemName>.+)\k<q>\s*\)\s*;?\s*$/,
+  /^\s*dnd5e\s*\.\s*documents\s*\.\s*macro\s*\.\s*rollItem\s*\(\s*(?<q>["'`])(?<itemName>.+?)\k<q>\s*\)\s*;?\s*$/,
 
   // MinorQOL.doRoll
-  /MinorQOL\.doRoll\(event, "(?<itemName>[^"]+)", {type: "(?<itemType>[^"]+)".*}\);?/,
+  /MinorQOL\s*\.\s*doRoll\s*\(\s*event\s*,\s*(?<q>["'`])(?<itemName>.+?)\k<q>\s*,\s*(\{|\{.+,)\s*type\s*:\s*(?<qb>["'`])(?<itemType>.+?)\k<qb>\s*(,.*\}|\})\s*\)\s*;?/,
 
   // BetterRolls.quickRoll(itemName)
-  /^\s*BetterRolls\s*\.\s*quickRoll\s*\(\s*(?<q>["'`])(?<itemName>.+)\k<q>\s*\)\s*;?\s*$/,
+  /^\s*BetterRolls\s*\.\s*quickRoll\s*\(\s*(?<q>["'`])(?<itemName>.+?)\k<q>\s*\)\s*;?\s*$/,
 
   // BetterRolls.vanillaRoll(actorId, itemId)
   // BetterRolls.quickRollById(actorId, itemId)
-  /^\s*BetterRolls\s*\.\s*(vanillaRoll|quickRollById)\s*\(\s*(?<q>["'`])(?<actorID>.+)\k<q>\s*,\s*(?<qb>["'`])(?<itemID>.+)\k<qb>\s*\)\s*;?\s*$/,
+  /^\s*BetterRolls\s*\.\s*(vanillaRoll|quickRollById)\s*\(\s*(?<q>["'`])(?<actorID>.+?)\k<q>\s*,\s*(?<qb>["'`])(?<itemID>.+?)\k<qb>\s*\)\s*;?\s*$/,
 
   // BetterRolls.quickRollByName(actorName, itemName)
-  /^\s*BetterRolls\s*\.\s*quickRollByName\s*\(\s*(?<q>["'`])(?<actorName>.+)\k<q>\s*,\s*(?<qb>["'`])(?<itemName>.+)\k<qb>\s*\)\s*;?\s*$/,
+  /^\s*BetterRolls\s*\.\s*quickRollByName\s*\(\s*(?<q>["'`])(?<actorName>.+?)\k<q>\s*,\s*(?<qb>["'`])(?<itemName>.+?)\k<qb>\s*\)\s*;?\s*$/,
 
   // BetterRolls 1.5.0 macros
-  /^const actorId = "(?<actorID>.+)";\nconst itemId = "(?<itemID>.+)";\nconst actorToRoll = [^\n]*;\nconst itemToRoll = actorToRoll\?\.items\.get\(itemId\);/is,
+  /^const\s+actorId\s*=\s*"(?<actorID>.+?)"\s*;\s*const\s+itemId\s*=\s*"(?<itemID>.+?)"\s*;\s*const\s+actorToRoll\s*=.*const\s+itemToRoll\s*=\s*actorToRoll.*/is,
 
   // ItemMacro.runMacro(actorId, itemId)
-  /^\s*ItemMacro\s*\.\s*runMacro\s*\(\s*(?<q>["'`])(?<actorID>.+)\k<q>\s*,\s*(?<qb>["'`])(?<itemID>.+)\k<qb>\s*\)\s*;?\s*$/,
+  /^\s*ItemMacro\s*\.\s*runMacro\s*\(\s*(?<q>["'`])(?<actorID>.+?)\k<q>\s*,\s*(?<qb>["'`])(?<itemID>.+?)\k<qb>\s*\)\s*;?\s*$/,
 
   // Comment: // HotbarUses5e: ActorID="X" ItemID="Y"
-  /^(.*\n)?\s*\/\/\s*HotbarUses5e:\s*ActorID\s*=\s*(?<q>["'`])(?<actorID>.+)\k<q>\s*ItemID\s*=\s*(?<qb>["'`])(?<itemID>.+)\k<qb>\s*(\n.*)?$/is,
+  /^(.*)?\s*\/\/\s*HotbarUses5e\s*:\s*ActorID\s*=\s*(?<q>["'`])(?<actorID>.+?)\k<q>\s*ItemID\s*=\s*(?<qb>["'`])(?<itemID>.+?)\k<qb>\s*(\n.*)?$/is,
 
-  // Comments: // HotbarUses5e: ActorName="X" ItemName="Y" ItemType="Z" (ActorName and ItemType optional)
-  /^(.*\n)?\s*\/\/\s*HotbarUses5e:\s*(ActorName\s*=\s*(?<q>["'`])(?<actorName>.+)\k<q>\s*)?ItemName\s*=\s*(?<qb>["'`])(?<itemName>.+)\k<qb>\s*ItemType\s*=\s*(?<qc>["'`])(?<itemType>.+)\k<qc>\s*(\n.*)?$/is,
-  /^(.*\n)?\s*\/\/\s*HotbarUses5e:\s*(ActorName\s*=\s*(?<q>["'`])(?<actorName>.+)\k<q>\s*)?ItemName\s*=\s*(?<qb>["'`])(?<itemName>.+)\k<qb>\s*(\n.*)?$/is,
+  // Comment: // HotbarUses5e: ActorName="X" ItemName="Y" ItemType="Z" (ActorName and ItemType optional)
+  /^(.*)?\s*\/\/\s*HotbarUses5e\s*:\s*(ActorName\s*=\s*(?<q>["'`])(?<actorName>.+?)\k<q>\s*)?ItemName\s*=\s*(?<qb>["'`])(?<itemName>.+?)\k<qb>\s*(ItemType\s*=\s*(?<qc>["'`])(?<itemType>.+?)\k<qc>\s*)?(\n.*)?$/is,
 ];
 
 type Spell = dnd5e.documents.ItemSystemData.Spell;
@@ -82,8 +81,8 @@ export default new DnD5eItemSystem();
 
 
 function calculateConsumeUses(actor: dnd5e.documents.Actor5e | null, consume: NonNullable<ActivatedEffect['consume']>) {
-  let available: number | null = null;
-  let maximum: number | null = null;
+  let available: number | undefined = undefined;
+  let maximum: number | undefined = undefined;
   if (consume.target) {
     if (consume.type === 'attribute') {
       const value = foundry.utils.getProperty(actor?.system, consume.target);
@@ -108,10 +107,10 @@ function calculateConsumeUses(actor: dnd5e.documents.Actor5e | null, consume: No
       }
     }
   }
-  if (available !== null) {
+  if (available !== undefined) {
     if (consume.amount && consume.amount > 1) {
       available = Math.floor(available / consume.amount);
-      if (maximum !== null) {
+      if (maximum !== undefined) {
         maximum = Math.floor(maximum / consume.amount);
       }
     }
@@ -160,7 +159,7 @@ function calculateSpellUses(item: dnd5e.documents.Item5e, itemData: Spell) {
       maximum = actorData.spells?.[`spell${level}` as 'spell1']?.max;
     }
   }
-  if (available === null) {
+  if (typeof available !== 'number') {
     return null;
   }
   return { available, maximum };
@@ -169,7 +168,7 @@ function calculateSpellUses(item: dnd5e.documents.Item5e, itemData: Spell) {
 function calculateWeaponUses(itemData: Weapon) {
   // If the weapon is a thrown weapon, but not a returning weapon, show quantity
   if (foundry.utils.getProperty(itemData.properties, 'thr') && !foundry.utils.getProperty(itemData.properties, 'ret')) {
-    return { available: itemData.quantity, maximum: null };
+    return { available: itemData.quantity };
   }
   return null;
 }
