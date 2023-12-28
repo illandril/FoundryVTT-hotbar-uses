@@ -1,6 +1,6 @@
 {
   "name": "@illandril/foundryvtt-hotbar-uses",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "description": "Illandril's Hotbar Uses: Shows the number of uses left for hotbar items with uses (compatible with the DnD5e, Pathfinder 1, and Shadow of the Demon Lord systems).",
   "type": "module",
   "scripts": {
