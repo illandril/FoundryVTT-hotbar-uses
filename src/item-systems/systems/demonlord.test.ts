@@ -7,8 +7,14 @@ beforeAll(() => {
     name: 'Alice',
     items: {
       get: (id) => actor1Items.get(id),
-      find: (condition) => [...actor1Items.values()].find((value, index) => condition(value, index, {} as foundry.utils.Collection<string, Item>)),
-      filter: (condition) => [...actor1Items.values()].filter((value, index) => condition(value, index, {} as foundry.utils.Collection<string, Item>)),
+      find: (condition) =>
+        [...actor1Items.values()].find((value, index) =>
+          condition(value, index, {} as foundry.utils.Collection<string, Item>),
+        ),
+      filter: (condition) =>
+        [...actor1Items.values()].filter((value, index) =>
+          condition(value, index, {} as foundry.utils.Collection<string, Item>),
+        ),
     },
   } as Actor;
   actor1Items.set('mock-item-1.1', {
@@ -102,20 +108,20 @@ beforeAll(() => {
     },
   } as Item);
 
-
   const actors = new Map<string, Actor>();
   actors.set(actor1.id, actor1);
-
 
   jest.spyOn(ChatMessage, 'getSpeaker').mockReturnValue({
     actor: actor1.id,
   });
   jest.spyOn(game.actors, 'get').mockImplementation((id) => actors.get(id)!);
-  jest.spyOn(game.actors, 'find').mockImplementation(
-    (predicate) => [...actors.values()].find(
-      (value, index) => predicate(value, index, {} as foundry.utils.Collection<string, Actor>),
-    ),
-  );
+  jest
+    .spyOn(game.actors, 'find')
+    .mockImplementation((predicate) =>
+      [...actors.values()].find((value, index) =>
+        predicate(value, index, {} as foundry.utils.Collection<string, Actor>),
+      ),
+    );
 });
 
 beforeAll(() => {
@@ -247,41 +253,41 @@ it.each([
   // Roll Talent macro
   'game.demonlord.rollTalentMacro("TNumeric")',
   ' game . demonlord . rollTalentMacro ( "TNumeric" ) ; ',
-  'game.demonlord.rollTalentMacro(\'TNumeric\')',
+  "game.demonlord.rollTalentMacro('TNumeric')",
   'game.demonlord.rollTalentMacro(`TNumeric`)',
   '// Active = [true/false/], blank = toggle true/false.\ngame.demonlord.rollTalentMacro("TNumeric", "true")',
 
   // Comment: // HotbarUsesDemonLord: ActorID="X" ItemID="Y"
   'doSomething();//HotbarUsesDemonLord:ActorID="mock-actor-1"ItemID="mock-item-1.1"\ndoSomething();',
   ' // HotbarUsesDemonLord : ActorID = "mock-actor-1" ItemID = "mock-item-1.1" \ndoSomething();',
-  '// HotbarUsesDemonLord: ActorID=\'mock-actor-1\' ItemID=\'mock-item-1.1\'\ndoSomething();',
+  "// HotbarUsesDemonLord: ActorID='mock-actor-1' ItemID='mock-item-1.1'\ndoSomething();",
   '// HotbarUsesDemonLord: ActorID=`mock-actor-1` ItemID=`mock-item-1.1`\ndoSomething();',
   '// HotbarUsesDemonLord: ActorID="mock-actor-1" ItemID=`mock-item-1.1`\ndoSomething();',
 
   // Comment: // HotbarUsesDemonLord: ItemName="Y"
   'doSomething();//HotbarUsesDemonLord:ItemName="TNumeric"\ndoSomething();',
   'doSomething();\n// HotbarUsesDemonLord : ItemName = "TNumeric" \ndoSomething();',
-  '// HotbarUsesDemonLord: ItemName=\'TNumeric\'\ndoSomething();',
+  "// HotbarUsesDemonLord: ItemName='TNumeric'\ndoSomething();",
   '// HotbarUsesDemonLord: ItemName=`TNumeric`\ndoSomething();',
 
   // Comment: // HotbarUsesDemonLord: ActorName="X" ItemName="Y"
   'doSomething();//HotbarUsesDemonLord:ActorName="Alice"ItemName="TNumeric"\ndoSomething();',
   'doSomething();\n// HotbarUsesDemonLord : ActorName = "Alice" ItemName = "TNumeric" \ndoSomething();',
-  '// HotbarUsesDemonLord: ActorName=\'Alice\' ItemName=\'TNumeric\'\ndoSomething();',
+  "// HotbarUsesDemonLord: ActorName='Alice' ItemName='TNumeric'\ndoSomething();",
   '// HotbarUsesDemonLord: ActorName=`Alice` ItemName=`TNumeric`\ndoSomething();',
-  '// HotbarUsesDemonLord: ActorName=\'Alice\' ItemName=`TNumeric`\ndoSomething();',
+  "// HotbarUsesDemonLord: ActorName='Alice' ItemName=`TNumeric`\ndoSomething();",
 
   // Comment: // HotbarUsesDemonLord: ItemName="Y" ItemType="Z"
   'doSomething();//HotbarUsesDemonLord:ItemName="TNumeric"ItemType="talent"\ndoSomething();',
   'doSomething();\n// HotbarUsesDemonLord : ItemName = "TNumeric" ItemType = "talent" \ndoSomething();',
-  '// HotbarUsesDemonLord: ItemName=\'TNumeric\' ItemType=\'talent\'\ndoSomething();',
+  "// HotbarUsesDemonLord: ItemName='TNumeric' ItemType='talent'\ndoSomething();",
   '// HotbarUsesDemonLord: ItemName=`TNumeric` ItemType=`talent`\ndoSomething();',
   '// HotbarUsesDemonLord: ItemName=`TNumeric` ItemType="talent"\ndoSomething();',
 
   // Comment: // HotbarUsesDemonLord: ActorName="X" ItemName="Y" ItemType="Z"
   'doSomething();//HotbarUsesDemonLord:ActorName="Alice"ItemName="TNumeric"ItemType="talent"\ndoSomething();',
   'doSomething();\n// HotbarUsesDemonLord : ActorName = "Alice" ItemName = "TNumeric" ItemType = "talent" \ndoSomething();',
-  '// HotbarUsesDemonLord: ActorName=\'Alice\' ItemName=\'TNumeric\' ItemType=\'talent\'\ndoSomething();',
+  "// HotbarUsesDemonLord: ActorName='Alice' ItemName='TNumeric' ItemType='talent'\ndoSomething();",
   '// HotbarUsesDemonLord: ActorName=`Alice` ItemName=`TNumeric` ItemType=`talent`\ndoSomething();',
   '// HotbarUsesDemonLord: ActorName=\'Alice\' ItemName=`TNumeric` ItemType="talent"\ndoSomething();',
 
@@ -302,40 +308,40 @@ it.each([
   // Roll Spell macro
   'game.demonlord.rollSpellMacro("SNumeric")',
   ' game . demonlord . rollSpellMacro ( "SNumeric" ) ; ',
-  'game.demonlord.rollSpellMacro(\'SNumeric\')',
+  "game.demonlord.rollSpellMacro('SNumeric')",
   'game.demonlord.rollSpellMacro(`SNumeric`)',
 
   // Comment: // HotbarUsesDemonLord: ActorID="X" ItemID="Y"
   'doSomething();//HotbarUsesDemonLord:ActorID="mock-actor-1"ItemID="mock-item-2.1"\ndoSomething();',
   ' // HotbarUsesDemonLord : ActorID = "mock-actor-1" ItemID = "mock-item-2.1" \ndoSomething();',
-  '// HotbarUsesDemonLord: ActorID=\'mock-actor-1\' ItemID=\'mock-item-2.1\'\ndoSomething();',
+  "// HotbarUsesDemonLord: ActorID='mock-actor-1' ItemID='mock-item-2.1'\ndoSomething();",
   '// HotbarUsesDemonLord: ActorID=`mock-actor-1` ItemID=`mock-item-2.1`\ndoSomething();',
   '// HotbarUsesDemonLord: ActorID="mock-actor-1" ItemID=`mock-item-2.1`\ndoSomething();',
 
   // Comment: // HotbarUsesDemonLord: ItemName="Y"
   'doSomething();//HotbarUsesDemonLord:ItemName="SNumeric"\ndoSomething();',
   'doSomething();\n// HotbarUsesDemonLord : ItemName = "SNumeric" \ndoSomething();',
-  '// HotbarUsesDemonLord: ItemName=\'SNumeric\'\ndoSomething();',
+  "// HotbarUsesDemonLord: ItemName='SNumeric'\ndoSomething();",
   '// HotbarUsesDemonLord: ItemName=`SNumeric`\ndoSomething();',
 
   // Comment: // HotbarUsesDemonLord: ActorName="X" ItemName="Y"
   'doSomething();//HotbarUsesDemonLord:ActorName="Alice"ItemName="SNumeric"\ndoSomething();',
   'doSomething();\n// HotbarUsesDemonLord : ActorName = "Alice" ItemName = "SNumeric" \ndoSomething();',
-  '// HotbarUsesDemonLord: ActorName=\'Alice\' ItemName=\'SNumeric\'\ndoSomething();',
+  "// HotbarUsesDemonLord: ActorName='Alice' ItemName='SNumeric'\ndoSomething();",
   '// HotbarUsesDemonLord: ActorName=`Alice` ItemName=`SNumeric`\ndoSomething();',
-  '// HotbarUsesDemonLord: ActorName=\'Alice\' ItemName=`SNumeric`\ndoSomething();',
+  "// HotbarUsesDemonLord: ActorName='Alice' ItemName=`SNumeric`\ndoSomething();",
 
   // Comment: // HotbarUsesDemonLord: ItemName="Y" ItemType="Z"
   'doSomething();//HotbarUsesDemonLord:ItemName="SNumeric"ItemType="spell"\ndoSomething();',
   'doSomething();\n// HotbarUsesDemonLord : ItemName = "SNumeric" ItemType = "spell" \ndoSomething();',
-  '// HotbarUsesDemonLord: ItemName=\'SNumeric\' ItemType=\'spell\'\ndoSomething();',
+  "// HotbarUsesDemonLord: ItemName='SNumeric' ItemType='spell'\ndoSomething();",
   '// HotbarUsesDemonLord: ItemName=`SNumeric` ItemType=`spell`\ndoSomething();',
   '// HotbarUsesDemonLord: ItemName=`SNumeric` ItemType="spell"\ndoSomething();',
 
   // Comment: // HotbarUsesDemonLord: ActorName="X" ItemName="Y" ItemType="Z"
   'doSomething();//HotbarUsesDemonLord:ActorName="Alice"ItemName="SNumeric"ItemType="spell"\ndoSomething();',
   'doSomething();\n// HotbarUsesDemonLord : ActorName = "Alice" ItemName = "SNumeric" ItemType = "spell" \ndoSomething();',
-  '// HotbarUsesDemonLord: ActorName=\'Alice\' ItemName=\'SNumeric\' ItemType=\'spell\'\ndoSomething();',
+  "// HotbarUsesDemonLord: ActorName='Alice' ItemName='SNumeric' ItemType='spell'\ndoSomething();",
   '// HotbarUsesDemonLord: ActorName=`Alice` ItemName=`SNumeric` ItemType=`spell`\ndoSomething();',
   '// HotbarUsesDemonLord: ActorName=\'Alice\' ItemName=`SNumeric` ItemType="spell"\ndoSomething();',
 
@@ -350,4 +356,3 @@ it.each([
     showZeroUses: true,
   });
 });
-

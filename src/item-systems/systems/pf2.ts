@@ -20,37 +20,39 @@ const DEFAULT_MACRO_REGEX_ARRAY = [
 ];
 
 type Ammo = ItemSystemData & {
-  _id?: string
+  _id?: string;
 };
 type AmmoList = {
-  find: (predicate: (value: Ammo) => boolean) => Ammo
+  find: (predicate: (value: Ammo) => boolean) => Ammo;
 };
 type Action = {
   ammunition?: {
     selectedAmmo?: {
-      id?: string
-    }
-    compatible?: AmmoList
-    incompatible?: AmmoList
-  }
-  selectedAmmoId?: string
-  ammo?: AmmoList
+      id?: string;
+    };
+    compatible?: AmmoList;
+    incompatible?: AmmoList;
+  };
+  selectedAmmoId?: string;
+  ammo?: AmmoList;
 };
 
 type ItemSystemData = {
-  quantity?: number | string | {
-    value?: number | string
-  }
+  quantity?:
+    | number
+    | string
+    | {
+        value?: number | string;
+      };
   charges?: {
-    value?: number | string
-    max?: number | string
-  }
+    value?: number | string;
+    max?: number | string;
+  };
 };
 class PF2eItemSystem extends ItemSystem<pf2e.internal.item.ItemPF2e> {
   constructor() {
-    // eslint-disable-next-line @typescript-eslint/require-await
-    super(SYSTEM_ID, DEFAULT_MACRO_REGEX_ARRAY, async (item) => {
-      return calculateUsesForItem(item);
+    super(SYSTEM_ID, DEFAULT_MACRO_REGEX_ARRAY, (item) => {
+      return Promise.resolve(calculateUsesForItem(item));
     });
   }
 }
@@ -75,8 +77,8 @@ function calculateUsesForActualItem(item: pf2e.internal.item.ItemPF2e) {
 }
 
 function getAmmoForAction(action: Action) {
-  let ammo;
-  if (action.ammunition && action.ammunition.selectedAmmo || action.selectedAmmoId) {
+  let ammo: Ammo | undefined;
+  if (action.ammunition?.selectedAmmo || action.selectedAmmoId) {
     const selectedAmmoId = action.ammunition?.selectedAmmo?.id || action.selectedAmmoId;
     const ammoFilter = (a: { _id?: string }) => a._id === selectedAmmoId;
     if (action.ammunition) {
@@ -112,7 +114,7 @@ const extractQuantity = (itemData: ItemSystemData) => {
     quantity = quantity.value;
   }
   if (typeof quantity === 'string') {
-    quantity = parseInt(quantity, 10);
+    quantity = Number.parseInt(quantity, 10);
   }
   return quantity || 0;
 };

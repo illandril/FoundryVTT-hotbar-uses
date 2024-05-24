@@ -1,22 +1,22 @@
-
 export type ItemLookupDetails = {
-  name: string | null
-  type: string | null
-  id: string | null
-  actorID: string | null
-  actorName: string | null
-  magicitemsModuleName: string | null
-  generic: boolean
-  available: string | null
-  consumed: string | null
-  max: string | null
-  actionIndex: string | null
-  actionName: string | null
+  name: string | null;
+  type: string | null;
+  id: string | null;
+  actorID: string | null;
+  actorName: string | null;
+  magicitemsModuleName: string | null;
+  generic: boolean;
+  available: string | null;
+  consumed: string | null;
+  max: string | null;
+  actionIndex: string | null;
+  actionName: string | null;
   groups: {
-    [index: string]: string | null | undefined
-  }
+    [index: string]: string | null | undefined;
+  };
 };
 
+// biome-ignore lint/complexity/noExcessiveCognitiveComplexity: Legacy
 const getItemLookupDetailsForCommandFromRegex = (regexArray: RegExp[], command: string | null) => {
   let results: ItemLookupDetails | null = null;
   if (command) {

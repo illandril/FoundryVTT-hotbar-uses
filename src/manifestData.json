@@ -1,14 +1,10 @@
 {
   "compatibility": {
     "minimum": 11,
-    "verified": 11
+    "verified": 12
   },
-  "esmodules": [
-    "module.js"
-  ],
-  "styles": [
-    "styles.css"
-  ],
+  "esmodules": ["module.js"],
+  "styles": ["styles.css"],
   "languages": [
     {
       "lang": "en",

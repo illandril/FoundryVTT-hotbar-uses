@@ -1,4 +1,4 @@
-import { ItemUses } from '../item-systems/ItemSystem';
+import type { ItemUses } from '../item-systems/ItemSystem';
 import getActor from '../lookups/getActor';
 import getItemLookupDetailsForCommandFromRegex from '../lookups/getItemLookupDetailsForCommandFromRegex';
 import module from '../module';
@@ -46,13 +46,14 @@ export default class SpecialtyModule<T> {
       // It's an item, but there's no actor, so it can't be used.
       return { available: 0 };
     }
-    return this.calculateUsesForItems(this.getItems(actor, itemLookupDetails));
+    return await this.calculateUsesForItems(this.getItems(actor, itemLookupDetails));
   }
 
   getActor(itemLookupDetails: ExpandedItemLookupDetails) {
     return getActor(itemLookupDetails);
   }
 
+  // biome-ignore lint/complexity/noExcessiveCognitiveComplexity: Legacy
   async calculateUsesForItems(items: T[] | null) {
     if (!items?.length) {
       return { available: 0 };

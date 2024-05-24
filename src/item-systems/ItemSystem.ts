@@ -1,5 +1,5 @@
 import getActor from '../lookups/getActor';
-import { ItemLookupDetails } from '../lookups/getItemLookupDetailsForCommandFromRegex';
+import type { ItemLookupDetails } from '../lookups/getItemLookupDetailsForCommandFromRegex';
 import getItems from '../lookups/getItems';
 import getNumber from '../lookups/getNumber';
 import module from '../module';
@@ -8,13 +8,14 @@ import getItemLookupDetailsForCommand from './getItemLookupDetailsForCommand';
 import { setDefaultMacroRegexArray } from './macroSettings';
 
 export type ItemUses = {
-  isAmmunition?: boolean | null
-  available?: number | null
-  consumed?: number | null
-  maximum?: number | null
-  showZeroUses?: boolean
+  isAmmunition?: boolean | null;
+  available?: number | null;
+  consumed?: number | null;
+  maximum?: number | null;
+  showZeroUses?: boolean;
 };
 
+// biome-ignore lint/complexity/noExcessiveCognitiveComplexity: Legacy
 const genericCalculateUses = (actor: Actor, items: Item[] | null, itemLookupDetails: ItemLookupDetails): ItemUses => {
   if (!itemLookupDetails.available && !itemLookupDetails.consumed) {
     module.logger.error('Available or Consumed must be specified when using HotbarUsesGeneric');
@@ -51,7 +52,11 @@ const genericCalculateUses = (actor: Actor, items: Item[] | null, itemLookupDeta
 };
 
 export default class ItemSystem<T extends Item> {
-  constructor(readonly systemID: string, macroRegexArray: RegExp[], private calculateUsesForItem: (item: T) => Promise<ItemUses | null>) {
+  constructor(
+    readonly systemID: string,
+    macroRegexArray: RegExp[],
+    private calculateUsesForItem: (item: T) => Promise<ItemUses | null>,
+  ) {
     setDefaultMacroRegexArray(systemID, macroRegexArray);
   }
 
@@ -73,9 +78,10 @@ export default class ItemSystem<T extends Item> {
       return genericCalculateUses(actor, items, itemLookupDetails);
     }
     module.logger.debug('Items uses', itemLookupDetails, items);
-    return this.calculateUsesForItems(items);
+    return await this.calculateUsesForItems(items);
   }
 
+  // biome-ignore lint/complexity/noExcessiveCognitiveComplexity: Legacy
   private async calculateUsesForItems(items: T[] | null): Promise<ItemUses | null> {
     if (!items?.length) {
       module.logger.debug('No items');

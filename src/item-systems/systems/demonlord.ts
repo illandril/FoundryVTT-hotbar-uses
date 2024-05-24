@@ -1,6 +1,6 @@
 // Support for the Shadow of the Demon Lord system was initially added by Xacus
 import getNumber from '../../lookups/getNumber';
-import ItemSystem from '../ItemSystem';
+import ItemSystem, { type ItemUses } from '../ItemSystem';
 
 const SYSTEM_ID = 'demonlord';
 const DEFAULT_MACRO_REGEX_ARRAY = [
@@ -17,30 +17,33 @@ const DEFAULT_MACRO_REGEX_ARRAY = [
   /\s*\/\/\s*HotbarUsesDemonLord\s*:\s*(ActorName\s*=\s*(?<q>["'`])(?<actorName>.+?)\k<q>\s*)?ItemName\s*=\s*(?<qb>["'`])(?<itemName>.+?)\k<qb>\s*(ItemType\s*=\s*(?<qc>["'`])(?<itemType>.+?)\k<qc>\s*)?(\n.*)?$/is,
 ];
 
-type MaybeUses = { value?: string | number | null, max?: string | number | null } | null | undefined;
-type DLItem = Item & ({
-  type: 'spell'
-  system: {
-    castings: MaybeUses
-  }
-} | {
-  type: 'talent'
-  system: {
-    uses: MaybeUses
-  }
-});
+type MaybeUses = { value?: string | number | null; max?: string | number | null } | null | undefined;
+type DLItem = Item &
+  (
+    | {
+        type: 'spell';
+        system: {
+          castings: MaybeUses;
+        };
+      }
+    | {
+        type: 'talent';
+        system: {
+          uses: MaybeUses;
+        };
+      }
+  );
 
 class DemonLordItemSystem extends ItemSystem<DLItem> {
   constructor() {
-    // eslint-disable-next-line @typescript-eslint/require-await
-    super(SYSTEM_ID, DEFAULT_MACRO_REGEX_ARRAY, async (item) => {
+    super(SYSTEM_ID, DEFAULT_MACRO_REGEX_ARRAY, (item) => {
+      let uses: ItemUses | null = null;
       if (item.type === 'spell') {
-        return calculateSpellUses(item.system);
+        uses = calculateSpellUses(item.system);
+      } else if (item.type === 'talent') {
+        uses = calculateTalentUses(item.system);
       }
-      if (item.type === 'talent') {
-        return calculateTalentUses(item.system);
-      }
-      return null;
+      return Promise.resolve(uses);
     });
   }
 }

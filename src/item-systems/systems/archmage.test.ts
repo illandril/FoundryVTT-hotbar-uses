@@ -7,8 +7,14 @@ beforeAll(() => {
     name: 'Alice',
     items: {
       get: (id) => actor1Items.get(id),
-      find: (condition) => [...actor1Items.values()].find((value, index) => condition(value, index, {} as foundry.utils.Collection<string, Item>)),
-      filter: (condition) => [...actor1Items.values()].filter((value, index) => condition(value, index, {} as foundry.utils.Collection<string, Item>)),
+      find: (condition) =>
+        [...actor1Items.values()].find((value, index) =>
+          condition(value, index, {} as foundry.utils.Collection<string, Item>),
+        ),
+      filter: (condition) =>
+        [...actor1Items.values()].filter((value, index) =>
+          condition(value, index, {} as foundry.utils.Collection<string, Item>),
+        ),
     },
   } as Actor;
   actor1Items.set('mock-item-1.1', {
@@ -52,16 +58,17 @@ beforeAll(() => {
   const actors = new Map<string, Actor>();
   actors.set(actor1.id, actor1);
 
-
   jest.spyOn(ChatMessage, 'getSpeaker').mockReturnValue({
     actor: actor1.id,
   });
   jest.spyOn(game.actors, 'get').mockImplementation((id) => actors.get(id)!);
-  jest.spyOn(game.actors, 'find').mockImplementation(
-    (predicate) => [...actors.values()].find(
-      (value, index) => predicate(value, index, {} as foundry.utils.Collection<string, Actor>),
-    ),
-  );
+  jest
+    .spyOn(game.actors, 'find')
+    .mockImplementation((predicate) =>
+      [...actors.values()].find((value, index) =>
+        predicate(value, index, {} as foundry.utils.Collection<string, Actor>),
+      ),
+    );
 });
 
 beforeAll(() => {

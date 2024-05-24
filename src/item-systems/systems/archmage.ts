@@ -16,15 +16,15 @@ const DEFAULT_MACRO_REGEX_ARRAY = [
 
 class Toolkit13ItemSystem extends ItemSystem<Item> {
   constructor() {
-    // eslint-disable-next-line @typescript-eslint/require-await
+    // biome-ignore lint/suspicious/useAwait: Easier than adding Promise.resolve everywhere
     super(SYSTEM_ID, DEFAULT_MACRO_REGEX_ARRAY, async (item) => {
       const itemData = item.system as {
         quantity?: {
-          value?: string | number | null
-        }
+          value?: string | number | null;
+        };
         maxQuantity?: {
-          value?: string | number | null
-        }
+          value?: string | number | null;
+        };
       };
       const quantity = itemData.quantity;
       const maxQuantity = itemData.maxQuantity;
@@ -33,7 +33,8 @@ class Toolkit13ItemSystem extends ItemSystem<Item> {
         const maximum = getNumber(maxQuantity, 'value');
         if (maximum !== null) {
           return {
-            available, maximum,
+            available,
+            maximum,
           };
         }
       }

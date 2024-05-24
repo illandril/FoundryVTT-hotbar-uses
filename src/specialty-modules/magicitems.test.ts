@@ -1,10 +1,13 @@
-import { AbstractOwnedEntry, OwnedMagicItem } from './magic-items-2';
 import { calculateUses } from '.';
+import type { AbstractOwnedEntry, OwnedMagicItem } from './magic-items-2';
 
-const mockModulesGet = jest.fn((id: string) => ({
-  id,
-  active: true,
-} as Module));
+const mockModulesGet = jest.fn(
+  (id: string) =>
+    ({
+      id,
+      active: true,
+    }) as Module,
+);
 
 beforeAll(() => {
   const actorID = 'mock-actor-id';
@@ -83,6 +86,7 @@ beforeAll(() => {
   jest.spyOn(game.actors, 'get').mockImplementation((id) => actors.get(id)!);
   jest.spyOn(game.modules, 'get').mockImplementation(mockModulesGet);
 
+  // biome-ignore lint/style/useNamingConvention: Not our name
   (window as unknown as { MagicItems: typeof MagicItems }).MagicItems = {
     actor: (id: string) => miActors.get(id),
   };
@@ -90,10 +94,13 @@ beforeAll(() => {
 
 describe('module is inactive', () => {
   beforeEach(() => {
-    mockModulesGet.mockImplementation((id) => ({
-      id,
-      active: id !== 'magic-items-2',
-    } as Module));
+    mockModulesGet.mockImplementation(
+      (id) =>
+        ({
+          id,
+          active: id !== 'magic-items-2',
+        }) as Module,
+    );
   });
 
   it('returns null for a command that would be a valid match', async () => {
@@ -111,10 +118,13 @@ describe('module is inactive', () => {
 
 describe('module is active', () => {
   beforeEach(() => {
-    mockModulesGet.mockImplementation((id) => ({
-      id,
-      active: id === 'magic-items-2',
-    } as Module));
+    mockModulesGet.mockImplementation(
+      (id) =>
+        ({
+          id,
+          active: id === 'magic-items-2',
+        }) as Module,
+    );
   });
 
   it('returns 0 uses for a command that has no matching item', async () => {

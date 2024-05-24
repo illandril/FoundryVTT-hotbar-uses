@@ -1,4 +1,4 @@
-import { ItemUses } from './item-systems/ItemSystem';
+import type { ItemUses } from './item-systems/ItemSystem';
 import module from './module';
 import showMax from './showMax';
 import './ui.scss';
@@ -9,7 +9,7 @@ const CSS_ZERO_USES = module.cssPrefix.child('zeroUses');
 const CSS_SHOW_ZERO = module.cssPrefix.child('showZero');
 
 const getCounterElem = (slotElem: Element) => {
-  let usesDisplay = slotElem.querySelector<HTMLSpanElement>('.' + CSS_COUNTER);
+  let usesDisplay = slotElem.querySelector<HTMLSpanElement>(`.${CSS_COUNTER}`);
   if (!usesDisplay) {
     usesDisplay = document.createElement('span');
     usesDisplay.classList.add(CSS_COUNTER);
@@ -27,6 +27,7 @@ const hideUses = (slotElem: Element) => {
   counterElem.innerText = '';
 };
 
+// biome-ignore lint/complexity/noExcessiveCognitiveComplexity: Legacy
 const showUses = (slotElem: Element, uses: ItemUses | string | number) => {
   const usesDisplay = getCounterElem(slotElem);
   let showZeroUses = false;

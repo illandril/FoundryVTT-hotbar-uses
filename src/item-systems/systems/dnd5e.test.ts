@@ -7,8 +7,14 @@ beforeAll(() => {
     name: 'Alice',
     items: {
       get: (id) => actor1Items.get(id),
-      find: (condition) => [...actor1Items.values()].find((value, index) => condition(value, index, {} as foundry.utils.Collection<string, dnd5e.documents.Item5e>)),
-      filter: (condition) => [...actor1Items.values()].filter((value, index) => condition(value, index, {} as foundry.utils.Collection<string, dnd5e.documents.Item5e>)),
+      find: (condition) =>
+        [...actor1Items.values()].find((value, index) =>
+          condition(value, index, {} as foundry.utils.Collection<string, dnd5e.documents.Item5e>),
+        ),
+      filter: (condition) =>
+        [...actor1Items.values()].filter((value, index) =>
+          condition(value, index, {} as foundry.utils.Collection<string, dnd5e.documents.Item5e>),
+        ),
     },
     system: {
       spells: {
@@ -255,8 +261,14 @@ beforeAll(() => {
     name: 'Bob',
     items: {
       get: (id) => actor2Items.get(id),
-      find: (condition) => [...actor2Items.values()].find((value, index) => condition(value, index, {} as foundry.utils.Collection<string, dnd5e.documents.Item5e>)),
-      filter: (condition) => [...actor2Items.values()].filter((value, index) => condition(value, index, {} as foundry.utils.Collection<string, dnd5e.documents.Item5e>)),
+      find: (condition) =>
+        [...actor2Items.values()].find((value, index) =>
+          condition(value, index, {} as foundry.utils.Collection<string, dnd5e.documents.Item5e>),
+        ),
+      filter: (condition) =>
+        [...actor2Items.values()].filter((value, index) =>
+          condition(value, index, {} as foundry.utils.Collection<string, dnd5e.documents.Item5e>),
+        ),
     },
   } as dnd5e.documents.Actor5e;
   actor2Items.set('mock-item-2.1', {
@@ -284,21 +296,21 @@ beforeAll(() => {
     actor: actor2,
   } as dnd5e.documents.Item5e);
 
-
   const actors = new Map<string, Actor>();
   actors.set(actor1.id, actor1);
   actors.set(actor2.id, actor2);
-
 
   jest.spyOn(ChatMessage, 'getSpeaker').mockReturnValue({
     actor: actor1.id,
   });
   jest.spyOn(game.actors, 'get').mockImplementation((id) => actors.get(id)!);
-  jest.spyOn(game.actors, 'find').mockImplementation(
-    (predicate) => [...actors.values()].find(
-      (value, index) => predicate(value, index, {} as foundry.utils.Collection<string, Actor>),
-    ),
-  );
+  jest
+    .spyOn(game.actors, 'find')
+    .mockImplementation((predicate) =>
+      [...actors.values()].find((value, index) =>
+        predicate(value, index, {} as foundry.utils.Collection<string, Actor>),
+      ),
+    );
 });
 
 beforeAll(() => {
@@ -419,22 +431,22 @@ it.each([
   'game.dnd5e.rollItemMacro("Throwing Dagger")',
   '\n game  .   dnd5e    .     rollItemMacro    ( \n  "Throwing Dagger" \n ) ;',
   'game.dnd5e.rollItemMacro(`Throwing Dagger`)',
-  'game.dnd5e.rollItemMacro(\'Throwing Dagger\')',
+  "game.dnd5e.rollItemMacro('Throwing Dagger')",
   'game.dnd5e.macros.rollItem("Throwing Dagger")',
   ' game . dnd5e . macros . rollItem ( "Throwing Dagger" ) ; ',
   'game.dnd5e.macros.rollItem(`Throwing Dagger`)',
-  'game.dnd5e.macros.rollItem(\'Throwing Dagger\')',
+  "game.dnd5e.macros.rollItem('Throwing Dagger')",
 
   // Standard dnd5e system Roll Item macro
   'dnd5e.documents.macro.rollItem("Throwing Dagger")',
   ' dnd5e . documents . macro . rollItem ( "Throwing Dagger" ) ; ',
   'dnd5e.documents.macro.rollItem(`Throwing Dagger`)',
-  'dnd5e.documents.macro.rollItem(\'Throwing Dagger\')',
+  "dnd5e.documents.macro.rollItem('Throwing Dagger')",
 
   // MinorQOL.doRoll
   'MinorQOL.doRoll(event,"Throwing Dagger",{type:"weapon"})',
   ' MinorQOL . doRoll ( event , "Throwing Dagger" , { type : "weapon" } ) ; ',
-  'MinorQOL.doRoll(event,\'Throwing Dagger\',{type:\'weapon\'})',
+  "MinorQOL.doRoll(event,'Throwing Dagger',{type:'weapon'})",
   'MinorQOL.doRoll(event,`Throwing Dagger`,{type:`weapon`})',
   'MinorQOL.doRoll(event,"Throwing Dagger",{type:`weapon`})',
   'MinorQOL.doRoll(event,"Throwing Dagger",{mimetype:"text/plain",type:"weapon",color:"red"})',
@@ -443,26 +455,26 @@ it.each([
   'BetterRolls.quickRoll("Throwing Dagger")',
   ' BetterRolls . quickRoll ( "Throwing Dagger" ) ; ',
   'BetterRolls.quickRoll(`Throwing Dagger`)',
-  'BetterRolls.quickRoll(\'Throwing Dagger\')',
+  "BetterRolls.quickRoll('Throwing Dagger')",
 
   // BetterRolls.vanillaRoll(actorId, itemId)
   'BetterRolls.vanillaRoll("mock-actor-1","mock-item-1.3")',
   ' BetterRolls . vanillaRoll ( "mock-actor-1" , "mock-item-1.3" ) ; ',
-  'BetterRolls.vanillaRoll(\'mock-actor-1\',\'mock-item-1.3\')',
+  "BetterRolls.vanillaRoll('mock-actor-1','mock-item-1.3')",
   'BetterRolls.vanillaRoll(`mock-actor-1`,`mock-item-1.3`)',
   'BetterRolls.vanillaRoll("mock-actor-1",`mock-item-1.3`)',
 
   // BetterRolls.quickRollById(actorId, itemId)
   'BetterRolls.quickRollById("mock-actor-1","mock-item-1.3")',
   ' BetterRolls . quickRollById ( "mock-actor-1" , "mock-item-1.3" ) ; ',
-  'BetterRolls.quickRollById(\'mock-actor-1\',\'mock-item-1.3\')',
+  "BetterRolls.quickRollById('mock-actor-1','mock-item-1.3')",
   'BetterRolls.quickRollById(`mock-actor-1`,`mock-item-1.3`)',
   'BetterRolls.quickRollById("mock-actor-1",`mock-item-1.3`)',
 
   // BetterRolls.quickRollByName(actorId, itemId)
   'BetterRolls.quickRollByName("Alice","Throwing Dagger")',
   ' BetterRolls . quickRollByName ( "Alice" , "Throwing Dagger" ) ; ',
-  'BetterRolls.quickRollByName(\'Alice\',\'Throwing Dagger\')',
+  "BetterRolls.quickRollByName('Alice','Throwing Dagger')",
   'BetterRolls.quickRollByName(`Alice`,`Throwing Dagger`)',
   'BetterRolls.quickRollByName("Alice",`Throwing Dagger`)',
 
@@ -473,41 +485,41 @@ it.each([
   // ItemMacro.runMacro(actorId, itemId)
   'ItemMacro.runMacro("mock-actor-1","mock-item-1.3")',
   ' ItemMacro . runMacro ( "mock-actor-1" , "mock-item-1.3" ) ; ',
-  'ItemMacro.runMacro(\'mock-actor-1\',\'mock-item-1.3\')',
+  "ItemMacro.runMacro('mock-actor-1','mock-item-1.3')",
   'ItemMacro.runMacro(`mock-actor-1`,`mock-item-1.3`)',
   'ItemMacro.runMacro("mock-actor-1",`mock-item-1.3`)',
 
   // Comment: // HotbarUses5e: ActorID="X" ItemID="Y"
   'doSomething();//HotbarUses5e:ActorID="mock-actor-1"ItemID="mock-item-1.3"\ndoSomething();',
   ' // HotbarUses5e : ActorID = "mock-actor-1" ItemID = "mock-item-1.3" \ndoSomething();',
-  '// HotbarUses5e: ActorID=\'mock-actor-1\' ItemID=\'mock-item-1.3\'\ndoSomething();',
+  "// HotbarUses5e: ActorID='mock-actor-1' ItemID='mock-item-1.3'\ndoSomething();",
   '// HotbarUses5e: ActorID=`mock-actor-1` ItemID=`mock-item-1.3`\ndoSomething();',
   '// HotbarUses5e: ActorID="mock-actor-1" ItemID=`mock-item-1.3`\ndoSomething();',
 
   // Comment: // HotbarUses5e: ItemName="Y"
   'doSomething();//HotbarUses5e:ItemName="Throwing Dagger"\ndoSomething();',
   'doSomething();\n// HotbarUses5e : ItemName = "Throwing Dagger" \ndoSomething();',
-  '// HotbarUses5e: ItemName=\'Throwing Dagger\'\ndoSomething();',
+  "// HotbarUses5e: ItemName='Throwing Dagger'\ndoSomething();",
   '// HotbarUses5e: ItemName=`Throwing Dagger`\ndoSomething();',
 
   // Comment: // HotbarUses5e: ActorName="X" ItemName="Y"
   'doSomething();//HotbarUses5e:ActorName="Alice"ItemName="Throwing Dagger"\ndoSomething();',
   'doSomething();\n// HotbarUses5e : ActorName = "Alice" ItemName = "Throwing Dagger" \ndoSomething();',
-  '// HotbarUses5e: ActorName=\'Alice\' ItemName=\'Throwing Dagger\'\ndoSomething();',
+  "// HotbarUses5e: ActorName='Alice' ItemName='Throwing Dagger'\ndoSomething();",
   '// HotbarUses5e: ActorName=`Alice` ItemName=`Throwing Dagger`\ndoSomething();',
   '// HotbarUses5e: ActorName="Alice" ItemName=`Throwing Dagger`\ndoSomething();',
 
   // Comment: // HotbarUses5e: ItemName="Y" ItemType="Z"
   'doSomething();//HotbarUses5e:ItemName="Throwing Dagger"ItemType="weapon"\ndoSomething();',
   'doSomething();\n// HotbarUses5e : ItemName = "Throwing Dagger" ItemType = "weapon" \ndoSomething();',
-  '// HotbarUses5e: ItemName=\'Throwing Dagger\' ItemType=\'weapon\'\ndoSomething();',
+  "// HotbarUses5e: ItemName='Throwing Dagger' ItemType='weapon'\ndoSomething();",
   '// HotbarUses5e: ItemName=`Throwing Dagger` ItemType=`weapon`\ndoSomething();',
   '// HotbarUses5e: ItemName=`Throwing Dagger` ItemType="weapon"\ndoSomething();',
 
   // Comment: // HotbarUses5e: ActorName="X" ItemName="Y" ItemType="Z"
   'doSomething();//HotbarUses5e:ActorName="Alice"ItemName="Throwing Dagger"ItemType="weapon"\ndoSomething();',
   'doSomething();\n// HotbarUses5e : ActorName = "Alice" ItemName = "Throwing Dagger" ItemType = "weapon" \ndoSomething();',
-  '// HotbarUses5e: ActorName=\'Alice\' ItemName=\'Throwing Dagger\' ItemType=\'weapon\'\ndoSomething();',
+  "// HotbarUses5e: ActorName='Alice' ItemName='Throwing Dagger' ItemType='weapon'\ndoSomething();",
   '// HotbarUses5e: ActorName=`Alice` ItemName=`Throwing Dagger` ItemType=`weapon`\ndoSomething();',
   '// HotbarUses5e: ActorName=\'Alice\' ItemName=`Throwing Dagger` ItemType="weapon"\ndoSomething();',
 
@@ -521,4 +533,3 @@ it.each([
     showZeroUses: true,
   });
 });
-

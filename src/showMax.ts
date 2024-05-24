@@ -4,7 +4,7 @@ export const SETTINGS_UPDATED = `${module.id}.SettingsUpdated` as const;
 
 declare global {
   interface HookCallbacks {
-    [SETTINGS_UPDATED]: () => void
+    [SETTINGS_UPDATED]: () => void;
   }
 }
 

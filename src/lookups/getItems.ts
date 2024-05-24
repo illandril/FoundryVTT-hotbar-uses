@@ -1,5 +1,6 @@
-import { ItemLookupDetails } from './getItemLookupDetailsForCommandFromRegex';
+import type { ItemLookupDetails } from './getItemLookupDetailsForCommandFromRegex';
 
+// biome-ignore lint/complexity/noExcessiveCognitiveComplexity: Legacy
 const getItems = <T extends Item>(actor: Actor, itemLookupDetails: ItemLookupDetails): T[] | null => {
   if (itemLookupDetails.id) {
     const item = actor.items.get(itemLookupDetails.id);
@@ -19,8 +20,8 @@ const getItems = <T extends Item>(actor: Actor, itemLookupDetails: ItemLookupDet
     }) as T[];
   }
   if (itemLookupDetails.actionIndex) {
-    const actionIndex = parseInt(itemLookupDetails.actionIndex, 10);
-    if (!isNaN(actionIndex) && actionIndex >= 0) {
+    const actionIndex = Number.parseInt(itemLookupDetails.actionIndex, 10);
+    if (!Number.isNaN(actionIndex) && actionIndex >= 0) {
       const actions = foundry.utils.getProperty(actor, 'system.actions');
       if (actions && Array.isArray(actions)) {
         const action = actions[actionIndex] as { name?: string };

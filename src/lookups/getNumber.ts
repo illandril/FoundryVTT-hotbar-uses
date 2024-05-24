@@ -2,8 +2,8 @@ const getNumber = (data: unknown, key: string | null | undefined) => {
   if (!key) {
     return null;
   }
-  const numeric = parseInt(key, 10);
-  if (!isNaN(numeric)) {
+  const numeric = Number.parseInt(key, 10);
+  if (!Number.isNaN(numeric)) {
     return numeric;
   }
   const value = foundry.utils.getProperty(data, key);
@@ -11,11 +11,11 @@ const getNumber = (data: unknown, key: string | null | undefined) => {
   if (typeof value === 'number') {
     parsed = value;
   } else if (typeof value === 'string') {
-    parsed = parseInt(value, 10);
+    parsed = Number.parseInt(value, 10);
   } else {
-    parsed = NaN;
+    parsed = Number.NaN;
   }
-  if (!isNaN(parsed)) {
+  if (!Number.isNaN(parsed)) {
     return parsed;
   }
   return null;

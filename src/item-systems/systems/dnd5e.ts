@@ -43,11 +43,10 @@ type Loot = dnd5e.documents.ItemSystemData.Loot;
 type ActivatedEffect = dnd5e.documents.ItemSystemData.ActivatedEffect;
 type Feat = dnd5e.documents.ItemSystemData.Feat;
 
-// eslint-disable-next-line @typescript-eslint/require-await
-const calculateUsesForItem5e = async (item: dnd5e.documents.Item5e) => {
+const calculateUsesForItem5e = (item: dnd5e.documents.Item5e) => {
   const itemData = item.system;
   const consume = (itemData as ActivatedEffect).consume;
-  if (consume && consume.target) {
+  if (consume?.target) {
     return calculateConsumeUses(item.actor, consume);
   }
   const uses = (itemData as ActivatedEffect).uses;
@@ -74,12 +73,12 @@ const calculateUsesForItem5e = async (item: dnd5e.documents.Item5e) => {
 };
 class DnD5eItemSystem extends ItemSystem<dnd5e.documents.Item5e> {
   constructor() {
-    super(SYSTEM_ID, DEFAULT_MACRO_REGEX_ARRAY, calculateUsesForItem5e);
+    super(SYSTEM_ID, DEFAULT_MACRO_REGEX_ARRAY, (item) => Promise.resolve(calculateUsesForItem5e(item)));
   }
 }
 export default new DnD5eItemSystem();
 
-
+// biome-ignore lint/complexity/noExcessiveCognitiveComplexity: Legacy
 function calculateConsumeUses(actor: dnd5e.documents.Actor5e | null, consume: NonNullable<ActivatedEffect['consume']>) {
   let available: number | undefined = undefined;
   let maximum: number | undefined = undefined;
@@ -101,7 +100,11 @@ function calculateConsumeUses(actor: dnd5e.documents.Actor5e | null, consume: No
     } else if (consume.type === 'charges') {
       const targetItem = actor?.items.get(consume.target);
       if (targetItem) {
-        ({ available, maximum } = calculateLimitedUses(targetItem.system, getNumber(targetItem, 'system.uses.value') || 0, getNumber(targetItem, 'system.uses.max') || 0));
+        ({ available, maximum } = calculateLimitedUses(
+          targetItem.system,
+          getNumber(targetItem, 'system.uses.value') || 0,
+          getNumber(targetItem, 'system.uses.max') || 0,
+        ));
       } else {
         available = 0;
       }
@@ -133,7 +136,7 @@ function calculateLimitedUses(itemData: dnd5e.documents.ItemSystemData.Any, valu
 }
 
 function calculateFeatUses(itemData: Feat) {
-  if (itemData.recharge && itemData.recharge.value) {
+  if (itemData.recharge?.value) {
     return { available: itemData.recharge.charged ? 1 : 0, maximum: 1 };
   }
   return null;

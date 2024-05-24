@@ -1,4 +1,4 @@
-import ItemSystem from '../ItemSystem';
+import ItemSystem, { type ItemUses } from '../ItemSystem';
 
 const SYSTEM_ID = 'pf1';
 const DEFAULT_MACRO_REGEX_ARRAY = [
@@ -20,48 +20,45 @@ const DEFAULT_MACRO_REGEX_ARRAY = [
 
 type Action = {
   data?: {
-    usesAmmo?: boolean
-  }
+    usesAmmo?: boolean;
+  };
 };
 
 type PF1Item = Item & {
-  type?: string
-  isCharged?: boolean
-  hasAction?: boolean
+  type?: string;
+  isCharged?: boolean;
+  hasAction?: boolean;
   system: {
     actions?: {
-      length?: number
-    }
-    quantity?: number
-  }
-  firstAction?: Action
-  getSpellUses?: (max?: boolean) => number
-  chargeCost?: number
-  charges?: number
-  maxCharges?: number
-  getDefaultChargeCost?: () => number
-  isSingleUse?: boolean
+      length?: number;
+    };
+    quantity?: number;
+  };
+  firstAction?: Action;
+  getSpellUses?: (max?: boolean) => number;
+  chargeCost?: number;
+  charges?: number;
+  maxCharges?: number;
+  getDefaultChargeCost?: () => number;
+  isSingleUse?: boolean;
 };
 
 class PF1ItemSystem extends ItemSystem<PF1Item> {
   constructor() {
-    // eslint-disable-next-line @typescript-eslint/require-await
-    super(SYSTEM_ID, DEFAULT_MACRO_REGEX_ARRAY, async (item) => {
+    super(SYSTEM_ID, DEFAULT_MACRO_REGEX_ARRAY, (item) => {
+      let uses: ItemUses | null = null;
       if (item.type === 'spell') {
-        return calculateSpellUses(item);
+        uses = calculateSpellUses(item);
+      } else if (item.isCharged) {
+        uses = calculateChargeUses(item);
+      } else if (item.hasAction && item.system.actions?.length === 1) {
+        uses = calculateActionUses(item, item.firstAction);
       }
-      if (item.isCharged) {
-        return calculateChargeUses(item);
-      }
-      if (item.hasAction && item.system.actions?.length === 1) {
-        return calculateActionUses(item, item.firstAction);
-      }
-      return null;
+      return Promise.resolve(uses);
     });
   }
 }
 export default new PF1ItemSystem();
-
 
 const calculateSpellUses = (item: PF1Item) => {
   if (item.getSpellUses) {

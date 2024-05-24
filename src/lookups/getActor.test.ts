@@ -41,22 +41,20 @@ beforeAll(() => {
   actors.set(actor3.id, actor3);
 
   jest.spyOn(game.actors, 'get').mockImplementation((id) => actors.get(id)!);
-  jest.spyOn(game.actors, 'find').mockImplementation(
-    (predicate) => [...actors.values()].find(
-      (value, index) => predicate(value, index, {} as foundry.utils.Collection<string, Actor>),
-    ),
-  );
+  jest
+    .spyOn(game.actors, 'find')
+    .mockImplementation((predicate) =>
+      [...actors.values()].find((value, index) =>
+        predicate(value, index, {} as foundry.utils.Collection<string, Actor>),
+      ),
+    );
 
   jest.replaceProperty(game.canvas.tokens!, 'placeables', [token1, token2]);
   game.actors.tokens[token1.document.id] = tokenActor1;
   game.actors.tokens[token2.document.id] = tokenActor2;
 });
 
-it.each([
-  actor1,
-  actor2,
-  actor3,
-])('returns the speaker if no ID or name is provided (actor, $id)', (expected) => {
+it.each([actor1, actor2, actor3])('returns the speaker if no ID or name is provided (actor, $id)', (expected) => {
   jest.spyOn(ChatMessage, 'getSpeaker').mockReturnValue({
     actor: expected.id,
   });
@@ -67,10 +65,7 @@ it.each([
   expect(actor).toBe(expected);
 });
 
-it.each([
-  token1,
-  token2,
-])('returns the speaker if no ID or name is provided (token, $document.id)', (token) => {
+it.each([token1, token2])('returns the speaker if no ID or name is provided (token, $document.id)', (token) => {
   jest.spyOn(ChatMessage, 'getSpeaker').mockReturnValue({
     token: token.document.id,
   });
@@ -81,11 +76,7 @@ it.each([
   expect(actor).toBe(token.actor);
 });
 
-it.each([
-  actor1,
-  actor2,
-  actor3,
-])('returns the actor for matching ID if provided (actor, $id)', (expected) => {
+it.each([actor1, actor2, actor3])('returns the actor for matching ID if provided (actor, $id)', (expected) => {
   const actor = getActor({
     actorID: expected.id,
     actorName: null,
@@ -93,10 +84,7 @@ it.each([
   expect(actor).toBe(expected);
 });
 
-it.each([
-  token1,
-  token2,
-])('returns the actor for matching ID if provided (token, $actor.id)', (token) => {
+it.each([token1, token2])('returns the actor for matching ID if provided (token, $actor.id)', (token) => {
   const actor = getActor({
     actorID: token.actor.id,
     actorName: null,
@@ -112,10 +100,7 @@ it.each([actor1, actor2, actor3])('returns the actor for matching name if provid
   expect(actor).toBe(expected);
 });
 
-it.each([
-  token1,
-  token2,
-])('returns the actor for matching name if provided (token, $actor.name)', (token) => {
+it.each([token1, token2])('returns the actor for matching name if provided (token, $actor.name)', (token) => {
   const actor = getActor({
     actorID: null,
     actorName: token.actor.name,
@@ -147,17 +132,17 @@ it('returns undefined if no matching name', () => {
   expect(actor).toBeUndefined();
 });
 
-it.each([
-  'mock-actor-4',
-  undefined,
-])('returns undefined if no matching speaker and no provided id or name (%j)', (id) => {
-  jest.spyOn(ChatMessage, 'getSpeaker').mockReturnValue({
-    actor: id,
-  });
+it.each(['mock-actor-4', undefined])(
+  'returns undefined if no matching speaker and no provided id or name (%j)',
+  (id) => {
+    jest.spyOn(ChatMessage, 'getSpeaker').mockReturnValue({
+      actor: id,
+    });
 
-  const actor = getActor({
-    actorID: null,
-    actorName: null,
-  });
-  expect(actor).toBeUndefined();
-});
+    const actor = getActor({
+      actorID: null,
+      actorName: null,
+    });
+    expect(actor).toBeUndefined();
+  },
+);

@@ -31,7 +31,6 @@ const rerenderHotbarIfNecessary = foundry.utils.debounce(() => {
   }
 }, 1);
 
-
 Hooks.on(SETTINGS_UPDATED, rerenderHotbarIfNecessary);
 Hooks.on('updateItem', rerenderHotbarIfNecessary);
 Hooks.on('updateActor', rerenderHotbarIfNecessary);
@@ -48,23 +47,27 @@ const onRenderHotbarElem = async (hotbarElem: HTMLElement) => {
   const macroElems = hotbarElem.querySelectorAll('[data-macro-id]');
   module.logger.debug('onRenderHotbarElem', macroElems);
 
-  return Promise.all([...macroElems].map((macroElem) => (async () => {
-    const macroID = macroElem.getAttribute('data-macro-id');
-    if (!macroID) {
-      module.logger.debug('onRenderHotbarElem', macroID, null);
-      return;
-    }
-    const macro = game.macros.get(macroID);
-    const command = getCommand(macro);
-    const uses = await ItemSystem.calculateUses(command);
+  return Promise.all(
+    [...macroElems].map((macroElem) =>
+      (async () => {
+        const macroID = macroElem.getAttribute('data-macro-id');
+        if (!macroID) {
+          module.logger.debug('onRenderHotbarElem', macroID, null);
+          return;
+        }
+        const macro = game.macros.get(macroID);
+        const command = getCommand(macro);
+        const uses = await ItemSystem.calculateUses(command);
 
-    module.logger.debug('onRenderHotbarElem', macroID, command, macro, uses);
+        module.logger.debug('onRenderHotbarElem', macroID, command, macro, uses);
 
-    updateSlot(macroElem, uses);
-    if (uses !== null) {
-      hasShownMacroUses = true;
-    }
-  })()));
+        updateSlot(macroElem, uses);
+        if (uses !== null) {
+          hasShownMacroUses = true;
+        }
+      })(),
+    ),
+  );
 };
 
 Hooks.once('ready', () => {

@@ -1,6 +1,6 @@
 const getActorBySpeaker = () => {
   const speaker = ChatMessage.getSpeaker();
-  let actor;
+  let actor: Actor | undefined;
   if (speaker.token) {
     actor = game.actors.tokens[speaker.token];
   }
@@ -19,17 +19,15 @@ const getActorByID = (actorID: string) => {
 };
 
 const getActorByName = (actorName: string) => {
-  const token = game.canvas?.tokens?.placeables.find(
-    ({ actor }) => actor?.name === actorName,
-  );
+  const token = game.canvas?.tokens?.placeables.find(({ actor }) => actor?.name === actorName);
   if (token) {
     return token.actor;
   }
   return game.actors.find((actor) => actor.name === actorName);
 };
 
-const getActor = ({ actorID, actorName }: { actorID: string | null, actorName: string | null }) => {
-  let actor;
+const getActor = ({ actorID, actorName }: { actorID: string | null; actorName: string | null }) => {
+  let actor: Actor | undefined;
   if (actorID) {
     actor = getActorByID(actorID);
   } else if (actorName) {

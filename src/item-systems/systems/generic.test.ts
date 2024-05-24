@@ -6,8 +6,13 @@ beforeAll(async () => {
   const warnSpy = jest.spyOn(module.logger, 'warn');
   warnSpy.mockImplementation(() => undefined);
   await calculateUses(null);
+  // biome-ignore lint/nursery/noMisplacedAssertion: This is a weird place to assert... but we actually want it here to ensure the warn happens
   expect(warnSpy).toHaveBeenCalledTimes(1);
-  expect(warnSpy).toHaveBeenCalledWith('some-unsupported-system', 'is not supported - only HotbarUsesGeneric lookups will work. Go to the GitHub page for this module to learn more and/or to request support for this system: https://github.com/illandril/FoundryVTT-hotbar-uses');
+  // biome-ignore lint/nursery/noMisplacedAssertion: This is a weird place to assert... but we actually want it here to ensure the warn happens
+  expect(warnSpy).toHaveBeenCalledWith(
+    'some-unsupported-system',
+    'is not supported - only HotbarUsesGeneric lookups will work. Go to the GitHub page for this module to learn more and/or to request support for this system: https://github.com/illandril/FoundryVTT-hotbar-uses',
+  );
   warnSpy.mockRestore();
 });
 
@@ -18,8 +23,14 @@ describe('dnd5e system clone', () => {
       id: 'mock-actor-1',
       items: {
         get: (id) => actor1Items.get(id),
-        find: (condition) => [...actor1Items.values()].find((value, index) => condition(value, index, {} as foundry.utils.Collection<string, dnd5e.documents.Item5e>)),
-        filter: (condition) => [...actor1Items.values()].filter((value, index) => condition(value, index, {} as foundry.utils.Collection<string, dnd5e.documents.Item5e>)),
+        find: (condition) =>
+          [...actor1Items.values()].find((value, index) =>
+            condition(value, index, {} as foundry.utils.Collection<string, dnd5e.documents.Item5e>),
+          ),
+        filter: (condition) =>
+          [...actor1Items.values()].filter((value, index) =>
+            condition(value, index, {} as foundry.utils.Collection<string, dnd5e.documents.Item5e>),
+          ),
       },
     } as dnd5e.documents.Actor5e;
     actor1Items.set('mock-item-1.3', {
@@ -50,16 +61,17 @@ describe('dnd5e system clone', () => {
     const actors = new Map<string, Actor>();
     actors.set(actor1.id, actor1);
 
-
     jest.spyOn(ChatMessage, 'getSpeaker').mockReturnValue({
       actor: actor1.id,
     });
     jest.spyOn(game.actors, 'get').mockImplementation((id) => actors.get(id)!);
-    jest.spyOn(game.actors, 'find').mockImplementation(
-      (predicate) => [...actors.values()].find(
-        (value, index) => predicate(value, index, {} as foundry.utils.Collection<string, Actor>),
-      ),
-    );
+    jest
+      .spyOn(game.actors, 'find')
+      .mockImplementation((predicate) =>
+        [...actors.values()].find((value, index) =>
+          predicate(value, index, {} as foundry.utils.Collection<string, Actor>),
+        ),
+      );
   });
 
   it('returns null for something that would be valid if the system were dnd5e', async () => {
@@ -69,7 +81,9 @@ describe('dnd5e system clone', () => {
   });
 
   it('returns value for HotbarUsesGeneric comment', async () => {
-    const actual = await calculateUses('// HotbarUsesGeneric\n// ActorID=mock-actor-1\n// ItemName=Throwing Dagger\n// Available=system.quantity\ndoSomething();');
+    const actual = await calculateUses(
+      '// HotbarUsesGeneric\n// ActorID=mock-actor-1\n// ItemName=Throwing Dagger\n// Available=system.quantity\ndoSomething();',
+    );
 
     expect(actual).toEqual({
       available: 3,

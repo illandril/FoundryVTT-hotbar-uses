@@ -18,23 +18,23 @@ const GENERIC_MACRO_REGEX_ARRAY = [
 ];
 
 const getMacroSettings = () => {
-  const CONFIG = window.CONFIG as {
+  const config = window.CONFIG as {
     illandril?: {
       hotbarUses?: {
-        macros?: Record<string, RegExp[] | undefined>
-      }
-    }
+        macros?: Record<string, RegExp[] | undefined>;
+      };
+    };
   };
-  if (!CONFIG.illandril) {
-    CONFIG.illandril = {};
+  if (!config.illandril) {
+    config.illandril = {};
   }
-  if (!CONFIG.illandril.hotbarUses) {
-    CONFIG.illandril.hotbarUses = {};
+  if (!config.illandril.hotbarUses) {
+    config.illandril.hotbarUses = {};
   }
-  if (!CONFIG.illandril.hotbarUses.macros) {
-    CONFIG.illandril.hotbarUses.macros = {};
+  if (!config.illandril.hotbarUses.macros) {
+    config.illandril.hotbarUses.macros = {};
   }
-  return CONFIG.illandril.hotbarUses.macros;
+  return config.illandril.hotbarUses.macros;
 };
 
 export const setDefaultMacroRegexArray = (systemID: string, macroRegexArray: RegExp[]) => {
